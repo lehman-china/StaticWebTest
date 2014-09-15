@@ -1,0 +1,52 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>javascript Test</title>
+
+<script src="framework/inc/jquery-1.8.3.min.js"></script>
+
+<script type="text/javascript">
+	/**
+	 *  雷建军:2014-7-24 17:36:35
+	 *  把普通的请求,变成post请求并提交
+	 */
+	function postSubmit( url ) {
+		// 请求路径
+		var action = url.substring( 0, url.indexOf( '?' ) );
+		// url中的参数到param对象中
+		var params = new Object();
+		if ( url.indexOf( "?" ) != -1 ) {
+			url = url.substring( url.indexOf( '?' ) + 1 ); // 获取url中"?"符后的字串
+			strs = url.split( "&" );
+			for ( var i = 0; i < strs.length; i++ ) {
+				var property = strs[i].split( "=" );
+				params[property[0]] = property[1];
+			}
+		}
+		// 创建表单
+		var temp = document.createElement( "form" );
+		temp.action = action;
+		temp.method = "post";
+		temp.style.display = "none";
+		// 参数加入表单中
+		for ( var x in params ) {
+			var opt = document.createElement( "textarea" );
+			opt.name = x;
+			opt.value = params[x];
+			temp.appendChild( opt );
+		}
+		document.body.appendChild( temp );
+		temp.submit();
+	}
+	
+	$(function(){ 
+		postSubmit( "http://localhost:8080/bioec/product_searchProduct.action?keyword=CD31" );
+	});
+</script>
+</head>
+
+
+<body>
+</body>
+
+</html>
