@@ -30,33 +30,47 @@
 
 
 <script>
-	var expanderModule = angular.module( 'expanderModule', [] )
-	expanderModule.directive( 'expander', function() {
-		return {
-			restrict : 'EA',
-			replace : true,
-			transclude : true,
-			scope : {
-				title : '=expanderTitle'
-			},
-			template : '<div>' + '<div class="title" ng-click="toggle()">{{title}}</div>' + '<div class="body" ng-show="showMe" ng-transclude></div>' + '</div>',
-			link : function( scope, element, attrs ) {
-				scope.showMe = false;
-				scope.toggle = function toggle() {
-					scope.showMe = !scope.showMe;
+	function drag( dragDiv, tagDiv ) { //传入拖拽发生id和被拖拽id，如果相同，则本体就是按钮和拖拽对象
+
+		var dragDiv = document.getElementById( dragDiv );
+		var tagDiv = document.getElementById( tagDiv );
+		var tagContainer = document;
+		var e, offsetT, offsetL, downX, downY, moveX, moveY;
+
+		dragDiv.onmouseover = function( e ) {
+			this.style.cursor = "move";
+		}
+
+		dragDiv.onmousedown = function( e ) {
+			e = e || window.event;
+			offsetT = tagDiv.offsetTop;
+			offsetL = tagDiv.offsetLeft;
+			downX = e.clientX;
+			downY = e.clientY;
+
+			dragDiv.onmouseup = function( e ) {
+				tagContainer.onmousemove = function() {
+					return false;
 				}
 			}
+
+			tagContainer.onmousemove = function( e ) {
+				e = e || window.event;
+				moveX = e.clientX;
+				moveY = e.clientY;
+				tagDiv.style.top = offsetT + ( moveY - downY ) + "px";
+				tagDiv.style.left = offsetL + ( moveX - downX ) + "px";
+			}
 		}
-	} );
-	expanderModule.controller( 'SomeController', function( $scope ) {
-		$scope.title = '点击展开';
-		$scope.text = '这里是内部的内容。';
-	} );
+	}
+	$(function(){
+		drag( "moveId", "moveId" ) ;
+		
+	});
 </script>
 </head>
 <body>
-	<div ng-controller='SomeController'>
-		<expander class='expander' expander-title='title'> {{text}} </expander>
-	</div>
+	<div id="moveId" style="background-color: red; width: 50px; height: 50px; position: absolute;"></div>
+
 </body>
 </html>
