@@ -1,0 +1,62 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>前端JS框架angular,增,删,查,改,排序, 例子</title>
+
+<style type="text/css">
+.expander {
+	border: 1px solid black;
+	width: 250px;
+}
+
+.expander>.title {
+	background-color: black;
+	color: white;
+	padding: .1em .3em;
+	cursor: pointer;
+}
+
+.expander>.body {
+	padding: .1em .3em;
+}
+</style>
+
+<script src="../common/js/inc/jquery-1.8.3.min.js"></script>
+
+<!--  bootstrap css样式  美观,不用自己写样式 -->
+<link rel="stylesheet" href="../common/css/bootstrap.min.css">
+<!-- 引入他的框架JS 即可 -->
+<script src="../common/js/inc/angular.min.js"></script>
+
+
+<script>
+	var expanderModule = angular.module( 'expanderModule', [] )
+	expanderModule.directive( 'expander', function() {
+		return {
+			restrict : 'EA',
+			replace : true,
+			transclude : true,
+			scope : {
+				title : '=expanderTitle'
+			},
+			template : '<div>' + '<div class="title" ng-click="toggle()">{{title}}</div>' + '<div class="body" ng-show="showMe" ng-transclude></div>' + '</div>',
+			link : function( scope, element, attrs ) {
+				scope.showMe = false;
+				scope.toggle = function toggle() {
+					scope.showMe = !scope.showMe;
+				}
+			}
+		}
+	} );
+	expanderModule.controller( 'SomeController', function( $scope ) {
+		$scope.title = '点击展开';
+		$scope.text = '这里是内部的内容。';
+	} );
+</script>
+</head>
+<body>
+	<div ng-controller='SomeController'>
+		<expander class='expander' expander-title='title'> {{text}} </expander>
+	</div>
+</body>
+</html>
