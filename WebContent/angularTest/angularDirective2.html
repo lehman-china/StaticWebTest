@@ -3,10 +3,37 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>前端JS框架angular</title>
 
+<style type="text/css">
+.borderA, .borderB {
+	width: 300px;
+	height: 800px;
+	border-style: solid;
+	border-width: 1px;
+	display: inline-block;
+	float: left;
+}
+
+.borderB {
+	float: right;
+}
+
+.moveA, .moveB {
+	background-color: red;
+	width: 300px;
+	height: 40px;
+	border-style: solid;
+	border-width: 1px;
+}
+
+.moveB {
+	background-color: #3cd;
+}
+</style>
+
 <!-- 引入他的框架JS 即可 -->
 <script src="js/angular.min.js"></script>
 
-<script src="js/angularDirective.js"></script>
+<script src="js/angularDirective2.js"></script>
 
 <script type="text/javascript">
 	//如果,没有引入jquery,则使用 , angular中集成精简jquery子集
@@ -17,15 +44,21 @@
 </script>
 </head>
 <body ng-app="myapp" ng-controller="dragController">
-<drag ></drag>
+	<div></div>
+	<div class="borderA" id="borderA">
+		<h1 style="background-color: #fcc;">对比栏</h1>
+		<drag dr-data="{{compare.id}}" ng-repeat="compare in compares">
+		<div class="moveA">商品名称:{{compare.productName}}</div>
+		</drag>
+	</div>
+	<div class="borderB" id="borderB">
+		<h1 style="background-color: #fcc;">管理栏</h1>
+		<drag dr-data="{{unCompare.id}}" ng-repeat="unCompare in unCompares">
+		<div class="moveB">商品名称:{{unCompare.productName}}</div>
+		</drag>
 
-<drag ></drag>
+	</div>
 
-<drag ></drag>
-
-<drag ></drag>
-
-<a drag></a> 
-
+	<button ng-click="addCompare()">add新对比</button>
 </body>
 </html>
