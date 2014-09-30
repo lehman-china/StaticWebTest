@@ -3,57 +3,28 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>前端JS框架angular</title>
 
-<!--  bootstrap css样式  美观,不用自己写样式 -->
-<link rel="stylesheet" href="../common/css/bootstrap.min.css">
-<!-- 引入他的框架JS 即可 -->
-<script src="../common/js/inc/angular.min.js"></script>
-<script src="../common/js/inc/jquery-1.8.3.min.js"></script>
+<link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.2.0/css/bootstrap.min.css">
+<script src="http://apps.bdimg.com/libs/angular.js/1.2.15/angular.min.js"></script>
 
 
 </head>
-<body>
-	<div id="one" style="height: 100px; width: 100px; background: red; position: absolute;"></div>
+<body ng-app="" ng-controller="controller">
 
 	<script>
-		var odiv = document.getElementById( "one" );
-		dra( odiv );
-		function dra( obj ) {
-			obj.onmousedown = function( e ) {
-				var oe = e || window.event;
-				var $this = this;
-				var l = oe.clientX - $this.offsetLeft;
-				var t = oe.clientY - $this.offsetTop;
-				document.onmousemove = function( e ) {
-					var oe = e || window.event;
-					var ol = oe.clientX - l;
-					var ot = oe.clientY - t;
-					if ( ol < 0 )
-						ol = 0;
-					if ( ot < 0 )
-						ot = 0;
-					if ( ot > document.documentElement.clientHeight - $this.offsetHeight )
-						ot = document.documentElement.clientHeight - $this.offsetHeight;
-					if ( ol > document.documentElement.clientWidth - $this.offsetWidth )
-						ol = document.documentElement.clientWidth - $this.offsetWidth;
-					$this.style.left = ol + "px";
-					$this.style.top = ot + "px";
-				}
-				document.onmouseup = function() {
-					document.onmousemove = null;
-					document.onmouseup = null;
-					if ( $this.releaseCapture )
-						$this.releaseCapture();
-				}
-				if ( $this.setCapture ) {
-					$this.setCapture();
-				}
-				if ( oe.preventDefault )
-					oe.preventDefault();
-				else
-					oe.returnValue = false;
-				return false;
-			}
+		function controller( $scope ) {
+			service( $scope );
+		}
+		function service( $scope ) {
+			$scope.isOpen = false;
+			$scope.chenge = function() {
+				$scope.isOpen = !$scope.isOpen;
+			};
 		}
 	</script>
+
+	{{isOpen}}
+
+	<button class="btn btn-success" ng-click="isOpen = !isOpen">直接改变</button>
+	<button class="btn btn-success" ng-click="chenge()">方法改变</button>
 </body>
 </html>

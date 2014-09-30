@@ -3,128 +3,28 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>前端JS框架angular</title>
 
-<!--  bootstrap css样式  美观,不用自己写样式 -->
-<link rel="stylesheet" href="../common/css/bootstrap.min.css">
-<style type="text/css">
-.borderA, .borderB {
-	width: 400px;
-	height: 800px;
-	border-style: solid;
-	border-width: 1px;
-	display: inline-block;
-	position: absolute;
-	left: 0px;
-	top: 0px;
-}
-
-.borderB {
-	left: 450px;
-	top: 0px;
-}
-
-.moveA, .moveB {
-	background-color: red;
-	width: 200px;
-	height: 30px;
-	border-style: solid;
-	border-width: 1px;
-}
-
-.moveB {
-	background-color: #3cd;
-}
-</style>
-<!-- 引入他的框架JS 即可 -->
+<link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.2.0/css/bootstrap.min.css">
 <script src="../common/js/inc/angular.min.js"></script>
-<script src="../common/js/inc/jquery-1.8.3.min.js"></script>
 
-<script>
-	$( function( $ ) {
-		var szId = null;
-		$.Move = function( _this ) {
-			var _this
-			_this.hover( function() {
-				_this.css( "cursor", "move" );
-			}, function() {
-				_this.css( "cursor", "default" );
-			} )
-			_this.mousedown( function( e ) {//e鼠标事件
-				var offset = _this.offset();
-				var x = e.pageX;
-				var y = e.pageY - offset.top;
-				_this.css( {
-					'opacity' : '0.3',
-					'position' : 'absolute'
-				} );
-				$( document ).on( "mousemove", function( ev ) {//绑定鼠标的移动事件，因为光标在DIV元素外面也要有效果，所以要用doucment的事件，而不用DIV元素的事件
-					_this.on( 'selectstart', function() {
-						return false;
-					} );
-					var _x = ev.pageX - x;//获得X轴方向移动的值
-					var _y = ev.pageY - y;//获得Y轴方向移动的值
 
-					_this.css( {
-						'left' : _x + "px",
-						'top' : _y + "px"
-					} );
-
-				} );
-
-				$( document ).on( "mouseup", function( ev ) {
-					_this.unbind( "mousemove" );
-					$( document ).unbind( "mousemove" ).unbind( "mouseup" );
-					_this.css( {
-						'opacity' : '',
-						'position' : '',
-						'left' : '',
-						'top' : ''
-					} );
-					var x = ev.pageX;
-					if ( x > 500 ) {
-						var h = _this.prop( "outerHTML" );
-						$( "#" + szId ).after( h );
-						_this.remove();
-						bdEvent();
-					}
-				} )
-
-			} );
-
-		};
-
-		function bdEvent() {
-			var $mousemove = $( '.moveA,.moveB' );
-			$mousemove.unbind( "mousedown" );
-			$mousemove.each( function() {
-				$.Move( $( this ) );
-			} );
-
-			$( "div" ).on( "mouseover", function( e ) {
-				var el = e.srcElement || e.target;
-				szId = el.id;
-				console.log( szId );
-			} );
-		}
-		bdEvent();
-	} );
-</script>
 </head>
-<body>
-	<div class="borderA" id="borderA">
-		<div id="move1" class="moveA">move1</div>
-		<div id="move2" class="moveA">move2</div>
-		<div id="move3" class="moveA">move3</div>
-		<div id="move4" class="moveA">move4</div>
-		<div id="move5" class="moveA">move5</div>
-	</div>
-	<div style="width: 50px; display: inline-block;"></div>
-	<div class="borderB" id="borderB">
-		<div id="move6" class="moveB">move6</div>
-		<div id="move7" class="moveB">move7</div>
-		<div id="move8" class="moveB">move8</div>
-		<div id="move9" class="moveB">move9</div>
-		<div id="move10" class="moveB">move10</div>
-	</div>
+<body ng-app="" ng-controller="controller">
 
+	<script>
+		function controller( $scope ) {
+			service( $scope );
+		}
+		function service( $scope ) {
+			$scope.isOpen = false;
+			$scope.chenge = function() {
+				$scope.isOpen = !$scope.isOpen;
+			};
+		}
+	</script>
+
+	{{isOpen}}
+
+	<button class="btn btn-success" ng-click="isOpen = !isOpen">直接改变</button>
+	<button class="btn btn-success" ng-click="chenge()">方法改变</button>
 </body>
 </html>

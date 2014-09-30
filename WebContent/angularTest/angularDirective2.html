@@ -18,8 +18,8 @@
 }
 
 .moveA, .moveB {
-	background-color: red;
-	width: 300px;
+	background-color: #0FC;
+	width: 298px;
 	height: 40px;
 	border-style: solid;
 	border-width: 1px;
@@ -45,20 +45,25 @@
 </head>
 <body ng-app="myapp" ng-controller="dragController">
 	<div></div>
-	<div class="borderA" id="borderA">
+	<div class="borderA" id="borderA" >
 		<h1 style="background-color: #fcc;">对比栏</h1>
-		<drag dr-data="{{compare.id}}" ng-repeat="compare in compares">
-		<div class="moveA">商品名称:{{compare.productName}}</div>
+		<drag dr-index="{{$index}}" dr-var-name="compares"  ng-repeat="compare in compares">
+			<div class="moveA">商品名称:{{compare.productName}}</div>
 		</drag>
 	</div>
 	<div class="borderB" id="borderB">
 		<h1 style="background-color: #fcc;">管理栏</h1>
-		<drag dr-data="{{unCompare.id}}" ng-repeat="unCompare in unCompares">
-		<div class="moveB">商品名称:{{unCompare.productName}}</div>
+		<drag dr-index="{{$index}}" dr-var-name="unCompares" ng-repeat="unCompare in unCompares">
+			<div class="moveB">商品名称:{{unCompare.productName}}</div>
 		</drag>
-
 	</div>
-
+	<h3>当前鼠标指向状态:</h3>
+	{{ mark }}<br><br>
+	<h3>对比内容:</h3>
+	{{ compares }}<br><br>
+	<h3>管理内容:</h3>
+	{{ unCompares }}<br><br>
+	
 	<button ng-click="addCompare()">add新对比</button>
 </body>
 </html>

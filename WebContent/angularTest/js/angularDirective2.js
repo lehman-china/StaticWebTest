@@ -1,47 +1,49 @@
 var app = angular.module( 'myapp', [] );
 
-// 自定义helloWorld指令
+// 移动块指令
 app.directive( 'drag', function( $document ) {
 			return {
 				restrict : 'AE',
 				replace : true,
 				transclude : true,// 指令模板(template) 嵌入 html中的内容
-				scope : {// 演示 scope 取 指令上的属性.
-					/*
-					 * =： 指令中的属性取值为Controller中对应$scope上属性的取值。 @：
-					 * 指令中的取值为html中的字面量/直接量
-					 * &：指令中的取值为Controller中对应$scope上的属性，但是这个属性必须为一个函数回调
-					 */
-					drData : '@'
-				},
-
-				template : '<div>' + 'id:{{drData}}<div ng-transclude></div></div>',
+				scope : true,
+				template : '<div><div ng-transclude></div></div>',
 				link : function( scope, element, attr ) {
-					var startX = 0, startY = 0, x = 0, y = 0;
 					element.on( 'mousedown', function( event ) {
-								// Prevent default dragging of selected content
+								// 点击后不可选择文字
 								event.preventDefault();
-
 								element.css( {
 											'opacity' : '0.3',
 											'position' : 'absolute',
-											cursor : 'pointer'
+											cursor : 'move'
 										} );
 
-								startX = event.screenX - x;
-								startY = event.screenY - y;
-								$document.on( 'mousemove', mousemove );
 								$document.on( 'mouseup', mouseup );
-							} );
+								$document.on( 'mousemove', mousemove );
 
+							} );
+					element.on( "mouseover", mouseover );
+					function mouseover() {
+						scope.mark.drVarName = attr.drVarName;
+						scope.mark.drIndex = attr.drIndex;
+						scope.$apply();
+					}
 					function mousemove( event ) {
 						var e = event || window.event;
 						element.css( {
-									'left' : e.clientX + "px",
-									'top' : e.clientY + "px"
+									'left' : (e.clientX + 20) + "px",
+									'top' : (e.clientY + 20) + "px"
 								} );
 					}
 					function mouseup() {
+						var currentObj = scope[attr.drVarName][attr.drIndex];
+						console.log( scope.mark );
+						var copy = angular.copy( currentObj );
+						scope[attr.drVarName].splice( attr.drIndex, 1 );
+
+						scope[scope.mark.drVarName].splice( scope.mark.drIndex, 0, copy );
+
+						scope.$apply();
 						$document.unbind( 'mousemove', mousemove );
 						$document.unbind( 'mouseup', mouseup );
 						element.css( {
@@ -58,6 +60,7 @@ app.directive( 'drag', function( $document ) {
 
 app.controller( "dragController", dragController );
 function dragController( $scope ) {
+	$scope.mark = {};
 	$scope.compares = [{
 				id : 1,
 				productName : "cd3"
@@ -80,8 +83,9 @@ function dragController( $scope ) {
 			}];
 	$scope.addCompare = function() {
 		$scope.compares.push( {
-					id : 6,
-					productName : 'cd9'
+					id : new Date().getTime(),
+					productName : 'cd' + (new Date().getTime())
 				} );
 	};
+
 }
