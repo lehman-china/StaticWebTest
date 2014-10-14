@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+
+<script src="../common/js/inc/jquery-1.8.3.min.js"></script>
+
+<script type="text/javascript" src="js/angular.min.js"></script>
+<style>
+.r {
+	height: 50px;
+	width: 50px;
+}
+
+.r2 {
+	background-color: red;
+}
+
+.r3 {
+	background-color: #CCC;
+}
+.r4 {
+	display:none;
+}
+</style>
+<title>AngularJS控制器试练</title>
+
+<script>
+	var app = angular.module( "hh", [] );
+	app.controller( "wordCount", function( $scope, $http ) {
+		$scope.scope_r = ["r2","r3"];
+		$scope.scope_r4 = "";
+
+		/* $http( {
+			url : "www.baidu.com",
+			method : "get"
+		} ).success( function( res ) {
+			console.log( res );
+		} ); */
+
+	} )
+</script>
+
+</head>
+<body ng-app="hh" id="ng-app" class="ng-app:hh" ng-controller="wordCount">
+	<div id="d" class="r"  ng-class="scope_r" ></div>
+	<button ng-click="scope_r = 'r2'">test1</button>
+	<button ng-click="scope_r = 'r3'">test2</button>
+	<button ng-click="scope_r = 'r3 r4'">test3</button>
+
+</body>
+</html>
+

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+
+<script src="../common/js/inc/jquery-1.8.3.min.js"></script>
+
+<script type="text/javascript" src="js/angular.min.js"></script>
+<style>
+.r {
+	height: 50px;
+	width: 50px;
+}
+
+.r2 {
+	background-color: red;
+}
+
+.r3 {
+	background-color: #CCC;
+}
+</style>
+<title>AngularJS控制器试练</title>
+
+<script>
+	/**
+	 * ie 6 7 控制台工具
+	 */
+	if ( typeof ( console ) == "undefined" ) {
+		window.console = {
+			log : ( function() {
+				var _this = this;
+				// 控制台标题+工具栏
+				var title_console = "<div style='width : 100%;border:medium double rgb(0,0,63);background-color : #1CBEF2;'>" + "<span style='float:left;' >html控制台(Console):</span>" + "<a href='javascript:' onclick='$(\"#console_back\").hide(300)' style='float:right;border:1px solid rgb(0,0,63);background-color:#FF4949;height:18px;'>关闭控制台</a>" + "<a href='javascript:' onclick='$(\"#console_content\").html(\"\")' style='float:right;border:1px solid rgb(0,0,63);background-color:#FCA423;height:18px;'>清空控制台</a>" + "</div>";
+
+				//控制台内容
+				var content_console = "<textarea id='console_content' style='width : 100%; height : 200px;border:medium double rgb(0,0,63);overflow-x:hidden;'></textarea>";
+
+				// 添加控制台背景div
+				var style = "left : 0px; top : 100%;margin-top:-230px;" + // 显示坐标
+				"width : 100%; height : 230;" + // 宽和高
+				"background-color : #FFFFFF;" + // 背景色
+				"position : absolute;" + //
+				"display : none;";
+				//控制台背景div
+				var $console_back = $( "<div id='console_back' style='" + style + "'>" + title_console + content_console + "</div>" );
+				var $console_content;//控制台内容部分div
+				$( function() {
+					$( document.body ).append( $console_back );
+					$console_content = $( "#console_content" );
+				} );
+				var count = 1;
+				return function( content ) {
+
+					$console_content.append( ( count++ ) + " :" + content + "\r" );
+					$console_back.show( 200 );
+					// 滚动条到末尾
+					$console_content[0].scrollTop = $console_content[0].scrollHeight;
+				};
+			} )()
+		};
+	}
+
+	var app = angular.module( "hh", [] );
+	app.controller( "wordCount", function( $scope, $http ) {
+		$scope.scope_r = "";
+
+		/* $http( {
+			url : "www.baidu.com",
+			method : "get"
+		} ).success( function( res ) {
+			console.log( res );
+		} ); */
+
+	} )
+</script>
+
+</head>
+<body ng-app="hh" id="ng-app" class="ng-app:hh" ng-controller="wordCount">
+	<div id="d" class="r" ng-class="scope_r"></div>
+	<button ng-click="scope_r = 'r2'">test</button>
+	<button ng-click="scope_r = 'r3'">test</button>
+
+</body>
+</html>
+
