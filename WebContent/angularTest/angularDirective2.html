@@ -43,19 +43,19 @@
 	} )();
 </script>
 </head>
-<body ng-app="myapp" ng-controller="dragController">
+<body ng-app="myapp" id="ng-app" class="ng-app:myapp" ng-controller="dragController">
 	<div></div>
-	<div class="borderA" id="borderA" >
+	<div class="borderA" id="borderA" ng-mouseover="testA()" >
 		<h1 style="background-color: #fcc;">对比栏</h1>
-		<drag dr-index="{{$index}}" dr-var-name="compares"  ng-repeat="compare in compares">
+		<div drag dr-index="{{$index}}" dr-var-name="compares"  ng-repeat="compare in compares">
 			<div class="moveA">商品名称:{{compare.productName}}</div>
-		</drag>
+		</div drag>
 	</div>
-	<div class="borderB" id="borderB">
+	<div class="borderB" id="borderB" ng-mouseover="testB()" >
 		<h1 style="background-color: #fcc;">管理栏</h1>
-		<drag dr-index="{{$index}}" dr-var-name="unCompares" ng-repeat="unCompare in unCompares">
+		<div drag dr-index="{{$index}}" dr-var-name="unCompares" ng-repeat="unCompare in unCompares">
 			<div class="moveB">商品名称:{{unCompare.productName}}</div>
-		</drag>
+		</div drag>
 	</div>
 	<h3>当前鼠标指向状态:</h3>
 	{{ mark }}<br><br>

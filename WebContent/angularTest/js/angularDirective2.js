@@ -1,5 +1,18 @@
 var app = angular.module( 'myapp', [] );
 
+if(!window.console){
+       window.console = {}
+       console.log = function(str){
+             $(function() {
+                        var div = document.createElement("pre");
+                        div.className = "mass_sys_log";
+                        div.innerHTML = str + ""; //确保为字符串
+                        document.body.appendChild(div);
+             });
+       }
+       
+}
+
 // 移动块指令
 app.directive( 'drag', function( $document ) {
 			return {
@@ -12,6 +25,7 @@ app.directive( 'drag', function( $document ) {
 					element.on( 'mousedown', function( event ) {
 								// 点击后不可选择文字
 								event.preventDefault();
+								
 								element.css( {
 											'opacity' : '0.3',
 											'position' : 'absolute',
@@ -23,13 +37,20 @@ app.directive( 'drag', function( $document ) {
 
 							} );
 					element.on( "mouseover", mouseover );
-					function mouseover() {
+					function mouseover( e ) {
+						// 事件停止冒泡
+						if ( document.attachEvent ) {// ie
+							window.event.cancelBubble = true;
+						} else {
+							e.stopPropagation();
+						}
 						scope.mark.drVarName = attr.drVarName;
 						scope.mark.drIndex = attr.drIndex;
 						scope.$apply();
 					}
 					function mousemove( event ) {
 						var e = event || window.event;
+						console.log( e.clientX )
 						element.css( {
 									'left' : (e.clientX + 20) + "px",
 									'top' : (e.clientY + 20) + "px"
@@ -37,12 +58,12 @@ app.directive( 'drag', function( $document ) {
 					}
 					function mouseup() {
 						var currentObj = scope[attr.drVarName][attr.drIndex];
-						console.log( scope.mark );
+				
 						var copy = angular.copy( currentObj );
 						scope[attr.drVarName].splice( attr.drIndex, 1 );
 
 						scope[scope.mark.drVarName].splice( scope.mark.drIndex, 0, copy );
-
+						
 						scope.$apply();
 						$document.unbind( 'mousemove', mousemove );
 						$document.unbind( 'mouseup', mouseup );
@@ -87,5 +108,12 @@ function dragController( $scope ) {
 					productName : 'cd' + (new Date().getTime())
 				} );
 	};
-
+	$scope.testA = function() {
+		$scope.mark.drVarName = 'compares';
+		$scope.mark.drIndex = $scope.compares.length;
+	};
+	$scope.testB = function() {
+		$scope.mark.drVarName = 'unCompares';
+		$scope.mark.drIndex = $scope.unCompares.length;
+	};
 }

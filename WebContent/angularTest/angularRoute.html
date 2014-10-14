@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+<head>
+    <title>Study 12</title>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/angular-route.min.js"></script>
+</head>
+<body>
+    <div ng-view></div>
+    
+    <script type="text/ng-template" id="show.html">
+        <div ng-controller="PhoneListCtrl">
+            <h2>{{title}}</h2>
+            <a href="/phones/:1">go to detail</a>
+        </div>
+    </script>
+    <script type="text/ng-template" id="put.html">
+        <div ng-controller="PhoneDetailCtrl">
+            <h2>{{title}} - {{id}}</h2>
+            <a href="/phones">go to list</a>
+        </div>
+    </script>
+
+    <script type="text/javascript">
+        var app = angular.module('MyApp', ["ngRoute"], function() { });
+        app.config(['$routeProvider', function($routeProvider) {
+            $routeProvider.
+                when('/phones', { templateUrl: 'show.html', controller: "PhoneListCtrl" }).
+                when('/phones/:id', { templateUrl: 'put.html', controller: "PhoneDetailCtrl" }).
+                otherwise({ redirectTo: '/phones' });
+        } ]);
+        app.controller('PhoneListCtrl', function($scope) {
+            $scope.title = 'List';
+        });
+        app.controller('PhoneDetailCtrl', function($scope, $routeParams) {
+            $scope.title = 'Detail';
+            $scope.id = $routeParams.id;
+        });
+    </script>
+</body>
+</html>
