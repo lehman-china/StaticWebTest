@@ -1,16 +1,59 @@
+/**
+ * 数组扩展,模拟java List 方法
+ */
+
+/* 数组是否包含某个对象 */
+Array.constains = function( array, v ) {
+	for ( var i in array ) {
+		if ( v == array[i] ) {
+			return true;
+		}
+	}
+	return false;
+};
+// 数组第一次出现指定元素值的位置
+Array.indexOf = function( array, o ) {
+	for ( var i = 0; i < array.length; i++ )
+		if ( array[i] == o )
+			return i;
+	return -1;
+};
+/* 对象是否包含某个对象 */
+Object.constains = function( obj, v ) {
+	for ( var i in obj ) {
+		if ( v == obj[i] ) {
+			return true;
+		}
+	}
+	return false;
+};
+Object.keys = function( obj ) {
+	var keys = new Array();
+	for ( var prop in obj ) {
+		keys.push( prop );
+	}
+	return keys;
+};
+Object.size = function( obj ) {
+	var counter = 0;
+	for ( var temp in obj ) {
+		counter++;
+	}
+	return counter;
+};
 var app = angular.module( 'myapp', [] );
 
-if(!window.console){
-       window.console = {}
-       console.log = function(str){
-             $(function() {
-                        var div = document.createElement("pre");
-                        div.className = "mass_sys_log";
-                        div.innerHTML = str + ""; //确保为字符串
-                        document.body.appendChild(div);
-             });
-       }
-       
+if ( !window.console ) {
+	window.console = {}
+	console.log = function( str ) {
+		$( function() {
+					var div = document.createElement( "pre" );
+					div.className = "mass_sys_log";
+					div.innerHTML = str + ""; // 确保为字符串
+					document.body.appendChild( div );
+				} );
+	}
+
 }
 
 // 移动块指令
@@ -25,7 +68,7 @@ app.directive( 'drag', function( $document ) {
 					element.on( 'mousedown', function( event ) {
 								// 点击后不可选择文字
 								event.preventDefault();
-								
+
 								element.css( {
 											'opacity' : '0.3',
 											'position' : 'absolute',
@@ -58,12 +101,12 @@ app.directive( 'drag', function( $document ) {
 					}
 					function mouseup() {
 						var currentObj = scope[attr.drVarName][attr.drIndex];
-				
+
 						var copy = angular.copy( currentObj );
 						scope[attr.drVarName].splice( attr.drIndex, 1 );
 
 						scope[scope.mark.drVarName].splice( scope.mark.drIndex, 0, copy );
-						
+
 						scope.$apply();
 						$document.unbind( 'mousemove', mousemove );
 						$document.unbind( 'mouseup', mouseup );
