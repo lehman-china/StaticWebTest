@@ -1,0 +1,25 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>static test</title>
+
+<script src="WebContent/common/js/inc/jquery-1.8.3.min.js"></script>
+
+<script type="text/javascript">
+	$( function() {
+		$( '#btn' ).bind( "myClick", function() {
+			console.log( "<p>我的自定义事件.</p>" );
+		} );
+		$( '#btn' ).trigger( "myClick" );
+	} )
+</script>
+</head>
+
+
+<body>
+
+	<h5> static html test</h5>
+
+</body>
+
+</html>
