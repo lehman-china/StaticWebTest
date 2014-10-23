@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<meta http-equiv="X-UA-Compatible" content="IE=6" />
+<title>avalon入门</title>
+<script src="../js/avalon.js"></script>
+<script>
+	avalon.config( {
+		debug : true
+	} );
+	require( [ "ready!", "mmState" ], function() {
+		avalon.define( {
+			$id : "test"
+		} )
+		avalon.state( "home", {
+			controller : "test",
+			url : "/",
+			views : {
+				"" : {
+					template : "路由开始罗"
+				}
+			}
+		} )
+		avalon.state( "router1", {
+			controller : "test",
+			url : "/router1",
+			views : {
+				"" : {
+					templateUrl : "router1.html"
+				}
+			}
+		} )
+		avalon.state( "router2", {
+			controller : "test",
+			url : "/router2",
+			views : {
+				"" : {
+					templateUrl : "router2.html"
+				}
+			}
+		} )
+
+		avalon.history.start( {
+			basepath : "/mmRouter"
+		} )
+		avalon.scan()
+
+	} );
+</script>
+</head>
+<body>
+	<div ms-controller="test">
+
+		<div>
+			<a href="#!/router1">router1</a> <a href="#!/router2">router2</a>
+		</div>
+		----------------------------------------------------
+		<div ms-view></div>
+	</div>
+
+</body>
+</html>
