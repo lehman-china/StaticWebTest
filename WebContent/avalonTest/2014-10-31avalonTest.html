@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>avalon入门</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="js/avalon.min.js"></script>
+<script>
+	var model = avalon.define( "test", function( vm ) {
+		vm.user = {};
+		vm.user.name = "";
+	} )
+</script>
+</head>
+<body ms-controller="test">
+	<input type="text" ms-duplex="user.name" />{{user.name}}
+</body>
+</html>
