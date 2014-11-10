@@ -24,8 +24,8 @@ require( ["../avalon.oniui/draggable/avalon.draggable.js"], function() {
 							id : 3,
 							productName : "cd5"
 						}, {
-							id : 9,
-							productName : "cd9"
+							id : 3,
+							productName : "cd5"
 						}];
 				vm.unCompares = [{
 							id : 4,
@@ -38,14 +38,14 @@ require( ["../avalon.oniui/draggable/avalon.draggable.js"], function() {
 							productName : "cd8"
 						}];
 				var $exchange = $( ".exchange" );
-				// 清除临时的占位符
+
 				function cleanTmp() {
-					for ( var key in vm.$model["compares"] ) {
+					for ( var key in vm["compares"] ) {
 						if ( vm["compares"][key].id == -1 ) {
 							vm["compares"].splice( key, 1 );
 						}
 					}
-					for ( var key in vm.$model["unCompares"] ) {
+					for ( var key in vm["unCompares"] ) {
 						if ( vm["unCompares"][key].id == -1 ) {
 							vm["unCompares"].splice( key, 1 );
 						}
@@ -53,19 +53,20 @@ require( ["../avalon.oniui/draggable/avalon.draggable.js"], function() {
 				}
 				vm.draggable = {
 					beforeStartFn : function( e, data ) {
+						avalon.log( e.type + " beforeStart" )
 						vm.mark.index = -1;
-						data.$element.css( 'position', 'absolute' );
+
+						data.$element.css( 'position', 'absolute' )
 					},
 					dragFn : function( e, data ) {
 						var centerX = data.pageX, centerY = data.pageY;
 						$( ".exchange" ).not( e.target ).each( function( index, item ) {
 									var $item = $( item );
-									// 位置区域
 									var left1 = $item.offset().left;
 									var left2 = left1 + $item.width();
 									var top1 = $item.offset().top;
 									var top2 = top1 + $item.height();
-									// 判断鼠标指向的区域
+
 									if ( centerX > left1 && centerX < left2 && centerY > top1 && centerY < top2 ) {
 										var index = $item.attr( "drag-index" );
 										var varName = $item.attr( "drag-var-name" );
@@ -73,13 +74,14 @@ require( ["../avalon.oniui/draggable/avalon.draggable.js"], function() {
 										if ( vm.mark.index == index && vm.mark.varName == varName )
 											return;
 
-										cleanTmp(); // 清除临时的占位符
+										cleanTmp();
 										vm.mark = {
 											index : index,
 											varName : varName
 										};
-										// 添加占位符
+
 										vm[varName].splice( index, 0, tmp );
+
 									}
 								} )
 
@@ -89,22 +91,24 @@ require( ["../avalon.oniui/draggable/avalon.draggable.js"], function() {
 						$this.css( {
 									'opacity' : '',
 									'position' : '',
+									cursor : '',
 									top : '',
 									left : ''
 								} );
+						cleanTmp();
 						if ( vm.mark.index == -1 )
 							return;
 
 						var cIndex = parseInt( $this.attr( "drag-index" ) );
 						var cVarName = $this.attr( "drag-var-name" );
-						// 记录旧位置
+						console.log( cIndex )
+						console.log( cVarName )
 						var copy = avalon.mix( {}, vm[cVarName][cIndex].$model );
 						// 删除旧位置
 						vm[cVarName].splice( cIndex, 1 );
 						// 放入新位置
 						vm[vm.mark.varName].splice( vm.mark.index, 0, copy );
-						// 清除占位符
-						cleanTmp();
+
 					}
 				}
 				// 在VM中，改变它们不会引起视图改变的属性，这包括以$开头的属性，其名字放在$skipArray中的属性，函数。
