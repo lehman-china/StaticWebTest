@@ -46,7 +46,7 @@
 </head>
 <body ms-controller="dragController">
 	<div></div>
-	<div class="borderA" >
+	<div class="borderA"  >
 		<h1 style="background-color: #fcc;">对比栏</h1>
 		<div ms-repeat="compares">
 			<div class="moveA exchange" ms-if="!el.virtual" ms-controller="dragController" data-draggable-before-start="beforeStartFn" data-draggable-drag="dragFn" data-draggable-before-stop="beforeStopFn" ms-draggable drag-var-name="compares" ms-attr-drag-index="$index">商品名称:{{el.productName}}---{{$index}}</div>
