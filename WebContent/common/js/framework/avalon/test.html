@@ -5,21 +5,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <script src="avalon.js"></script>
-<script>
-            avalon.define("test", function(vm) {
-                vm.value = 1111
-               	vm.$watch("value",function(o1,o2){
-               		console.log(o1,o2);
-               		var value = vm.value.toString();
-               		// 去除其他字符,保证自己是数字
-    				value = parseInt( value.replace( /\D/g, '' ) );
-               		vm.value = value;
-               	});
-            })
-            
-        </script>
+<script type="text/javascript">
+	var model = avalon.define( "model1", function( vm ) {
+		vm.user = {};
+		function init() {
+			console.log( "初始化开始" );
+			console.log( vm.user );
+			vm.user = {
+				name : "lehman",
+				age : 22
+			};
+			console.log( vm.user );
+			console.log( vm.user.name );
+		}
+		// 确认第二次,avalon编译后再 初始化.
+		vm.$id && init();
+		vm.clickInit = function() {
+			init();
+		};
+	} );
+</script>
 </head>
-<body ms-controller="test">
-	<input type="text" ms-duplex="value"/>
+<body>
+	<div ms-controller="model1">
+		{{user.name}}<br /> {{user.age}}<br /> <input type="submit" ms-click="clickInit()" />
+	</div>
 </body>
 </html>
