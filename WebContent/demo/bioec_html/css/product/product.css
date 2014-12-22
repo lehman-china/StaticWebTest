@@ -1,0 +1,327 @@
+body,html{ margin:0; padding:0; height:100%;}
+.content{ width:1000px; margin:auto; min-height:78%; _min-height:78%;_height:expression(this.scrollHeight < 768 ? "768px" : "auto");}
+
+/*产品列表*/
+.left{ width:740px; float:left; position:relative; z-index:8;}
+	.no_results{ text-align:center; margin-top:100px;}
+	.no_results p{ line-height:50px; font-size:16px;}
+	.no_results p em{ color:#f27101; margin:0 5px; text-decoration:underline;}
+	.factory{ color:#222; line-height:30px; padding-right:10px;}
+	.factory_tit{ width:60px; float:left;}
+	.factory_tit p{ margin-top:-8px; color:#f27101; font-size:12px;}
+	#factory_main{ width:930px; float:left;}
+	#factory_main b{ color:#0075d5; cursor:pointer; font-weight:500; margin-left:5px; white-space:nowrap; display:inline-block; _display:inline; *display:inline; zoom:1;}
+	#factory_main b:hover{ color:#f27101;}
+	.factory span{ color:#d2d2d2;}
+	.factory a{ height:16px; line-height:16px; padding:0 3px; color:#666; display:inline-block; _display:inline; *display:inline; zoom:1; border-radius:2px;}
+	.factory a:hover,.this_factory{ background:#40c7e9; color:#fff !important; text-decoration:none;}
+	
+	.find_jg{ color:#777; margin-top:20px;}
+	.find_jg i{ color:#333}
+	
+.box{ width:1000px; border-bottom:1px solid #e6e6e6; margin-top:10px;}
+	.box{ position:relative; }
+	.box_left{ width:980px; min-height:90px; position:relative; left:0; top:0px; padding:10px;}
+	.box_right{ width:180px; min-height:180px;  border:2px solid #ffead7; background:#f7f7f7;padding:10px; position:absolute; left:996px; top:-30px;}
+	.box_right p{ font-family:"微软雅黑"; font-weight:500; line-height:24px; padding-left:10px;}
+	.box:hover{ border-bottom:none;}
+	.box:hover .box_left{ border:2px solid #ffead7; border-right:none; background:#f7f7f7; padding:8px 8px 9px 8px;}
+	.box:hover .box_right{ display:block;}
+	
+	.property{ width:500px; float:left;}
+		.product_name{ line-height:22px; padding-bottom:10px;}
+		.product_name a{ color:#333; text-decoration:none;}
+		.product_name a:hover{ color:#f27101;}
+		.shuxing span,.qixian span{ display:inline-block; _display:inline; *display:inline; zoom:1; padding:5px 20px 0 0; line-height:20px;}
+		.shuxing span i,.qixian span i{ color:#999; margin-right:5px;}
+		.qixian span img{ margin:-2px 0 0 5px;}
+	.norms{ width:189px; float:right; padding:0 10px; max-height:100px; min-height:85px; overflow:hidden; border-left:1px dotted #ddd;}
+		.norms h4{ color:#666;}
+		.norms_main{ max-height:58px; overflow:hidden; _height:expression(this.scrollHeight > 58 ? "58px" : "auto");}
+		.norms_main span{ display:block; line-height:16px; margin-top:2px; color:#666;}
+		.norms_main span i{ float:right; color:#f27101;}
+		.norms_ts a{ margin-left:10px;}
+	.atlas{ width:270px; float:right; overflow:hidden; padding-top:5px;}
+		.atlas span{ display:block; width:54px; height:54px; overflow:hidden; float:right; padding-right:10px;}
+		.atlas span img{ width:50px; height:50px; border:1px solid #eaeaea;}
+		.atlas span img:hover{ border:2px solid #ffead7;}
+	
+	.tieba{ line-height:24px; padding-left:10px;}
+		.tieba span{ margin-right:20px;}
+		
+	.right_btn{ text-align:right;}
+		.right_btn a{ width:60px; height:22px; display:inline-block; _display:inline; *display:inline; zoom:1; line-height:22px; text-align:center; color:#fff; text-decoration:none; background:#f06341; border-radius:2px;}	
+		.right_btn a:hover{ background:#e14520;}
+		
+	.record{ margin-top:40px;}
+		.record h4{ padding:10px 0 5px 0; border-top:1px dotted #ccc;}
+		.record_main a{ line-height:28px; margin-right:20px; white-space:nowrap; display:inline-block; _display:inline; *display:inline; zoom:1;}
+		
+
+	
+
+	
+/*产品详情*/
+.top_img{ width:49px; height:49px; margin-right:15px; float:left; border:2px solid #efefef; float:left; _display:inline; zoom:1;}
+	.top_img img{ width:49px; height:49px;}
+	
+.nametit{ width:920px; height:52px;}
+	.nametit h1{ height:30px; font-size:20px; font-family:"Microsoft YaHei"; font-weight:500;}
+	.collect{ width:50px; height:22px; float:left; line-height:22px;}
+	.collect b{ font-size:14px; color:#f27101; padding-right:3px;}
+	.specpk{ position:relative; display:inline-block; _display:inline; *display:inline; zoom:1; left:0; top:4px; _top:6px; z-index:10; width:55px;}
+	.specpk .mj_db{ width:auto;}
+	.specpk .mj_db i{ margin-left:10px;}
+	.specpk_img{ width:7px; height:11px; background:url(/bioec_html/images/product/leftjt.png); position:absolute; top:-13px; left:54px; _left:49px; z-index:13;}
+	.specpk_main{ position:absolute; border:1px solid #d9bf8b; border-radius:3px; background:#ffffef; top:-20px; left:60px; _left:55px; padding-right:10px;}
+	.specpk:hover .pk_main{ display:block;}
+	
+.pk{ display:inline-block; _display:inline; *display:inline; zoom:1; position:relative;}
+	.pk_main{ width:188px; display:none; position:absolute; left:2px; top:16px;}
+	.pk:hover .pk_main{ display:block;}
+	.pk_main_img{ width:7px; height:11px; background:url(/bioec_html/images/product/leftjt.png); position:absolute; bottom:2px; left:49px; z-index:13; overflow:hidden;}
+	.pk_main_p{ border:1px solid #d9bf8b; background:#ffffef; position:absolute; bottom:-15px; left:55px; z-index:12; padding:5px 0;}
+	.duibi_img{ width:7px; height:11px; background:url(/bioec_html/images/product/leftjt.png); position:absolute; bottom:2px; left:48px; z-index:1100;}
+	.duibi_main{ position:absolute; border:1px solid #d9bf8b; border-radius:3px; background:#ffffef; top:-20px; left:54px; padding:0 5px 5px 0; z-index:1000;}
+	.duibi_main span{ width:100%; height:18px; line-height:18px; padding-left:35px; display:block; float:none;}
+	.duibi_main span i{ color:#333; margin-left:5px; white-space:nowrap; padding-right:5px;}
+
+.product_left{ width:690px; min-height:230px; padding-right:9px; float:left; margin-bottom:10px; border-right:1px dotted #ebebeb;}
+
+	.attribute{ height:30px; line-height:30px; padding:10px 0 5px 10px; border-bottom:1px solid #f5f5f5;}
+	.attribute span{ padding-right:15px;}
+	.attribute span em{ color:#999; padding-right:7px;}
+	.attribute span i{ color:#333; margin-right:5px;}
+
+	.choice_tit{ width:50px; text-align:right; float:left; color:#666; padding:7px 10px 0 0; margin-top:20px;}
+	.choice{ width:630px; float:left; margin-top:20px;}
+	.choice li{ width:auto; height:26px; line-height:26px; margin:0 7px 10px 0; white-space:nowrap; display:inline-block; _display:inline; *display:inline; zoom:1;}
+	.choice li span{ display:block; padding:0 7px; border:1px solid #ddd; cursor:pointer;}
+	.choice_none em{ display:block; color:#aaa !important; padding:0 5px; border:1px dashed #ddd !important; white-space:nowrap; cursor:not-allowed;}
+	.focus_click{ border:1px solid #f90 !important; padding-right:10px; background:#fff8ed url(/bioec_html/images/duigou.gif) right bottom no-repeat;}
+
+.product_right{ width:290px; min-height:230px; padding-left:10px; float:left; margin-bottom:10px;}
+	.product_right h4{ display:block; height:24px; line-height:24px; margin-bottom:10px; font-weight:500; color:#333; padding-left:5px; background:#fff6ee;}
+	.param{ padding:0 0 0 5px;}
+	.param li{ height:26px; line-height:26px; margin-top:5px;}
+	.param li b{ font-size:22px; color:#d00; font-family:"Microsoft YaHei"; margin:0 7px 0 -5px;}
+	.param li i{ text-decoration:line-through;}
+	.param li em{ color:#999; margin-right:7px;}
+	
+	.deliver{ padding-left:5px; position:relative;}
+	.selected_add{ height:24px; padding:10px 0; line-height:24px;}
+	.selected_add p{ display:inline-block; _display:inline; *display:inline; zoom:1;}
+	#selected_add{ height:22px; line-height:22px; position:absolute; left:54px; _left:49px; top:9px; z-index:9999;}
+	#selected_add span{ display:inline-block; _display:inline; *display:inline; zoom:1; cursor:pointer; margin:0 7px; padding:0 20px 0 7px; border:1px solid #cecece; background:#fff url(/bioec_html/images/product/xzjt.gif) right center no-repeat;}
+	.selected_close{ width:17px; height:17px; overflow:hidden; position:absolute; z-index:99999; right:0px; top:27px;}
+	#selected_list{ width:300px; padding:10px; position:absolute; right:7px; top:32px; z-index:999; border:1px solid #cecece; background:#fff;
+					-moz-box-shadow:1px 1px 2px #ccc;
+					-webkit-box-shadow:1px 1px 2px #ccc;
+					box-shadow:1px 1px 2px #ccc;
+					filter: progid:DXImageTransform.Microsoft.Shadow(color='#969696', Direction=135, Strength=3);/*for ie6,7,8*/}
+					
+	.btn_buy1{ width:89px; height:31px; float:left; margin:0 15px 0 5px; background:url(/bioec_html/images/spis.png) -600px -318px;}
+	.btn_put1{ width:105px; height:31px; float:left; background:url(/bioec_html/images/spis.png) -704px -318px;}
+	.btn_buy1 a,.btn_put1 a{ width:100%; height:100%; display:block; cursor:not-allowed !important;}
+	.btn_buy2{ width:89px; height:31px; float:left; margin:0 15px 0 5px; background:url(/bioec_html/images/spis.png) -600px -267px;}
+	.btn_put2{ width:105px; height:31px; float:left; background:url(/bioec_html/images/spis.png) -704px -267px;}
+	.btn_buy2 a,.btn_put2 a{ width:100%; height:100%; display:inline-block; _display:inline; *display:inline; zoom:1;}
+	.loading{ width:18px; height:18px; float:left; margin:7px 0 0 10px;}
+	
+	.gmnumber{}
+	.gmnumber li{ float:left; height:30px; line-height:30px;}
+	.gmnumber li em{ color:#999; padding-left:5px;}
+	.qihuo{ width:28px; height:16px; line-height:16px; margin:8px 4px 0 8px; float:left; text-align:center; background:#e96240;}
+	.qihuo i{ font-family:"Microsoft YaHei"; font-weight:500; color:#fff;}
+	.xianhuo1 i{ width:28px; height:16px; line-height:16px; margin:8px 4px 0 8px; font-family:"Microsoft YaHei"; font-weight:500; color:#fff; display:inline-block; _display:inline; *display:inline; zoom:1; text-align:center; background:#8cddf2;}
+	.xianhuo2{ width:28px; height:16px; line-height:16px; margin:8px 4px 0 8px; _margin:8px 4px 0 5px; float:left; text-align:center; background:#40c7e9;}
+	.xianhuo2 i{  font-family:"Microsoft YaHei"; font-weight:500; color:#fff; }
+	
+	.hint_input1{ width:76px; height:20px !important; overflow:hidden; margin:5px 0 0 0; float:left; overflow:hidden; background:url(/bioec_html/images/spis.png) -915px -267px;}
+	.hint_input2{ width:76px; height:20px !important; overflow:hidden; margin:5px 6px 0 0; float:left; overflow:hidden; background:url(/bioec_html/images/spis.png) -829px -267px;}
+	.hint_input2 input{ width:34px; height:14px; line-height:14px; padding:3px 0; float:left; border:none; background:none; text-align:center;}
+	.add,.jian{ width:21px; height:20px; display:block; float:left; overflow:hidden;}
+	.add:hover,.jian:hover{ width:19px; height:18px; border:1px solid #999;}
+	.xhno{ padding-left:7px;}
+	
+	.tishi{ height:75px; width:196px; padding:10px 20px 0 10px; font-size:12px; line-height:20px; text-align:left; color:#666; position:absolute; top:-80px; left:-15px; _left:-8px; *left:-8px; z-index:99999; background:url(/bioec_html/images/spis.png) -331px -267px no-repeat;}
+	.tishi a{ margin-left:10px;}
+	.tishi span{ position:absolute; right:20px; bottom:20px;}
+	.tishi span a{ color:#999 !important;}
+	.tishi span a:hover{ color:#f27101 !important;}
+	
+	#add_tab{}
+	.add_tab_nav{ border-bottom:2px solid #edd28b;}
+	.add_tab_nav span{ height:24px; display:inline-block; _display:inline; *display:inline; zoom:1;}
+	.add_tab_nav span a{ display:inline-block; _display:inline; *display:inline; zoom:1; height:23px; line-height:23px; text-align:center; padding:0 10px; border:1px solid #ddd; border-bottom:none; background:#fff; color:#005aa0;}
+	.add_tab_nav span a.selected{ height:23px; border:2px solid #edd28b; border-bottom:2px solid #fff;}
+	.add_tab_main{ padding:15px 0 0 0;}
+	.add_tab_main span{ margin-bottom:10px; display:inline-block; _display:inline; *display:inline; zoom:1;}
+	.add_tab_main a{ height:18px; line-height:18px; margin-right:10px; padding:0 3px; display:inline-block; _display:inline; *display:inline; zoom:1; color:#005aa0;}
+	.add_tab_main a:hover{ color:#fff; background:#005ea7;}
+	
+
+
+
+	
+.expand{ height:45px; padding:0 10px; line-height:45px; margin-bottom:30px; background:#f3f3f3;}
+	.share{ float:left;}
+	.share i{ width:11px; height:13px; display:block; float:left; margin-top:15px; background:url(/bioec_html/images/spis.png) -829px -318px;}
+	.share em{ display:block; margin:0 5px 0 8px; float:left; color:#999;}
+	.share span{ width:16px; height:16px; display:block; float:left; margin:15px 15px 0 0; background-image:url(../../images/spis.png);}
+	.share span a{ width:16px; height:16px; display:block;}
+	.sina{ background-position:-855px -318px;}
+	.tenxun{ background-position:-884px -318px;}
+	.renren{ background-position:-913px -318px;}
+	.qq{ background-position:-942px -318px;}
+	.kaixin{ background-position:-971px -318px;}
+	.douban{ background-position:-1000px -318px;}
+	.souhu{ background-position:-1029px -318px;}
+	
+	.download{ float:right;}
+	.download i{ width:16px; height:15px; display:block; float:left; margin:13px 5px 0 0; background:url(/bioec_html/images/spis.png) -1011px -272px;}
+	.download a{ float:left;}
+
+.product_mian{ padding:10px 10px 0 10px;}
+	.sonp{ padding:0 20px 5px 20px; line-height:2em; text-indent:2em;}
+	.sontit{ margin:20px 0 10px 0;}
+	
+	
+.product_post{ padding:10px 0;}
+	.product_post dt{ border-bottom:1px dotted #ddd; padding:10px;}
+	.product_list{ float:left; padding:0 10px;}
+	.product_post_name{ font-weight:bold; float:right; padding-left:17px; background:url(/bioec_html/images/spis.png) -309px -42px no-repeat;}
+	.product_post_name span{ font-weight:normal; margin-left:10px;}
+	.product_post .list2{ margin-top:3px;}
+	.product_list a{ width:780px; display:block; white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden;}
+	.product_post dd{ padding:10px 30px; border-bottom:1px dotted #eee;}
+	.product_post dd .product_post_name{ float:none;}
+	.product_post dd .product_post_name span{ color:#999;}
+	.product_post dd .product_post_name img{ margin:-3px 0 0 10px;}
+	.product_post_p{ padding:10px 0; line-height:2em;}
+
+.porduct_re{ padding:50px 0;}
+	.porduct_releft{ width:110px; float:left; line-height:30px;}
+	.porduct_reright{ width:890px; float:left; line-height:30px;}
+	.porduct_reright a{ margin-right:30px; word-break:keep-all; white-space:nowrap; display:inline; text-decoration:underline;}
+	
+.focus{ height:100px; margin:10px 0 20px 0;}
+	.focus img{ height:100px; border:1px solid #dfdfdf; padding:1px; float:left; margin-right:15px;}
+	
+
+.images_tit{ height:50px; line-height:50px; margin:15px 0; padding:0 10px; background:#f5f5f5;}
+	.images_tit i{ font-size:16px; color:#666;}
+	.images_main{}
+	.images_main img{ max-width:1000px; margin:0 15px 15px 0; display:inline;}
+	.return_product{ text-align:center; line-height:50px; border-top:1px solid #ddd; margin-top:15px;}
+
+
+
+/*产品对比*/	
+#contrast{ position:absolute; width:1000px; top:140px; margin:auto; background:#fff; border:none;}
+#contrast table{ border:1px solid #ddd;}
+.conhover{ width:1000px !important; -moz-box-shadow:0px 5px 5px #ccc;-webkit-box-shadow:0px 5px 5px #ccc;box-shadow:0px 5px 5px #ccc;filter: progid:DXImageTransform.Microsoft.Shadow(color='#ccc', Direction=90, Strength=5);/*for ie6,7,8*/}
+.conhover table{ border-bottom:2px solid #00acdd !important;}
+.contrast{ width:100%; text-align:center; border:1px solid #ddd;}
+	.contrast td{ padding:10px; line-height:20px; border-right:1px solid #ddd; border-bottom:1px solid #ddd;}
+	.jiage td span{ color:#ee3700; font-family:"Microsoft YaHei","微软雅黑","SimSun","宋体"; font-weight:500;}
+	.contrast_tit1 td{ height:20px; border-right:none !important; background:#fbfbfb;}
+	.contrast_tit1 h4{ font-size:14px;}
+	.contrast_tit1 td a{ width:69px; height:21px; margin:auto; color:#333; display:block; background:url(/bioec_html/images/spis.png)-535px -953px;}
+	.contrast_tit1 td a:hover{ color:#f27101; text-decoration:none;}
+	.addto a{ width:60px; height:50px; display:block; border:3px dashed #ececec; font-size:45px !important; text-align:center; line-height:45px; margin:auto; font-weight:blod; color:#ececec !important; text-decoration:none;}
+	.addto a:hover{ border:3px dashed #fe9700; color:#fe9700 !important;}
+	.contmtit{ color:#999; background:#fbfbfb;}
+	.contrast_main a{ font-size:14px;}
+	.contrast_tit2{ background:#ebeefa;}
+	.contrast_tit2 td{ font-weight:bold; color:#666; text-align:left;}
+	.contrast_tit2 span{ width:4px; height:16px; display:block; float:left; margin:2px 10px 0 0; background:#ff9000;}
+	.cpm{ text-align:left;}
+	.cpm .contmtit{ text-align:center;}
+	.contrast_main p{ text-align:left;}
+	.contrast_main span.M-main-E a{ width:15px; height:17px; display:inline-block; _display:inline; *display:inline; zoom:1; margin:0 0 0 10px; text-indent:-99999px; background:url(/bioec_html/images/shop2.png) bottom left no-repeat;}
+	.contrast_main span.M-main-E a:hover{ text-indent:-99999px; background:url(/bioec_html/images/shop1.png) bottom left no-repeat;}
+	.bgcolor_hs{ background:#f5f5f5;}
+
+	/*对比管理&返回顶部*/	
+	#share{ width:27px; height:116px; position:absolute; right:-37px; top:200px;}
+	.right_box{ width:27px; height:79px; background:#2fa5d5;}
+	.right_box a{ width:27px; height:76px; display:block; color:#fff; text-align:center; line-height:17px; padding-top:3px;}
+	.right_box a:hover{ text-decoration:none; background:#f89c36;}
+	.totop{ width:27px; height:27px; margin-top:9px; background:url(/bioec_html/images/product/top1.gif);}
+	.totop a{ display:block; width:27px; height:27px;}
+	.totop a:hover{ background:url(/bioec_html/images/product/top2.gif);}
+	
+	.drop{ background:#fff; padding:10px;}
+	.drop_tit{ border-bottom:1px solid #ddd; height:30px; line-height:30px; padding:0 10px; background:#fff; color:#f27101;}
+	.drop_left{ width:370px; height:400px; _height:400px; overflow:auto; float:left; border:1px solid #dcdcdc; padding:10px;}
+	.drop_right{ width:370px; height:400px; _height:400px; overflow:auto; float:right; border:1px solid #dcdcdc; padding:10px;}
+	.drop_box{ border:1px solid #d2d2d2; background:#f5f5f5; margin-bottom:10px; overflow:hidden;}
+	.drop_box h1{ line-height:18px; cursor:move; font-size:12px; background:#f5f5f5; padding:5px; text-align:left; font-weight:normal; color:#0075d5;}
+	.drop_box h1 p{ color:#999;}
+	.drop_box h1 span{ float:right;}
+	.drop_box h1 a{ margin:0 0 0 10px; color:#999 !important;}
+	.drop_box:hover{ border:1px solid #0075d5 !important;}
+	.drop_box h1:hover a{ color:#ff2800 !important;}
+	#m0,#m1{ height:400px;_height:400px; background:none; border:none !important;}
+	.drop_tit1,.drop_tit2{ width:370px; padding:10px 0 0 0; background:#fff;}
+	.drop_tit1{ float:left; margin-left:20px;}
+	.drop_tit1 a{ margin-left:10px;}
+	.drop_tit1 span{ display:none;}
+	.drop_tit2{ float:right; text-align:left; margin-right:20px;}
+	.drop_tit2 i{ color:#999; padding-left:15px;}
+	.duibi_center{ width:70px; float:left; height:250px; text-align:center; line-height:26px; padding:150px 0 0 15px;}
+	.drop_left .drop_box span i{ display:none;}
+	.drop_right .drop_box span em{ display:none;}
+	
+	/*对比弹窗*/
+	.pktc_tit,.pktc_main{ text-align:center;}
+	.pktc1{ width:300px; height:14px; padding:6px 4px; border:1px solid #dcdcdc; color:#333; background:#fff;}
+	.pktc2{ width:70px; height:28px; border:1px solid #dcdcdc; cursor:pointer; background:url(/bioec_html/images/spis.png) -564px -874px;}
+	.pktc_main{ padding:10px 0 20px 0;}
+	.wind_pk{ margin:5px 20px 15px 20px; border:1px solid #f2f2f2;}
+	.wind_pk dt{ height:30px; line-height:30px; background:#f2f2f2; padding:0 10px;}
+	.wind_pk dt a{ font-size:14px; color:#0075d5;}
+	.wind_pk dt a:hover{ color:#f27101;}
+	.wind_pk dd{ height:32px; line-height:32px; border-bottom:1px dotted #ddd; margin:0 10px; padding:0 10px;}
+	.wind_pk dd span{ padding-right:50px;}
+	.wind_pk dd i{ width:50px; float:right;}
+	.pktc_ts{ line-height:24px; text-align:center; padding-bottom:10px; color:#e91b00;}
+	.pktc_list{ padding-left:10px;}
+	.pktc_list b{ color:#fc6808; margin:0 3px;}
+	.pktc_sj a{ line-height:40px; margin-left:10px;}
+	.pktc_btn{ padding:10px 20px 10px 10px; text-align:right; line-height:28px; border-top:1px solid #eee; background:#fff;}
+	.pktc_btn span a{ width:60px; height:20px; font-size:12px; background:#f25001; border:1px solid #e34b00; text-align:center; line-height:22px; display:inline-block; _display:inline; *display:inline; zoom:1; color:#fff !important; text-decoration:none; margin:0 10px 0 20px; border-radius:2px;}
+
+/*弹出登录*/
+.overlay{ display:none; position:fixed; top:0%; left:0%; width:100%; height:100%; background:#000; z-index:9999; -moz-opacity:0.3; opacity:.30; filter:alpha(opacity=30); _position:absolute;_bottom:auto;_top:expression(eval(document.documentElement.scrollTop));}
+	.login_window{ display:none; position:fixed; top:20%; left:0; width:100%; height:100%; z-index:99999; _position:absolute; _top:20%; _top:expression(eval(document.documentElement.scrollTop));}
+	.login_main{ width:360px; padding:6px; background:#e8e8e8; margin:auto; border-radius:4px; -moz-box-shadow:1px 2px 5px #969696; -webkit-box-shadow:1px 2px 5px #969696; box-shadow:1px 2px 5px #969696; overflow-y:auto; overflow-x:hidden;}
+	.close_login{ width:13px; height:13px; float:right; padding:0 10px 0 0; overflow:hidden; background:url(/bioec_html/images/spis.png) 0 -766px;}
+	.close_login a{width:13px; height:13px; display:block;}
+	.close_login a:hover{ background:url(/bioec_html/images/spis.png) 0 -829px;}
+	.login{ margin:auto; padding:10px 0 20px 30px; background:#fff;}
+	.login_form{}
+	.login_form dt{ height:30px; line-height:30px;}
+	.login_form dd{ height:38px; position:relative; margin-top:15px;}
+	.login_form dd em{ width:100px; position:absolute; left:0; top:4px; display:block; text-align:right;}
+	.username_img,.password_img{ width:36px; height:36px; background:url(/bioec_html/images/spis.png) 0 -1131px; display:block; position:absolute; left:0; top:0;}
+	.password_img{ background:url(/bioec_html/images/spis.png) 0 -1219px;}
+	.username,.password{ width:245px; height:18px; padding:8px 10px; line-height:18px; border:1px solid #ccc; font-size:14px; position:absolute; left:36px; top:0;}
+	.tsdiv{ height:26px !important; margin-top:0 !important;}
+	.tsdiv .error{ width:281px;}
+	.yzm{ width:80px; height:16px; padding:6px 10px; line-height:16px; border:1px solid #cdcdcd; position:absolute; left:0; top:0;}
+	.yzm_img{ width:68px; height:28px; position:absolute; top:0; left:110px; border:1px solid #cdcdcd; overflow:hidden;}
+	.yzm_img img{ width:68px; height:28px;}
+	.change{ position:absolute; left:190px; top:5px;}
+	.change a{ color:#666;}
+	.change a:hover{ color:#f27101;}
+	.forget{}
+	.forget input{ margin:-2px 5px 0 0;}
+	.forget a{ margin-left:10px; color:#666;}
+	.forget a:hover{ color:#f27101;}
+	.login_btn{ height:34px; margin-top:0 !important;}
+	.login_btn a{ width:300px; height:34px; line-height:34px; text-align:center; display:block; border:1px solid #e57b09; background:#f2830a; border-radius:2px; font-weight:bold; color:#fff !important; text-decoration:none !important;}
+	.login_btn a:hover{ background:#e77800;}
+	
+	

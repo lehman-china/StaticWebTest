@@ -1,0 +1,64 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>购物车效果测试</title>
+
+<script src="framework/inc/jquery-1.8.3.min.js"></script>
+<style type="text/css">
+#testDiv {
+	display: block;
+	width: 60px;
+	height: 60px;
+	position: absolute;
+	left: 400px;
+	top: 200px;
+	/*画圆*/
+	background: red;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+	/*文字居中 */
+	line-height: 4em;
+	overflow: hidden;
+}
+}
+</style>
+
+
+<script>
+	var i = 0;
+	var opacity = 1.0;
+	var sudu = 15;
+	function start() {
+		i = 0;
+		opacity = 1.0;
+		setTimeout( add, sudu );//启动
+	}
+	//循环调用 改变标签样式
+	function add() {
+		i = i + 1;
+		//结束条件
+		if ( i < 50 ) {
+			var size = 60 + ( i );
+			//改变标签样式变大，变透明
+			$( "#testDiv" ).css( "width", size + "px" );
+			$( "#testDiv" ).css( "height", size + "px" );
+			$( "#testDiv" ).css( "opacity", ( opacity = opacity - 0.02 ) );
+			setTimeout( add, sudu );
+			return;
+		}
+		//还原样式
+		$( "#testDiv" ).css( "width", "60px" );
+		$( "#testDiv" ).css( "height", "60px" );
+		$( "#testDiv" ).css( "opacity", "1.0" );
+		alert( "加入购物车完成!" );
+	}
+</script>
+</head>
+
+
+<body>
+	<b id="testDiv" onclick=" start() ">加入购物车</b>
+</body>
+
+</html>

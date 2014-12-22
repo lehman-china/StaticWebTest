@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jsClearAnnotation.html</title>
+
+<script src="../common/js/inc/jquery-1.8.3.min.js"></script>
+
+<script type="text/javascript">
+	function zhengze( reg ) {
+		var str = $( '#text' ).val(); // 欲处理的文本  
+		str = str.replace( reg, function( word ) { // 去除注释后的文本  
+			return /^\/{2,}/.test( word ) || /^\/\*/.test( word ) ? "" : word;
+		} );
+		$( '#new_test' ).val( str );
+	}
+	function clearAnnotation() {
+		var reg = /("([^\\\"]*(\\.)?)*")|('([^\\\']*(\\.)?)*')|(\/{2,}.*?(\r|\n))|(\/\*(\n|.)*?\*\/)/g;
+		zhengze( reg );
+	}
+</script>
+</head>
+
+
+<body>
+	<h1>去除js 注释</h1>
+	<textarea id="text" rows="20" cols="100"></textarea>
+	<br />
+	<textarea id="new_test" rows="20" cols="100"></textarea>
+	<button onclick="clearAnnotation()">清除注释</button>
+
+</body>
+
+</html>

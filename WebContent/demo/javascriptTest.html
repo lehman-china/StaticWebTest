@@ -1,0 +1,42 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>javascript Test</title>
+
+<script src="common/js/inc/jquery-1.8.3.min.js"></script>
+
+<script type="text/javascript">
+	$( function() {
+		$( '#btn' ).bind( "myClick", function() {
+			console.log( "<p>我的自定义事件.</p>" );
+		} );
+		$( '#btn' )..trigger( "myClick" );
+	} )
+</script>
+</head>
+
+
+<body>
+
+	<BUTTON id=old type=submit>.trigger("focus")</BUTTON>
+	<BUTTON id=new type=submit>.triggerHandler("focus")</BUTTON>
+	<BR>
+	<BR>
+	<INPUT value="To Be Focused" type=text>
+	<SCRIPT>
+	$(function(){
+	    $("#old").click(function(){
+	        $("input").trigger("focus");
+	    });
+	    $("#new").click(function(){
+	        $("input").triggerHandler("focus");
+	    });
+	    $("input").focus(function(){
+	        $("<span>Focused!</span>").appendTo("body").fadeOut(1000);
+	    });
+	});
+	</SCRIPT>
+
+</body>
+
+</html>

@@ -1,0 +1,600 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>购物车_订单填写</title>
+<link href="../css/base.css" rel="stylesheet" type="text/css"/>
+<link href="../css/public.css" rel="stylesheet" type="text/css"/>
+<link href="../css/shop/shop.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/jquery.idTabs.js"></script>
+</head>
+
+<body style="behavior:url(csshover.htc);">
+
+<div class="header">
+    <div class="header_main">
+        <div class="logo_img"><a href="/bioec_html"><img src="/bioec_html/images/son_logo.gif"/></a></div>
+        <div class="head_search">
+            <span><input type="text" placeholder="CD31"/></span>
+            <span><a href="javascript:;"></a></span>
+        </div>
+        <div class="menu">
+            <div class="switch">达科为生物科技 科研采购小组 <span>[<a href="/bioec_html/member/manage_work.html">切换</a>]</span></div>
+            <div class="menu_list">
+                <ul>
+                    <li class="list_one">您好 Bailly！<span>[<a href="/bioec_html" title="安全退出">安全退出</a>] [<a href="/bioec_html/member/member_index.html" title="进入会员中心">会员中心</a>]</span></li>
+                    <li class="list_hover">
+                        <i></i>
+                        <div class="menu_tit"><a href="/bioec_html/member/member_index.html">我的订单</a></div>
+                        <em></em>
+                        <div class="menu_hover none" id="my_dd">
+                            <b></b>
+                            <p><a href="/bioec_html/member/order_form.html">待收货订单</a> (3)</p>
+                            <p><a href="/bioec_html/member/order_form.html">待付款订单</a> (0)</p>
+                            <p><a href="/bioec_html/member/order_form.html">待开票订单</a> (1)</p>
+                        </div>
+                    </li>
+                    <li class="list_hover">
+                        <i></i>
+                        <div class="menu_tit"><a href="/bioec_html/postbar/postbar_index.html">贴吧消息</a></div>
+                        <em></em>
+                        <div class="menu_hover none" id="my_bar">
+                            <b></b>
+                            <p><a href="/bioec_html/postbar/postbar_index.html">未阅读回复</a> (3)</p>
+                            <p><a href="/bioec_html/postbar/postbar_index.html">关注的贴吧</a> </p>
+                            <p><a href="/bioec_html/postbar/postbar_index.html">收藏的主题</a> </p>
+                        </div>
+                    </li>
+                    <li class="list_hover">
+                        <i></i>
+                        <div class="menu_tit"><a href="/bioec_html/shop/shop.html">我的购物车</a></div>
+                        <em></em>
+                        <div class="menu_hover none" id="my_shop">
+                            <b></b>
+                            <h4>我的购物车</h4>
+                            <div class="shop_none none">购物车暂无商品，赶紧选购吧！</div>
+                            <dl class="menu_shop">
+                                <dd>
+                                    <div class="meshop_l"><p><a href="/bioec_html/product/product_content.html">Human IGF Binding Protein-5</a></p><p>10 tests</p></div>
+                                    <div class="meshop_r font_yh"><p><span>¥5400</span>x2</p><p><a href="javascript:;">删除</a></p></div>
+                                    <div class="c"></div>
+                                </dd>
+                                <dd>
+                                    <div class="meshop_l"><p><a href="/bioec_html/product/product_content.html">Purified anti-mouse CD31</a></p><p>50 tests</p></div>
+                                    <div class="meshop_r font_yh"><p><span>¥5400</span>x1</p><p><a href="javascript:;">删除</a></p></div>
+                                    <div class="c"></div>
+                                </dd>
+                            </dl>
+                            <div class="check">
+                                <p>共<span> x </span>件商品&nbsp;&nbsp;&nbsp;合计<span> ¥16200</span></p>
+                                <p class="font_yh letter_1"><a href="/bioec_html/shop/shop.html" class="check_btn">去结算</a></p>
+                                <div class="c"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list_one" style="padding:0; margin:0 8px 0 10px; _margin:0 4px 0 10px;">
+                        <i></i>
+                        <span><a href="/bioec_html/account/register.html">注册</a>&nbsp;&nbsp;<a href="/bioec_html/account/register.html">登录</a></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+	<div class="shop">
+        <div class="shop_tit f26 font_yh c6 letter_2">填写核对订单</div>
+        <div class="shop_lc f16 font_yh c9" id="shop_last">3.成功提交订单</div>
+        <div class="shop_lc f16 font_yh c9 shop_this">2.填写核对订单信息</div>
+        <div class="shop_lc f16 font_yh shop_this">1.我的购物车</div>
+	</div> 
+    <div class="c"></div>  
+	<div class="h20 line2"></div>
+    <div class="shop_main">
+    	<div class="shop_main_top f16 font_yh"><em>经销商</em>深圳达科为生物技术有限公司</div>
+        <div class="shop_main_c xiaozu font_yh">
+        	<h4>订购方式</h4>
+            <p>小组订购：达科为生物技术公司<em>科研采购小组</em></p>
+            <i>产品将以此订购小组下单，如需更换订购小组，请在网页右上角切换订购小组</i>
+        </div>
+        <div class="shop_main_c font_yh">
+        	<h4>收货信息</h4>
+            <div id="tabs1">
+            	<div class="tab_nav blue">
+                    <span><a href="#tab1" class="selected">已存地址</a></span>
+                    <span><a href="#tab2">同组员地址</a></span>
+                    <span><a href="#tab3">新增地址</a></span>
+                </div>
+                
+                <div class="tab1" style="display:block;">
+                	<table class="address blue" cellpadding="0" cellspacing="0">
+                    	<tr>
+                        	<td width="15%">收货人</td>
+                            <td width="45%">收货地址</td>
+                            <td width="25%">联系方式</td>
+                            <td align="center">操作</td>
+                        </tr>
+                        <tr>
+                        	<td>王成杰</td>
+                            <td>深圳市福田区下沙二坊二十三号706</td>
+                            <td>13632879450</td>
+                            <td align="center">
+                            	<div class="table_link">
+                                    <div class="box_main_a font_yh" style="width:85px;">
+                                        <p><a href="javascript:;" onclick="qradd();">配送到该地址</a><img src="/bioec_html/images/jt1.gif"/></p>
+                                        <p class="none"><a href="javascript:;" onclick="xgdz();">修改此地址</a></p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                        	<td>雷建军</td>
+                            <td>深圳市南山区佳丽泰大厦3c</td>
+                            <td>0755-12345678</td>
+                            <td align="center">
+                            	<div class="table_link">
+                                    <div class="box_main_a font_yh" style="width:85px;">
+                                        <p><a href="javascript:;" onclick="qradd();">配送到该地址</a><img src="/bioec_html/images/jt1.gif"/></p>
+                                        <p class="none"><a href="javascript:;" onclick="xgdz();">修改此地址</a></p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="company_box none yellow_border" id="xgdz">
+                        <dl class="company_news" style="padding-top:5px;">
+                        	<dt class="f14 font_yh"><b>修改收货地址</b></dt>
+                            <dd><em>收货人</em><input type="text" value="王成杰"/></dd>
+                            <dd>
+                                <em>所在地区</em>
+                                <select name="">
+                                    <option value="">广东省</option>
+                                    <option value="">新疆省</option>
+                                </select>
+                                <select name="">
+                                    <option value="">深圳市</option>
+                                    <option value="">广州市</option>
+                                </select>
+                                <select name="">
+                                    <option value="">南山区</option>
+                                    <option value="">福田区</option>
+                                </select>
+                            </dd>
+                            <dd><em>街道地址</em><input type="text" value="深圳市南山区佳丽泰大厦3c" style="width:400px;"/></dd>
+                            <dd><em>手机</em><input type="text" value="13632879450"/></dd>
+                            <dd><em>电话</em><input type="text" value="0755-1234567"/></dd>
+                            <dt style="height:10px;"></dt>
+                            <dd class="blue"><em></em><a href="javascript:;" onclick="xgdz_btn();" class="company_btn">确认保存</a><a href="javascript:;" onclick="xgdz_btn();">取消</a></dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="tab2 none">
+                	<table class="address blue" cellpadding="0" cellspacing="0" id="crew_tab">
+                    	<tr>
+                        	<td width="15%">收货人</td>
+                            <td width="50%">收货地址</td>
+                            <td width="25%">联系方式</td>
+                            <td align="center">操作</td>
+                        </tr>
+                        <tr>
+                        	<td>雷建军</td>
+                            <td>深圳市南山区佳丽泰大厦3c</td>
+                            <td>0755-12345678</td>
+                            <td align="center"><a href="javascript:;" onclick="crew_add();">配送到该地址</a></td>
+                        </tr>
+                        <tr>
+                        	<td>王成杰</td>
+                            <td>深圳市福田区下沙二坊二十三号706</td>
+                            <td>13632879450</td>
+                            <td align="center"><a href="javascript:;" onclick="crew_add();">配送到该地址</a></td>
+                        </tr>
+                    </table>
+                    <div class="company_box none" id="crew_add">
+                        <dl class="company_news">
+                        	<dt class="f14 font_yh">使用该地址提交订单后，将自动保存为您的已存收货地址！</dt>
+                            <dd><em>收货人</em><input type="text" value="雷建军"/></dd>
+                            <dd>
+                                <em>所在地区</em>
+                                <select name="">
+                                    <option value="">广东省</option>
+                                    <option value="">新疆省</option>
+                                </select>
+                                <select name="">
+                                    <option value="">深圳市</option>
+                                    <option value="">广州市</option>
+                                </select>
+                                <select name="">
+                                    <option value="">南山区</option>
+                                    <option value="">福田区</option>
+                                </select>
+                            </dd>
+                            <dd><em>街道地址</em><input type="text" value="蛇口沿山路船业壹号大厦" style="width:400px;"/></dd>
+                            <dd><em>手机</em><input type="text" value="13632879450"/></dd>
+                            <dd><em>电话</em><input type="text" value="0755-1234567"/></dd>
+                            <dt style="height:10px;"></dt>
+                            <dd class="blue"><em></em><a href="javascript:;" onclick="qradd();" class="company_btn">确认使用</a><a onclick="crew_tab();" href="javascript:;">重新选择</a></dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="tab3 none">
+                	<div class="company_box">
+                        <dl class="company_news">
+                            <dd><em>收货人</em><input type="text" placeholder="收货人姓名"/><span class="error">请填写收货人姓名</span></dd>
+                            <dd>
+                                <em>所在地区</em>
+                                <select name="">
+                                    <option value="">广东省</option>
+                                    <option value="">新疆省</option>
+                                </select>
+                                <select name="">
+                                    <option value="">深圳市</option>
+                                    <option value="">广州市</option>
+                                </select>
+                                <select name="">
+                                    <option value="">南山区</option>
+                                    <option value="">福田区</option>
+                                </select>
+                            </dd>
+                            <dd><em>街道地址</em><input type="text" placeholder="街道详细地址" style="width:400px;"/></dd>
+                            <dd><em>手机</em><input type="text" placeholder="收货人手机"/></dd>
+                            <dd><em>电话</em><input type="text" placeholder="如：0755-1234567"/></dd>
+                            <dt style="height:10px;"></dt>
+                            <dd class="blue"><em></em><a href="javascript:;" onclick="qradd();" class="company_btn">确认保存</a></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div> 
+            <div id="qradd" class="none blue qrxx">
+            	<p>收货人：王成杰</p>
+                <p>收货地址：深圳市福田区下沙二坊二十三号706<a href="javascript:;" onclick="qradd1();">重新选择收货地址</a></p>
+                <p>联系方式：13632879450<em>0755-12345678</em></p>
+            </div>
+            <script language="javascript">
+				function qradd(){
+					$("#tabs1").hide();
+					$("#qradd").show();
+				};
+				function qradd1(){
+					$("#tabs1").show();
+					$("#qradd").hide();
+				};
+				function vat_main_yes(){
+					$("#vat_main").show();
+				};
+				function vat_main_no(){
+					$("#vat_main").hide();
+				};
+				function qrfp(){
+					$("#qrfp").show();
+					$("#tabs2").hide();
+					$("#kpzt").hide();
+				};
+				function qrfp1(){
+					$("#tabs2").show();
+					$("#qrfp").hide();
+					$("#kpzt").show();
+				};
+				function fptab1(){
+					$("#tabs2").show();
+				};
+				function fptab2(){
+					$("#tabs2").hide();
+				};
+				function jiaji_n(){
+					$("#jiaji").hide();
+				};
+				function jiaji_y(){
+					$("#jiaji").show();
+				};
+				function jiney(){
+					$("#jine").show();
+				};
+				function jinen(){
+					$("#jine").hide();
+				};
+				function xgdz(){
+					$("#xgdz").show();
+				};
+				function xgdz_btn(){
+					$("#xgdz").hide();
+				};
+				function crew_add(){
+					$("#crew_add").show();
+					$("#crew_tab").hide();
+				};
+				function crew_tab(){
+					$("#crew_add").hide();
+					$("#crew_tab").show();
+				};
+			</script>
+        </div>
+        
+        <div class="shop_main_c font_yh fukuan">
+        	<h4>付款方式</h4>
+            <span><input type="radio" name="fukuan" id="fukuan1"/><label for="fukuan1">发货前付清全部货款</label></span>
+            <span><input type="radio" name="fukuan" id="fukuan2"/><label for="fukuan2">发货后30天内付清货款</label></span>
+            <span><input type="radio" name="fukuan" id="fukuan3"/><label for="fukuan3">订货时预付30%货款，发货前付清余款</label></span>
+            <span><input type="radio" name="fukuan" id="fukuan4"/><label for="fukuan4">订货时预付50%货款，发货前付清余款</label></span>
+            <span><input type="radio" name="fukuan" id="fukuan5"/><label for="fukuan5">订货时预付全款</label></span>
+        </div>
+        
+        <div class="shop_main_c font_yh fukuan">
+        	<h4>配送方式</h4>
+            <!--当只有现货时，只出现申请加急处理-->
+            <div id="xianhuo" class="none">
+            	<span><input type="checkbox" id="peisong3"/><label for="peisong3">申请加急处理</label></span>
+            </div>
+            <!--当有现货和期货时，出现选择配送方式-->
+            <div id="xianqihuo">
+                <span><input type="radio" name="peisong" id="peisong1" onclick="jiaji_n();"/><label for="peisong1">现货、期货一起配送</label></span>
+                <span><input type="radio" name="peisong" id="peisong2" onclick="jiaji_y();"/><label for="peisong2">先配送现货</label></span>
+                <span id="jiaji" class="none"><input type="checkbox" id="peisong4"/><label for="peisong4">申请加急处理</label></span>
+            </div>
+        </div>
+        
+        <div class="shop_main_c font_yh fukuan" id="fapiao"><!--当信息未做选择时，加入样式class：yellow_border，边框为2个像素，颜色为黄色-->
+        	<h4>发票信息</h4>
+            <div id="kpzt">
+                <span><input type="radio" name="fapiao" id="fapiao1" onclick="fptab1();"/><label for="fapiao1">开发票</label></span>
+                <span><input type="radio" name="fapiao" id="fapiao2"/ onclick="fptab2();"><label for="fapiao2">不开发票</label></span>
+                <span><input type="radio" name="fapiao" id="fapiao3"/ onclick="fptab2();"><label for="fapiao3">暂不开发票</label></span>
+            </div>
+            <div id="tabs2" class="none" style="margin-top:20px;">
+            	<div class="tab_nav blue">
+                    <span><a href="#tab4" class="selected">已审核通过</a></span>
+                    <span><a href="#tab6">新增发票</a></span>
+                </div>
+                
+                <div class="tab4" style="display:block;">
+                	<table class="address blue" cellpadding="0" cellspacing="0">
+                    	<tr>
+                        	<td width="15%">发票类型</td>
+                        	<td width="75%">发条抬头</td>
+                            <td align="center">操作</td>
+                        </tr>
+                        <tr>
+                        	<td>17%增值税发票</td>
+                        	<td>深圳市达科为生物技术有限公司</td>
+                            <td align="center"><a href="javascript:;" onclick="qrfp();">使用此发票</a></td>
+                        </tr>
+                        <tr>
+                        	<td>普通发票</td>
+                        	<td>洛阳塞尔维实验器材有限公司</td>
+                            <td align="center"><a href="javascript:;" onclick="qrfp();">使用此发票</a></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="tab6 none">
+                	<div class="company_box">
+                        <dl class="company_news">
+                            <dd><em>发票抬头</em><input type="text" placeholder="填写正确的发票抬头" style="width:400px;"/></dd>
+                            <dd class="invoice_type">
+                                <em>发票类型</em>
+                                <input type="radio" id="plain_invoice" name="invoice_type" checked="" onclick="vat_main_no();"/><label for="plain_invoice">普通发票</label>
+                                <input type="radio" id="vat_invoice" name="invoice_type" onclick="vat_main_yes();"/><label for="vat_invoice">17%增值税发票</label>
+                            </dd>
+                            <div class="none" id="vat_main">
+                                <dd><em>纳税人识别号</em><input type="text"/></dd>
+                                <dd><em>开户银行</em><input type="text"/></dd>
+                                <dd><em>银行账号</em><input type="text"/></dd>
+                            </div>
+                            <dt style="height:10px;"></dt>
+                            <dd class="blue"><em></em><a href="javascript:;" onclick="qrfp();" class="company_btn">确认保存</a></dd>
+                        </dl>
+                    </div>
+                </div>
+                <!-- 个人订购时，发票选择样式，显示时隐藏组订购发票选择样式 -->
+                <div class="invogr">
+                    <h4>请选择或者新建发票抬头</h4>
+                    <span><input type="radio" name="invogr" onclick="$('#invogr1').focus();"/> <input onfocus="moveEnd(this);" class="invogrin" id="invogr1" value="达科为生物技术有限公司" type="text"/></span>
+                    <span><input type="radio" name="invogr" onclick="$('#invogr2').focus();"/> <input onfocus="moveEnd(this);" class="invogrin" id="invogr2" value="洛阳塞尔维实验器材有限公司" type="text"/></span>
+                    <span><input type="radio" name="invogr" onclick="$('#invogr3').focus();"/> <input onfocus="moveEnd(this);" class="invogrin" id="invogr3" value="" type="text" placeholder="请填写正确的发票抬头"/></span>
+                </div>
+                <script>
+                    function moveEnd(obj) {
+                        obj.focus();
+                        var len = obj.value.length;
+                        if (document.selection) {
+                            var sel = obj.createTextRange();
+                            sel.moveStart('character', len);
+                            sel.collapse();
+                            sel.select();
+                        } else if (typeof obj.selectionStart == 'number'
+                                && typeof obj.selectionEnd == 'number') {
+                            obj.selectionStart = obj.selectionEnd = len;
+                        }
+                    }
+                </script>
+            </div>
+            <div id="qrfp" class="none blue qrxx">
+                <p>发票抬头：洛阳塞尔维实验器材有限公司<a href="javascript:;" onclick="qrfp1();">重新选择发票信息</a></p>
+                <p>发票类型：17%增值税发票</p>
+                <p>纳税人识别号：0784-6548-5279-3216-1258</p>
+                <p>开户银行：中国银行</p>
+                <p>银行账号：6228-1369-4658-1328</p>
+                <div class="fpzt">
+                	<span>发票是否合开<input type="radio" id="hekai" name="hekai"/><label for="hekai">合开</label><input type="radio" id="buhekai" name="hekai"/><label for="buhekai">不合开</label></span>
+                    <span>单张发票金额是否限制<input type="radio" id="xianzhi" name="xianzhi" onclick="jiney();"/><label for="xianzhi">限制</label><input type="radio" id="buxianzhi" name="xianzhi" onclick="jinen();"/><label for="buxianzhi">不限制</label></span>
+                    <span id="jine" class="none">每张发票最高限额<input type="text" class="jine" value="10000"/>元</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="shop_main_c font_yh" style="border-bottom:none;">
+        	<h4>产品清单</h4>
+            <div class="h5"></div>
+            <table cellpadding="0" cellspacing="0" class="shop_tab1 font_yh">
+                <tr class="shop_tab1_tit">
+                    <td width="36%"><p>产品/货号/规格</p></td>
+                    <td width="20%"><p>生产商</p></td>
+                    <td width="14%" align="center"><p>单价（元）</p></td>
+                    <td width="15%"><p>数量</p></td>
+                    <td align="center"><p style="border:none">小计（元）</p></td>
+                </tr>
+                <tr class="shop_tab1_main">
+                    <td class="shop_tab1_cp blue"><p><a href="#">APC anti-human CD31</a></p><p><span>货号：700001</span>规格：25 tests</p></td>
+                    <td style="text-align:left">Agrisera</td>
+                    <td><b>198.00</b></td>
+                    <td>
+                        <div class="spots"><span>现货</span><em>1</em></div>
+                        <div class="futures"><span>期货</span><em>10</em></div>
+                    </td>
+                    <td><b>39446.00</b></td>
+                </tr>
+                <tr class="shop_tab1_main">
+                    <td class="shop_tab1_cp blue"><p><a href="#">PE/Cy7 anti-human CD31</a></p><p><span>货号：700001</span>规格：25 tests</p></td>
+                    <td style="text-align:left">AMRESCO</td>
+                    <td><b>1100.00</b></td>
+                    <td>
+                        <div class="futures"><span>期货</span><em>3</em></div>
+                    </td>
+                    <td><b>8600.00</b></td>
+                </tr>
+            </table>
+            <div class="orderbz font_yh">
+            	<div class="jiage f14">
+                    <p>商品总计：<i>3200</i>元</p>
+                    <p>运费：<i>300</i>元</p>
+                    <p>应付总额：<b><i>3500</i></b>元</p>
+                </div>
+            	<em>订单备注</em>
+                <input type="text"/>
+                <div class="c"></div>
+            </div>
+        </div>
+    </div>
+    <div class="success_btn f16 font_yh letter_1">
+        <a href="javascript:;" onclick="ShowDiv('Mylogin','view_order')" class="success_btn1">预览订单</a>
+        <a href="/bioec_html/shop/shop.html" class="success_btn2">回购物车修改</a>
+    </div>
+    
+</div>
+
+<div class="foot">
+	<div class="foot_main c6">
+    	<span>生物城搜索 Copyright © 2014</span>
+        <span>京ICP备11025281号</span>
+        <a href="/bioec_html/factory/factory.html">厂家</a>|<a href="/bioec_html/seller/seller.html">经销商</a>|<a href="/bioec_html/member/contact_us.html">联系我们</a>|<a href="/bioec_html/member/sell_enter.html">商家入驻</a>
+    </div>
+</div>
+<script>
+	$("#tabs1").idTabs("!mousedown");
+	$("#tabs2").idTabs("!mousedown");
+</script> 
+
+<!--弹出订单部分-->
+    <div id="view_order" class="overlay"></div>
+    <div id="Mylogin" class="popup">
+        <div class="popup_main">
+            <div class="order font_yh">
+                <h1 class="f16 c6 font_yh">预览订单信息</h1>
+                <div class="popup_main_list" style="margin-right:20px;">
+                    <div class="order_tit f14">经销商信息</div>
+                    <div class="look_up">
+                        <p>经销商：深圳达科为生物科技有限公司</p>
+                        <p>联系方式：13632879450 &nbsp;&nbsp; 0755-5689454</p>
+                        <p>联系地址：深圳南山区沿山路佳利泰大厦</p>
+                    </div>
+                </div>
+                <div class="popup_main_list">
+                    <div class="order_tit f14">订购及收货信息</div>
+                    <div class="look_up">
+                        <p>订购组：深圳达科为生物科技有限公司 科研采购小组</p>
+                        <p>收货人：王成杰 &nbsp;&nbsp; 联系方式：13632879450 &nbsp;&nbsp; 0755-5689454</p>
+                        <p>收货地址：深圳南山区沿山路佳利泰大厦</p>
+                    </div><div class="c"></div>
+                </div>
+                <div class="c"></div>
+                <div class="popup_main_list" style="margin-right:20px;">
+                    <div class="order_tit f14">付款及配送方式</div>
+                    <ul class="order_fp">
+                        <li>付款方式：发货前付清全部货款</li>
+                        <li>配送方式：先配送现货 申请加急处理</li>
+                    </ul>
+                </div>
+                <div class="popup_main_list">
+                	<div class="order_tit f14">发票信息</div>
+                    <ul class="order_fp">
+                        <li>发票抬头：深圳达科为生物技术有限公司</li>
+                        <li>发票类型：普通发票</li>
+                        <li>发票是否合开：是</li>
+                        <li>单张金额限制：是，最高限额9000元</li>
+                    </ul>
+                </div>
+                <div class="c"></div>
+                <div class="order_tit f14">订购产品</div>
+                <div class="yellow_border">
+                    <table cellpadding="0" cellspacing="0" width="100%" class="order_tab" id="order_tab">
+                        <tr class="order_tab_tit">
+                            <td width="40%">产品</td>
+                            <td width="20%">生产商</td>
+                            <td width="10%" align="center">单价（元）</td>
+                            <td width="20%">数量</td>
+                            <td align="center">小计（元）</td>
+                        </tr>
+                        <tr>
+                            <td><p>APC anti-human CD31</p><em>货号:21512</em><em>规格：25tests</em></td>
+                            <td align="left">Agrisera</td>
+                            <td align="right" style="padding-right:25px;">98.00</td>
+                            <td>
+                            	<p class="red">现货不足，请调整数量</p>
+                                <div class="product_none">
+                                	<p>现货<input type="text" value="1" class="order_num_inp"/>库存：301</p>
+                                    <p>期货<input type="text" value="2" class="order_num_inp"/></p>
+								</div>
+							</td>
+                            <td align="right" style="padding-right:10px;">400.00</td>
+                        </tr>
+                        <tr>
+                            <td><p>Kinase Inhibitor Library Human IGF Binding -5</p><em>货号:21512</em><em>规格：25tests</em></td>
+                            <td align="left">AMRESCO</td>
+                            <td align="right" style="padding-right:25px;">480.00</td>
+                            <td><div class=""><p>现货 2</p><p>期货 1</p></div></td>
+                            <td align="right" style="padding-right:10px;">2000.00</td>
+                        </tr>
+                        <tr class="xiajia">
+                            <td><p>Human IGF Binding Protein-5</p><em>货号:21512</em><em>规格：25tests</em></td>
+                            <td align="left">AMRESCO</td>
+                            <td colspan="3" align="right">很抱歉，此规格产品已下架，暂时无法购买！&nbsp;&nbsp;</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="order_foot font_yh">
+                	<div class="jiage">
+                    	<p>商品总计：<i>3200</i>元</p>
+                        <p>运费：<i>300</i>元</p>
+                        <p>应付总额：<b><i>3500</i></b>元</p>
+					</div>
+                	<div class="order_foot_left">订单备注：这里显示买家订单备注信息</div>
+                    <div class="c"></div>
+                </div>
+                <div class="success_btn f16 font_yh letter_1" style="padding:10px 0;">
+                    <a href="/bioec_html/shop/receipt.html" class="success_btn1" style="width:120px; height:26px; line-height:26px; font-size:14px;">确认提交订单</a>
+                    <a href="/bioec_html/shop/fill.html" class="success_btn2" style="width:100px; height:26px; line-height:26px; font-size:14px;">返回修改</a>
+                </div>
+            </div>
+        </div>
+    </div>
+	<script type="text/javascript">
+        //弹出隐藏层
+        function ShowDiv(show_div,bg_div){
+        document.getElementById(show_div).style.display='block';
+        document.getElementById(bg_div).style.display='block' ;
+        var bgdiv = document.getElementById(bg_div);
+        bgdiv.style.width = document.body.scrollWidth;
+        // bgdiv.style.height = $(document).height();
+        $("#"+bg_div).height($(document).height());
+        };
+        //关闭弹出层
+        function CloseDiv(show_div,bg_div)
+        {
+        document.getElementById(show_div).style.display='none';
+        document.getElementById(bg_div).style.display='none';
+        };
+    </script>
+</div>
+
+</body>
+</html>

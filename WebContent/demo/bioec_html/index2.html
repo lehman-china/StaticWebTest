@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>RunJS</title>
+    <script id="jquery_183" type="text/javascript" class="library"
+            src="js/jquery.min.js"></script>
+    <script type="text/javascript" class="library"
+            src="js/avalon.js"></script>
+</head>
+<body ms-controller="test">
+<div ms-repeat="users">
+    {{el.name}}: {{el.age}}
+</div>
+<br>
+
+<button ms-click="del()">年龄小于20的变红</button>
+<button ms-click="red()">red</button>
+
+</body>
+</html>
+
+<script>
+
+    var vm = avalon.define( {
+        $id: "test",
+        users: [ {
+            name: "张三",
+            age: 22
+        }, {
+            name: "李四",
+            age: 18
+        }, {
+            name: "王五",
+            age: 20
+        }, {
+            name: "赵六",
+            age: 19
+        } ],
+        name : 123,
+        del: function () {
+
+            vm.users.splice(0,1);
+
+        },
+        red: function () {
+
+            $("div:eq(2)" ).css("background-color","red");;
+
+        }
+
+    } );
+
+</script>

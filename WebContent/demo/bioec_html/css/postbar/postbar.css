@@ -1,0 +1,245 @@
+/*贴吧个人首页*/
+.barind{ background:#f8f8f8;}
+
+.barind_left{ width:240px; min-height:650px; float:left; margin-top:20px; background:#fff;}
+	.barind_head{ height:65px; padding:10px; background:#fff;}
+	.uphead{ width:66px; height:66px; float:left; background:#f3f3f3;}
+	.uphead img{ max-width:62px;_width:expression(this.scrollWidth > 62 ? "62px" : (this.scrollWidth < 1? "62px" : "auto")); max-height:62px; _height:expression(this.scrollHeight > 62 ? "62px" : "auto"); overflow:hidden; text-align:center; padding:1px; border:1px solid #e5e5e5;}
+	.inform{ width:140px; float:left; margin-left:10px;}
+	.inform p{ font-weight:bold; color:#555; padding:10px 0; line-height:16px;}
+	.inform a{ color:#787878;}
+	.inform a:hover{ color:#f27101;}
+	.inform i{ color:#f27101;}
+	
+	.left_btn{ width:120px; height:56px; background:#fff; display:block; float:left; border-bottom:1px solid #f8f8f8;}
+	#mybar,#colltheme{ width:119px; border-left:1px solid #f8f8f8;}
+	#partin{ width:240px;}
+	.left_btn a{ width:100%; height:100%; display:block; color:#666; text-decoration:none !important; line-height:56px;}
+	.left_btn a:hover{ color:#f27101; background:#f4fcff;}
+	.left_btn i{ background:url(/bioec_html/images/postbar/icon.png); display:inline-block; _display:inline; *display:inline; zoom:1; overflow:hidden; float:left;}
+	#indbar i{ width:20px; height:15px; margin:20px 7px 0 10px; background-position:0 0;}
+	#indbar:hover i{ background-position:-31px 0;}
+	#mybar i{ width:20px; height:15px; margin:21px 7px 0 10px; background-position:-0 -25px;}
+	#mybar:hover i{ width:20px; height:15px; margin:21px 7px 0 10px; background-position:-30px -25px;}
+	#parbar i{ width:22px; height:15px; margin:21px 7px 0 10px; background-position:-0 -50px;}
+	#parbar:hover i{ width:22px; height:15px; margin:21px 7px 0 10px; background-position:-30px -50px;}
+	#colltheme i{ width:20px; height:15px; margin:21px 7px 0 10px; background-position:-0 -75px;}
+	#colltheme:hover i{ width:20px; height:15px; margin:21px 7px 0 10px; background-position:-30px -75px;}
+	#partin i{ width:20px; height:15px; margin:21px 7px 0 10px; background-position:-0 -100px;}
+	#partin:hover i{ width:20px; height:15px; margin:21px 7px 0 10px; background-position:-30px -100px;}
+	
+	.hot_postbar{ margin-top:10px; background:#fff; padding:10px; min-height:200px;}
+	.hot_postbar h4{ padding-bottom:10px; border-bottom:1px dotted #e8e8e8;}
+	.hot_postbar span{ display:block; line-height:18px; padding-top:10px;}
+	.hot_postbar span a{ color:#666;}
+	.hot_postbar span a:hover{ color:#f27101;}
+	
+.barind_right{ width:730px; float:right; margin-top:20px; padding:10px; background:#fff; min-height:630px;}
+	.barind_right h4{ height:35px; line-height:35px; border-bottom:2px solid #eee; position:relative; margin-bottom:10px;}
+	.barind_right h4 span{ height:35px; line-height:35px; padding:0 10px 0 0; font-size:14px; border-bottom:2px solid #fa8b56; position:absolute; left:0; top:0;}
+	.barind_right h4 i{ position:absolute; right:57px; top:5px; color:#999;}
+	.prompt{ height:100px; text-align:center; color:#999; position:relative;}
+	.prompt i{ width:40px; height:42px; display:block; position:absolute; top:30px; left:200px; background:url(/bioec_html/images/spis.png) -803px -374px;}
+	.prompt span{ position:absolute; top:45px; left:250px;}
+	.indbar_tabs{ width:100%; margin-bottom:20px;}
+	.indbar_tabs_tit{}
+	.indbar_tabs_tit td{ height:40px; line-height:40px; text-align:left; color:#9b9b9b; padding-left:5px; border-bottom:1px solid #cfcfcf;}
+	.indbar_tabs_list{}
+	.indbar_tabs_list td{ height:60px; vertical-align:middle; padding-left:5px; line-height:22px; border-bottom:1px dotted #dfdfdf; color:#666;}
+	.indbar_tabs_list:hover td{ background:#fff9f4;}
+	.indbar_tabs_list td a{ color:#2d64b3;}
+	.indbar_tabs_list td a:hover{ color:#f27101;}
+	.indbar_tabs_list td i{ display:block; color:#999;}
+	.hot_post{ width:100%;}
+	.hot_post li{ line-height:20px; padding:10px 5px; border-bottom:1px dotted #dfdfdf; display:inline-block; _display:inline; *display:inline; zoom:1; vertical-align:middle;}
+	.hot_post li:hover{ background:#fff9f4;}
+	.hot_post li i{ width:105px; float:right; color:#999; text-align:left;}
+	.hot_post li a{ width:604px; float:left; color:#2d64b3;}
+	.hot_post li a:hover{ color:#f27101;}
+	#parbar_main td i,#colltheme_main td i{ padding:0 2px; display:inline;}
+	#parbar_main td span a,#colltheme_main td span a{ display:none; margin-left:15px; color:#999;}
+	#parbar_main td span a:hover,#colltheme_main td span a:hover{ color:#f27101;}
+	#parbar_main tr:hover span a,#colltheme_main tr:hover span a{ display:inline-block; _display:inline; *display:inline; zoom:1;}
+	#partin_tabs{ margin-top:20px;}
+	.tabs_nav{ height:29px; border-bottom:1px solid #e7e7e7;}
+	.tabs_nav span{ width:110px; height:28px; display:inline-block; _display:inline; *display:inline; zoom:1; margin-right:20px; border:1px solid #e7e7e7; background:url(/bioec_html/images/spis.png) -863px -374px;}
+	.tabs_nav span a{ width:110px; height:28px; line-height:28px; text-align:center; display:block; text-decoration:none; color:#666;}
+	.tabs_nav span a.selected{ border-bottom:1px solid #fff; color:#f27101;}
+	#tab1,#tab2{ padding-top:20px;}
+	.tabs_box{ height:90px; border-bottom:1px dotted #cbd2d8; position:relative;}
+	.tabs_box_img{ position:absolute; top:20px; left:0;}
+	.tabs_box_img img{ max-width:35px; max-height:35px; _width:expression(this.scrollWidth > 35 ? "35px" : (this.scrollWidth < 1? "35px" : "auto")); _height:expression(this.scrollHeight > 35 ? "35px" : "auto");}
+	.tabs_box_tit{ width:640px; position:absolute; top:30px; left:45px; display:inline-block; _display:inline; *display:inline; zoom:1; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;}
+	.tabs_box i{ width:20px; height:17px; display:block; position:absolute; top:58px; left:15px; background:url(/bioec_html/images/spis.png) -522px -64px;}
+	.tabs_box p{ width:610px; color:#666; position:absolute; top:61px; left:45px; display:inline-block; _display:inline; *display:inline; zoom:1; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;}
+	.tabs_box em{ position:absolute; top:61px; right:0; color:#999;}
+	.hfw .tabs_box_tit{ left:0;}
+
+
+/*贴吧列表*/
+.postbar_main{}
+	.postbar_head{ padding:40px 0 20px 0;}
+	.postbar_head h2{ float:right;}
+	.postbar_head h1{ max-width:500px; _max-width:500px; display:block; line-height:30px; float:left;}
+	.postbar_head em{ margin-left:10px; float:left; margin-top:5px;}
+	.postbar_head em b{ font-size:16px; color:#f27101; padding-right:3px;}
+	.stat{ padding-top:15px;}
+	.stat span{ padding-right:30px;}
+	.stat span i{ color:#f27101; padding-left:5px;}
+	.postbar_nav{ height:50px; position:relative; background:#f7f8fa;}
+	.postbar_nav ul{}
+	.postbar_nav ul li{ width:80px; margin:10px 10px 0 5px; padding:5px 10px 0 10px; float:left; text-align:center; font-size:16px; border:1px solid #f7f9fb;}
+	.postbar_nav ul li a{}
+	.postbar_search{ width:222px; height:25px; float:right; position:absolute; top:13px; right:10px; background:url(/bioec_html/images/spis.png) 0 -497px no-repeat;}
+	.search_list,.search_cont{ width:44px; height:25px; line-height:25px; padding-left:7px; position:absolute; left:0; top:0;}
+	.search_main{ width:50px; position:absolute; top:24px; padding-top:5px; border:1px solid #ddd; border-top:none; background:#fff;}
+	.search_main a{ width:50px; display:block; text-align:center; line-height:20px; letter-spacing:3px; text-decoration:none;}
+	.postbar_form{}
+	#postbar_text{ width:125px; height:17px; padding:3px 7px; color:#999; line-height:17px; font-size:12px; border:none; background:none; position:absolute; left:51px; top:0;}
+	#postbar_btn{ width:32px; height:25px; border:none; background:none; cursor:pointer; position:absolute; right:0; top:0;}
+	#postbar_btn:hover{ background:url(/bioec_html/images/spis.png) -242px -497px no-repeat;}
+	#postbar_thisnav{ color:#f27101 !important;}
+	.postbar_sort{ position:absolute; right:400px; top:20px;}
+	.postbar_sort span{ margin-right:10px; color:#666;}
+	.postbar_sort span a{ color:#666;}
+	.postbar_sort span i{ width:7px; height:8px; margin-left:3px; display:inline-block; _display:inline; *display:inline; zoom:1; overflow:hidden; background:url(/bioec_html/images/spis.png) -1000px -385px;}
+	.sort_class a{ color:#f27101 !important;}
+	.sort_class i{ background:url(/bioec_html/images/spis.png) -983px -385px !important;}
+	
+	.postbar_nav_li{ position:relative;}
+	.postbar_nav_none{ width:100px; display:none; padding:10px 0 5px 0; position:absolute; left:-1px; border:1px solid #eee; border-top:none; background:#fff;}
+	.postbar_nav_none p{ padding-bottom:5px;}
+	.postbar_nav_none p a{ color:#666 !important; font-size:12px;}
+	.postbar_nav_none p a:hover{ color:#f27101 !important;}
+	.postbar_nav_li:hover{ background:#fff; border:1px solid #eee; border-bottom:none;}
+	.postbar_nav_li:hover .postbar_nav_none{ display:block;}
+	
+	.postbar_left{ width:800px; float:left;}
+	.postbar_list_tit{ height:30px; padding:0 10px 0 10px; margin-bottom:10px; border-bottom:2px solid #efefef; font-size:14px; color:#333;}
+	.postbar_list_tit p{ float:right; font-size:12px; padding:5px 10px 0 0;}
+	.postbar_list_tit span{ color:#999;}
+	
+	.postbar_right{ width:180px; float:right;}
+	.postbar_right{ width:180px; float:right;}
+	.postbar_cpcs{ padding:15px 10px;}
+	.postbar_cpcs li{ line-height:22px; color:#333; margin-bottom:8px;}
+	.postbar_cpcs li span{ color:#888;}
+	.postbar_cpcs li b{ color:#f27101; padding:0 5px;}
+	.postbar_cpcs li img{ margin:-2px 0 0 5px;}
+	.postbar_rqph{ padding:10px;}
+	.postbar_rqph li{ height:30px; line-height:30px;}
+	.postbar_rqph li a{ width:170px; padding-left:10px; white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden; display:block; color:#666; background:url(/bioec_html/images/spis.png) 0 -562px no-repeat;}
+	.postbar_rqph li a:hover{ color:#f27101;}
+	.my_postbar{ padding:15px 10px;}
+	.my_post_head{ width:63px; padding:1px; border:1px solid #e5e5e5; float:left; margin-right:10px;}
+	.my_post_head img{ max-width:63px;}
+	.my_postbar h4{ width:83px; height:24px; line-height:24px; white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden; display:block; color:#666;}
+	.my_postbar p{ line-height:18px; color:#999;}
+	
+	.postlist{ height:85px; border-bottom:1px dotted #ececec; position:relative;}
+	.postlist:hover{ background:#fffbf1;}
+	.postlist_tx{ position:absolute; top:15px; left:10px; max-height:50px; max-width:50px;}
+	.postlist h4{ font-size:14px; font-weight:normal; position:absolute; top:20px; left:75px;}
+	.postlist h4 img{ margin:2px 0 0 10px;}
+	.postlist h4 a{ max-width:620px; display:block; float:left; white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden;}
+	.postlist p{ position:absolute; top:45px; left:75px; color:#888; display:block;}
+	.postlist p span{ margin-left:20px; color:#bbb;}
+	.postlist em{ width:50px; position:absolute; right:15px; top:10px; text-align:center; line-height:18px; color:#333;}
+	.postlist em span{ color:#999;}
+	.hand{ position:absolute; left:752px; top:48px; line-height:24px;}
+	.hand img{ margin:3px 5px 0 0;}
+	.hand span{ color:#f27101; display:none;}
+	.hand a:hover .zan{ display:block; float:right;}
+	
+	.handbox{ display:inline-block; _display:inline; *display:inline; zoom:1;}
+	.handbox img{ margin:-3px 3px 0 0;}
+	.hand1{ position:absolute; left:752px; top:48px; line-height:24px;}
+	.hand1 img{ margin:3px 5px 0 0;}
+	.hand1 span{ color:#f27101; display:none;}
+	.hand1 a:hover .zan{ display:block; float:right;}
+	
+	.hand2{ position:absolute; left:752px; top:48px; line-height:24px;}
+	.hand2 img{ margin:3px 5px 0 0;}
+	.hand2 span{ color:#f27101; display:none;}
+	.hand2 a:hover .zan{ display:block; float:right;}
+	
+	.handbox1 img,.handbox2 img{ margin-top:-5px;}
+	.handbox1 a,.handbox2 a{ color:#999 !important;}
+	
+	.write_post{ border:1px solid #e9ebf0; padding:25px; margin-top:30px; background:#f6f6f6;}
+	.write_post_tit{}
+	.write_post_tit b{ font-size:14px;}
+	.write_post_tit span{ float:right;}
+	.write_post_text{ width:729px; height:14px; line-height:14px; padding:8px; color:#666; margin-top:15px; border-top:1px solid #9a9a9a; border-left:1px solid #9a9a9a; border-right:1px solid #ccc; border-bottom:1px solid #ccc;}
+	
+	.cktext{ padding-top:20px;}
+	.ckbtn{ padding:10px 0 0 0; text-align:right;}
+	
+	.none_postbar{ text-align:center; padding-top:50px;}
+
+/*贴吧详情*/
+	.postbar_left .list2{ margin:8px 8px 0 0;}
+	.postcont_tit{ line-height:30px;}
+	.postcont_tit a{ font-size:12px; color:#0075d5; margin-left:10px;}
+	.postcont_tit a:hover{ color:#f27101;}
+	.postcont_tit h1{ width:625px; float:left; font-size:16px; font-weight:normal;}
+	.operate{ width:135px; height:24px; float:right; margin-top:5px; text-align:right;}
+	.posfirst{ padding:10px 10px 20px 0; border-bottom:1px dotted #dedede;}
+	.first_head{ position:relative; height:50px;}
+	.first_img{ position:absolute; left:0; top:0;}
+	.first_name{ position:absolute; left:65px; top:5px; font-weight:bold;}
+	.first_name span{ color:#f27101; margin-left:10px;}
+	.frist_xinxi{ position:absolute; top:30px; left:65px; color:#666;}
+	.frist_xinxi span{ color:#999;}
+	.frist_floor{ position:absolute; right:0; top:0; line-height:24px; text-align:right;}
+	.first_p{ padding:0 0 0 65px; padding-top:10px; display:inline-block; _display:inline; *display:inline; zoom:1; overflow:hidden;}
+	.first_p p{ font-size:14px; line-height:26px; padding-bottom:5px; text-indent:28px;}
+	
+	.list{ border-bottom:1px dashed #dedede; padding:25px 0 20px 0;}
+	.list_t{ color:#999; height:24px; line-height:24px; float:left;}
+	.list dt{ float:left; width:50px; height:50px;}
+	.list dt img{ max-width:50px; max-height:50px;}
+	.list dd{ width:730px; float:left; padding-left:10px;}
+	.list_t span{ color:#f27101; padding-right:10px;}
+	.list_t p{ float:right; color:#888;}
+	.list_m{}
+	.list_nr{ width:690px; float:left;}
+	.list_nr p{ font-size:14px; line-height:26px; padding-bottom:5px; text-indent:28px;}
+	.huifu{ float:right; margin-top:2px;}
+	
+	.floor_son{ border:1px solid #efefef; background:#f8f8f8; padding:10px; margin:20px 0 0 0;}
+	.floor_son_box{ border-bottom:1px dotted #dbdbdb; padding:10px 0;}
+	.floor_son_tx{ width:36px; height:36px; float:left;}
+	.floor_son_tx img{ max-width:36px; max-height:36px;}
+	.floor_son_nr{ width:650px; float:left; padding:0 10px; line-height:24px;}
+	.floor_son_nr span{ color:#f27101;}
+	.floor_son_time{ text-align:right; color:#999;}
+	.floor_son_time a{ margin-left:10px; color:#999 !important;}
+	.floor_son_time a:hover{ color:#f27101 !important;}
+	#floor_text{ width:685px; line-height:22px; border:1px solid #eee; padding:5px 10px; margin-top:10px; font-size:12px;}
+	.floor_btn{ width:54px; height:23px; float:right; margin:10px 10px 0 0; background:#ebebeb; border:none; color:#666; cursor:pointer;}
+	.floor_btn:hover{ background:#f27101; color:#fff;}
+	.floor{ display:none;}
+	
+/*我回复的帖子*/
+	.myreply{ padding:20px 10px 0px 10px; border-bottom:1px dotted #cbd2d8;}
+	.myreply dt{ width:700px; height:36px; white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden;}
+	.myreply dt img{ max-width:36px; max-height:36px; margin-right:10px;}
+	.myreply dd{ width:755px; height:17px; padding:10px 0 0 15px; overflow:hidden;}
+	.myreply dd i{ width:35px; display:block; text-align:center; float:right; color:#999;}
+	.myreply dd span{ width:660px; display:block; float:left; color:#666; white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden;}
+	.myreply dd img{ width:20px; height:17px; float:left; margin-right:10px;}
+	.myreply dd a{ display:none; color:#f27101 !important ;}
+	.myreply:hover{ background:#fffbf1;}
+	.myreply:hover dd a{ display:inline-block; _display:inline; *display:inline; zoom:1;}
+	
+/*我发表的帖子*/
+	.my_postlist{ height:85px; border-bottom:1px dotted #ececec; position:relative;}
+	.my_postlist:hover{ background:#fffbf1;}
+	.my_postlist h4{ font-size:14px; font-weight:normal; position:absolute; top:20px; left:10px;}
+	.my_postlist h4 img{ margin:2px 0 0 10px;}
+	.my_postlist h4 a{ max-width:620px; display:block; float:left; white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden;}
+	.my_postlist p{ position:absolute; top:45px; left:10px; color:#888; display:block; color:#bbb;}
+	.my_postlist em{ width:50px; position:absolute; right:15px; top:10px; text-align:center; line-height:18px; color:#333;}
+	.my_postlist em span{ color:#999;}
+

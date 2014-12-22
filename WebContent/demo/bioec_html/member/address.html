@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>单位账户_单位详情</title>
+<link href="../css/base.css" type="text/css" rel="stylesheet"/>
+<link href="../css/member/common.css" type="text/css" rel="stylesheet"/>
+<link href="../css/member/member.css" type="text/css" rel="stylesheet"/>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery.idTabs.js"></script>
+<script src="js/switch.js"></script>
+
+</head>
+
+<body style="behavior:url(csshover.htc);">
+<div class="page">
+<div class="header">
+	<div class="head_main">
+    	<div class="head_menu"><a href="/bioec_html/">返回首页</a><span>|</span><a href="#">帮助中心</a><span>|</span><a href="#">联系我们</a><span>|</span><a href="#">商家入驻</a></div>
+        <div class="head_nav">
+        	<div class="head"><img src="/bioec_html/images/uphead/tx.gif"/></div>
+            <div class="my_member letter_2 f24 font_yh">我的生物城</div>
+            <ul class="navig font_yh letter_1">
+            	<li><a href="/bioec_html/member/member_index.html">会员首页</a></li>
+                <li><a href="/bioec_html/member/order_form.html">我的订单</a><img src="/bioec_html/images/point1.gif"/></li>
+                <li><a href="/bioec_html/postbar/postbar_index.html">贴吧消息</a></li>
+            </ul>
+            <div class="shop_cart">
+            	<img src="/bioec_html/images/member/shopche.gif"/>
+                <em class="f14 font_yh"><a href="/bioec_html/shop/shop.html">我的购物车</a></em>
+                <i>3</i>
+            </div>
+            <div class="c"></div>
+        </div>
+        <div class="head_data font_yh">
+        	<span class="name f14">我的小伙伴<a href="#">[安全退出]</a></span>
+            <span class="email">13632879450@139.com<em>[已认证]</em></span>
+            <span class="phone">手机未认证<em><a href="#">[立即认证]</a></em></span>
+        </div>
+    </div>
+</div>
+<div class="h10"></div>
+<div class="content">
+	<div class="sidebar">
+    	<ul class="font_yh">
+        	<li class="sidebar3"><a href="/bioec_html/member/personal.html">账户信息</a></li>
+        	<li class="sidebar1"><a href="/bioec_html/member/order_form.html">我的订单</a></li>
+            <li class="sidebar6"><a href="/bioec_html/member/group.html">订购小组</a><i><img src="/bioec_html/images/member/point2.gif"/></i></li>
+            <li class="sidebar4"><em class="current"></em><a href="/bioec_html/member/address.html">收货地址</a></li>
+            <li class="sidebar7"><a href="/bioec_html/member/gifts_list.html">积分兑换</a></li>
+            <li class="sidebar8"><a href="/bioec_html/member/collect_product.html">我的关注</a></li>
+        </ul>
+    </div>
+	<div class="main">
+        <div class="main_box">
+        	<div class="main_tit1 font_yh">
+            	<b>收货地址</b>
+            </div>
+        </div>
+        <div class="main_box f14 font_yh c6 order_none blue"><img src="/bioec_html/images/info_16.png"/>您的收货地址空空的，请先加入订购小组再创建收货地址！ <a href="/bioec_html/member/group_join.html">申请加入订购小组</a></div>
+        <div class="space"></div>
+        <div class="main_box">
+        	<div class="danwei_tit f14 font_yh blue"><b>达科为生物技术有限公司</b></div>
+            <div class="company_add">
+            	<div class="company_tit f14 font_yh blue"><a href="javascript:;" onclick="news_add();">新建地址</a><b>科研采购小组</b></div>
+                
+                <!--新增收货地址开始-->
+                <div class="company_box none" id="news_add">
+                    <dl class="company_news">
+                        <dt class="font_yh f14 c6"><b>新增收货地址</b></dt>
+                        <dd><em>收货人</em><input type="text" placeholder="收货人姓名"/><span class="error">请填写收货人姓名</span></dd>
+                        <dd>
+                        	<em>所在地区</em>
+                            <select name="">
+                                <option value="">广东省</option>
+                                <option value="">新疆省</option>
+                            </select>
+                            <select name="">
+                                <option value="">深圳市</option>
+                                <option value="">广州市</option>
+                            </select>
+                            <select name="">
+                                <option value="">南山区</option>
+                                <option value="">福田区</option>
+                            </select>
+                        </dd>
+                        <dd><em>街道地址</em><input type="text" placeholder="街道详细地址" style="width:400px;"/></dd>
+                        <dd><em>手机</em><input type="text" placeholder="收货人手机"/></dd>
+                        <dd><em>电话</em><input type="text" placeholder="如：0755-1234567"/></dd>
+                        <dd><em>电子邮箱</em><input type="text" placeholder="如：wang@163.com"/></dd>
+                        <dt style="height:10px;"></dt>
+                        <dd class="blue"><em></em><a href="javascript:;" onclick="news_add1();" class="company_btn">确认保存</a><a href="javascript:;" onclick="news_add1();">取消</a></dd>
+                    </dl>
+                </div>
+                <!--新增收货地址结束-->
+                
+            	<div class="company_box" id="address" style="border-bottom:1px dotted #e2e2e2;">
+                    <div class="company_box_main f14 font_yh">
+                        <span><em>收货人：</em>王成杰</span>
+                        <span><em>收货地址：</em>深圳市南山区蛇口沿山路佳丽泰大厦301</span>
+                        <span><em>联系方式：</em>13632879450&nbsp;&nbsp;&nbsp;0755-1234567</span>
+                        <span><em>电子邮箱：</em>13632879450@139.com</span>
+                    </div>
+                    <div class="table_link">
+                        <div class="box_main_a font_yh" style="width:40px;">
+                            <p><a href="javascript:;" onclick="modify();">修改</a> <img src="/bioec_html/images/member/jt.gif"/></p>
+                            <p class="none"><a href="javascript:;">删除</a></p>
+                        </div>
+                    </div>
+                    <div class="c"></div>
+                </div>
+                
+                <!--修改收货地址开始-->
+                <div class="company_box none" id="modify_add">
+                    <dl class="company_news">
+                        <dt class="font_yh f14 c6"><b>修改收货地址</b></dt>
+                        <dd><em>收货人</em><input type="text" value="收货人姓名"/><span class="error">请填写收货人姓名</span></dd>
+                        <dd>
+                        	<em>所在地区</em>
+                            <select name="">
+                                <option value="">广东省</option>
+                                <option value="">新疆省</option>
+                            </select>
+                            <select name="">
+                                <option value="">深圳市</option>
+                                <option value="">广州市</option>
+                            </select>
+                            <select name="">
+                                <option value="">南山区</option>
+                                <option value="">福田区</option>
+                            </select>
+                        </dd>
+                        <dd><em>街道地址</em><input type="text" value="蛇口沿山路创业壹号大厦" style="width:400px;"/></dd>
+                        <dd><em>手机</em><input type="text" value="13632879450"/></dd>
+                        <dd><em>电话</em><input type="text" value="0755-1234567"/></dd>
+                        <dd><em>电子邮箱</em><input type="text" value="wang@163.com"/></dd>
+                        <dt style="height:10px;"></dt>
+                        <dd class="blue"><em></em><a href="javascript:;" onclick="modify_add1();" class="company_btn">确认保存</a><a href="javascript:;" onclick="modify_add1();">取消</a></dd>
+                    </dl>
+                </div>
+                <!--修改收货地址结束-->
+                
+                <div class="company_box" style="border-bottom:1px dotted #e2e2e2;">
+                    <div class="company_box_main f14 font_yh">
+                        <span><em>收货人：</em>雷建军</span>
+                        <span><em>收货地址：</em>深圳市南山区蛇口沿山路佳丽泰大厦301</span>
+                        <span><em>联系方式：</em>13632879450&nbsp;&nbsp;&nbsp;0755-1234567</span>
+                        <span><em>电子邮箱：</em>13632879450@139.com</span>
+                    </div>
+                    <div class="table_link">
+                        <div class="box_main_a font_yh" style="width:40px;">
+                            <p><a href="/bioec_html/member/company_info.html">修改</a> <img src="/bioec_html/images/member/jt.gif"/></p>
+                            <p class="none"><a href="/">删除</a></p>
+                        </div>
+                    </div>
+                    <div class="c"></div>
+                </div>
+                <div class="company_tit f14 font_yh blue"><a href="/">新建地址</a><b>雷擎项目组</b></div>
+            	<div class="company_box" style="border-bottom:1px dotted #e2e2e2;">
+                    <div class="company_box_main f14 font_yh">
+                        <span><em>收货人：</em>曹良峰</span>
+                        <span><em>收货地址：</em>深圳市南山区蛇口沿山路佳丽泰大厦301</span>
+                        <span><em>联系方式：</em>13632879450&nbsp;&nbsp;&nbsp;0755-1234567</span>
+                        <span><em>电子邮箱：</em>13632879450@139.com</span>
+                    </div>
+                    <div class="table_link">
+                        <div class="box_main_a font_yh" style="width:40px;">
+                            <p><a href="/bioec_html/member/company_info.html">修改</a> <img src="/bioec_html/images/member/jt.gif"/></p>
+                            <p class="none"><a href="/">删除</a></p>
+                        </div>
+                    </div>
+                    <div class="c"></div>
+                </div>
+            </div>
+        </div>
+        <div class="space"></div>
+        <div class="main_box">
+        	<div class="danwei_tit f14 font_yh blue"><b>中科院生物研究所</b></div>
+            <div class="company_add">
+            	<div class="company_tit f14 font_yh blue"><a href="/">新建地址</a><b>采购小组</b></div>
+            	<div class="company_box" style="border-bottom:1px dotted #e2e2e2;">
+                    <div class="company_box_main f14 font_yh">
+                        <span><em>收货人：</em>xxx</span>
+                        <span><em>收货地址：</em>深圳市南山区蛇口沿山路佳丽泰大厦301</span>
+                        <span><em>联系方式：</em>13632879450&nbsp;&nbsp;&nbsp;0755-1234567</span>
+                        <span><em>电子邮箱：</em>13632879450@139.com</span>
+                    </div>
+                    <div class="table_link">
+                        <div class="box_main_a font_yh" style="width:40px;">
+                            <p><a href="/bioec_html/member/company_info.html">修改</a> <img src="/bioec_html/images/member/jt.gif"/></p>
+                            <p class="none"><a href="/">删除</a></p>
+                        </div>
+                    </div>
+                    <div class="c"></div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+    <div class="c"></div>
+</div>
+<div class="boline"><img src="/bioec_html/images/member/main_line.gif"/></div>
+
+</div>
+
+<div class="foot">
+	<div class="foot_main c6">
+    	<span>生物城搜索 Copyright © 2014</span>
+        <span>京ICP备11025281号</span>
+        <a href="/bioec_html/factory/factory.html">厂家</a>|<a href="/bioec_html/seller/seller.html">经销商</a>|<a href="/bioec_html/member/contact_us.html">联系我们</a>|<a href="/bioec_html/member/sell_enter.html">商家入驻</a>
+    </div>
+</div>
+</body>
+</html>

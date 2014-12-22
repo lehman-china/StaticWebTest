@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>avalon入门</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="js/avalon.min.js"></script>
+<script>
+            var model = avalon.define("test", function(vm) {
+            	var a = 100;
+            	vm.tt = 1;
+               vm.values = [{a:1},a,5,7,9];
+               vm.alter = function( v ){
+            	   vm.values[1] = v;
+               }
+               vm.add = function( v ){
+            	   vm.values.push(v);
+            	   console.log( v )
+            	   console.log( vm.values )
+               }
+               vm.loadV = function(){
+            	   return vm.tt+"*";
+               }
+            })
+ 
+        </script>
+</head>
+<body ms-controller="test">
+	<div>
+		<ul>
+			<li ms-repeat="values">{{el}}</li>
+		</ul>
+	</div>
+	<button ms-click="alter(5)">alter(5)</button>
+	<button ms-click="add(8)">add(8)</button>
+	<input type="text" ms-duplex="tt"/>
+	{{loadV()}}
+	{{values[0].a}}
+</body>
+</html>

@@ -1,0 +1,53 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ajax载入等待特效</title>
+
+<script src="js/inc/jquery-1.8.3.js"></script>
+
+<script src="js/inc/json2.js"></script>
+
+<style type="text/css">
+*,body,div{
+	padding:0;
+	margin:0;
+}
+</style>
+<script type="text/javascript">
+	function textAjaxLoad( tag ) {
+		var $tag = $( tag );
+		// 1 获取事件标签的坐标和大小
+		var x = $tag.offset().top;
+		var y = $tag.offset().left;
+		var w = $tag.width();
+		var h = $tag.height();
+
+		// 2  创建一个不重复id的具有等待效果img的div
+		var tagId = "tag"+new Date().getTime();
+		$(document.body).append("<div id='"+tagId+"' style='position:absolute;background-color:#FFFFFF;opacity:0.7;-moz-opacity:0.7; filter:alpha(opacity=70);' ><img src='source/xubox_loading2.gif' style='width:100%;height:100%;'/></div>");
+		// 3 绝对定位到事件标签坐标位置.和大小.
+		$( "#"+tagId ).css( {
+			top : x + 'px',
+			left : y + 'px',
+			width : w + 'px',
+			height : h + 'px'
+		} );
+		
+		setTimeout( function() {
+			// 4 事件结束后,删除此div
+			$( "#"+tagId ).hide(500);
+		}, 1000 );
+	}
+</script>
+</head>
+<body>
+	<button onclick="textAjaxLoad( this )" style="width: 80px;height: 80px;" >测试</button>
+	<a href="###" onclick="textAjaxLoad( this )" style="display:inline-block;width:80px;height:80px; line-height:80px;text-align:center; background:red;" >测试a</a>
+	<div  onclick="textAjaxLoad( this )" style="display:inline-block;width:80px;height:80px; line-height:80px;text-align:center; background:red;" >测试div</div>
+	<span  onclick="textAjaxLoad( this )" style="display:inline-block;width:80px;height:80px; line-height:80px;text-align:center; background:red;" >测试span</span>
+	<a href="###" onclick="textAjaxLoad( this )"  >测试a2</a>
+	<span id="showConsole"></span>
+	
+
+</body>
+</html>

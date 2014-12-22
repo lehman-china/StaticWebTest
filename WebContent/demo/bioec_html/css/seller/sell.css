@@ -1,0 +1,73 @@
+
+/*厂家列表*/
+#retrieval{ padding:40px 0;}
+	#retrieval span{ width:27px; height:22px; float:left; line-height:18px; text-align:center; display:block; padding-right:4px;}
+	#retrieval span a{ width:27px; height:22px; display:block; text-decoration:underline;}
+	.retrieval_tit{ width:110px !important; text-align:left !important;}
+	#retrieval a.selected{ font-size:12px; color:#fff; background:url(/bioec_html/images/spis.png) -244px -77px no-repeat; text-decoration:none;}
+	
+.retrieval_list{ width:464px; height:120px; float:left; padding:0 20px 10px 10px; border:3px solid #fff; margin-top:20px; overflow:hidden;}
+	.retrieval_list:hover{ border:3px solid #eee; background:#fffcfa;}
+	.retrieval_list_tit{ padding:10px 0;}
+	.retrieval_list_p{ line-height:24px; color:#666;}
+	.retrieval_list_p p{ width:330px; display:inline-block}
+	.retrieval_list_p span{ color:#f27101; padding:0 5px;}
+	.retrieval_list_p img{ float:right; margin-right:20px; max-width:100px; _max-width:100px; max-height:40px; _max-height:40px;}
+	
+.seller_search{ width:212px; height:25px; float:right; background:url(/bioec_html/images/spis.png) 0 -497px no-repeat;}
+	#seller_form{ position:relative;}
+	#seller_text{ width:166px; height:17px; padding:3px 7px; color:#999; line-height:17px; font-size:12px; border:none; background:none; position:absolute; left:0; top:0;}
+	#seller_btn{ width:32px; height:25px; border:none; background:none; cursor:pointer; position:absolute; right:0; top:0;}
+	#seller_btn:hover{ background:url(../images/spis.png) -222px -497px no-repeat;}
+	
+
+	
+/*厂家详情*/
+.factory_intro{ padding:30px 0;}
+	.intro_name{ width:1000px;}
+	.intro_name img,.intro_p img{ float:right;}
+	.intro_name img{ padding-left:20px; max-width:200px; _max-width:200px; max-height:40px; _max-height:40px;}
+	.intro_p img{ padding-left:20px; max-width:165px; _max-width:165px; max-height:105px; _max-height:105px; margin-top:10px;}
+	.intro_p{ line-height:28px; text-indent:28px;}
+	.seller_fl{ padding:10px 0; font-size:12px; color:#999;}
+	.seller_fl span{ line-height:50px; padding:0 20px 0 15px; display:block; white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden; float:left;}
+	.seller_fl span a{ font-size:18px;}
+	
+	.level{ padding:10px 0 10px 7px; line-height:24px; color:#999; border-bottom:1px dotted #eee;}
+	.level span{ width:900px; display:inline-block; _display:inline; *display:inline; zoom:1; float:right;}
+	.level a{ margin:0 5px;}
+	.level_tit{ height:30px; line-height:30px; margin-top:10px; padding:0 10px; background:#f5f5f5;}
+	.level_tit a{ float:right;}
+	
+	.factory_list{ width:100%;}
+	.factory_list_tit td{ height:30px; color:#999; padding:0 10px; border-bottom:2px solid #f5f5f5;}
+	.factory_list_m td{ border-bottom:1px solid #eee; color:#666; padding:10px 10px; line-height:24px;}
+	.factory_list_m:hover td{ background:#fffbf1;}
+	
+/*商家详情*/
+.seller_left{ width:740px; float:left;}
+	.seller_name{ height:80px; line-height:80px; padding-top:20px;}
+	.seller_name img{ float:right; margin:30px 20px 0 0; max-height:40px; max-width:200px; _max-height:40px; _max-width:200px;}
+	.seller_jj{ padding:0 20px;}
+	.seller_jj p{ font-size:14px; color:#666; padding-bottom:10px; text-indent:28px; line-height:28px;}
+	.catalog{ padding:10px 0; font-size:12px; color:#999;}
+	.catalog span{ line-height:60px; padding:0 25px 0 15px; display:block; white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden; float:left;}
+	.catalog span a{ font-size:20px;}
+	#seller_cj span{ line-height:40px;}
+	#seller_cj span a{ font-size:14px;}
+	.return a{ font-size:14px !important;}
+	
+.seller_right{ width:230px; float:right; padding-top:40px;}
+	.seller_rtit{ height:38px; line-height:38px; background:#f6f6f6; padding:0 15px;}
+	.seller_rtit span{ height:42px; display:block; padding-left:35px; background:url(/bioec_html/images/spis.png) 0 -450px no-repeat;}
+	.seller_mas{ padding:10px 10px 10px 25px;}
+	.seller_mas li{ line-height:22px; padding:15px 0 0 0; color:#999;}
+	.seller_mas li span{ width:150px; padding-left:8px; color:#333;}
+	.seller_mas li span b{ color:#f27101; margin-right:10px;}
+	.seller_sc{ padding:10px 0 30px 25px;}
+	.seller_sc div{ margin-top:4px;}
+	.seller_sc a{ margin:0 0 0 10px;}
+	.seller_tj{ padding:10px 10px 0 25px;}
+	.seller_tj li{ height:30px; line-height:30px; padding-left:10px; width:100%; font-size:14px; background:url(/bioec_html/images/spis.png) 0 -538px  no-repeat;}
+	.seller_tj li a{ width:100%; display:block; white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden;}
+	

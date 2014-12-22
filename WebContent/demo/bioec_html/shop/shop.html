@@ -1,0 +1,351 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>购物车_产品管理</title>
+<link href="../css/base.css" rel="stylesheet" type="text/css"/>
+<link href="../css/public.css" rel="stylesheet" type="text/css"/>
+<link href="../css/shop/shop.css" rel="stylesheet" type="text/css"/>
+<script src="../js/jquery.min.js"></script>
+</head>
+
+<body style="behavior:url(csshover.htc);">
+
+<div class="header">
+    <div class="header_main">
+        <div class="logo_img"><a href="/bioec_html"><img src="/bioec_html/images/son_logo.gif"/></a></div>
+        <div class="head_search">
+            <span><input type="text" placeholder="CD31"/></span>
+            <span><a href="javascript:;"></a></span>
+        </div>
+        <div class="menu">
+            <div class="switch">达科为生物科技 科研采购小组 <span>[<a href="/bioec_html/member/manage_work.html">切换</a>]</span></div>
+            <div class="menu_list">
+                <ul>
+                    <li class="list_one">您好 Bailly！<span>[<a href="/bioec_html" title="安全退出">安全退出</a>] [<a href="/bioec_html/member/member_index.html" title="进入会员中心">会员中心</a>]</span></li>
+                    <li class="list_hover">
+                        <i></i>
+                        <div class="menu_tit"><a href="/bioec_html/member/member_index.html">我的订单</a></div>
+                        <em></em>
+                        <div class="menu_hover none" id="my_dd">
+                            <b></b>
+                            <p><a href="/bioec_html/member/order_form.html">待收货订单</a> (3)</p>
+                            <p><a href="/bioec_html/member/order_form.html">待付款订单</a> (0)</p>
+                            <p><a href="/bioec_html/member/order_form.html">待开票订单</a> (1)</p>
+                        </div>
+                    </li>
+                    <li class="list_hover">
+                        <i></i>
+                        <div class="menu_tit"><a href="/bioec_html/postbar/postbar_index.html">贴吧消息</a></div>
+                        <em></em>
+                        <div class="menu_hover none" id="my_bar">
+                            <b></b>
+                            <p><a href="/bioec_html/postbar/postbar_index.html">未阅读回复</a> (3)</p>
+                            <p><a href="/bioec_html/postbar/postbar_index.html">关注的贴吧</a> </p>
+                            <p><a href="/bioec_html/postbar/postbar_index.html">收藏的主题</a> </p>
+                        </div>
+                    </li>
+                    <li class="list_hover">
+                        <i></i>
+                        <div class="menu_tit"><a href="/bioec_html/shop/shop.html">我的购物车</a></div>
+                        <em></em>
+                        <div class="menu_hover none" id="my_shop">
+                            <b></b>
+                            <h4>我的购物车</h4>
+                            <div class="shop_none none">购物车暂无商品，赶紧选购吧！</div>
+                            <dl class="menu_shop">
+                                <dd>
+                                    <div class="meshop_l"><p><a href="/bioec_html/product/product_content.html">Human IGF Binding Protein-5</a></p><p>10 tests</p></div>
+                                    <div class="meshop_r font_yh"><p><span>¥5400</span>x2</p><p><a href="javascript:;">删除</a></p></div>
+                                    <div class="c"></div>
+                                </dd>
+                                <dd>
+                                    <div class="meshop_l"><p><a href="/bioec_html/product/product_content.html">Purified anti-mouse CD31</a></p><p>50 tests</p></div>
+                                    <div class="meshop_r font_yh"><p><span>¥5400</span>x1</p><p><a href="javascript:;">删除</a></p></div>
+                                    <div class="c"></div>
+                                </dd>
+                            </dl>
+                            <div class="check">
+                                <p>共<span> x </span>件商品&nbsp;&nbsp;&nbsp;合计<span> ¥16200</span></p>
+                                <p class="font_yh letter_1"><a href="/bioec_html/shop/shop.html" class="check_btn">去结算</a></p>
+                                <div class="c"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list_one" style="padding:0; margin:0 8px 0 10px; _margin:0 4px 0 10px;">
+                        <i></i>
+                        <span><a href="/bioec_html/account/register.html">注册</a>&nbsp;&nbsp;<a href="/bioec_html/account/register.html">登录</a></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+	<div class="shop">
+        <div class="shop_tit f26 font_yh c6 letter_2">我的购物车</div>
+        <div class="shop_lc f16 font_yh c9" id="shop_last">3.成功提交订单</div>
+        <div class="shop_lc f16 font_yh c9">2.填写核对订单信息</div>
+        <div class="shop_lc f16 font_yh shop_this">1.我的购物车</div>
+        <div class="c line2 h20"></div>
+        <div class="h30"></div>
+        <script>
+			/**
+			* 控制货物数量 框，
+			*/
+			var NumberText = function( $add, $reduce, $num_1, $num_2 ,max) {
+				var _this = this;
+				var $num = $( ".num" );
+				
+				var min = 1;
+				//控制只能输入数字
+				$num.keyup( function() {//按键抬起
+					this.value = this.value.replace( /\D/g, '');
+					control();//控制按键值的上下限
+				} );
+				$num.contextmenu( function() {//取消右键
+					return false;
+				} );
+				//控制   点击上下限
+				$add.click( function() {
+					var n = $num_1.val();
+					var num_1 = parseInt( n ) + 1;
+					if ( num_1 >= max ) {
+						$num_1.val( max );
+					} else {
+						$num_1.val( num_1 );
+					}
+				} );
+				$reduce.click( function() {
+					var n = $num_1.val();
+					var num_1 = parseInt( n ) - 1;
+					var n2 = $num_2.val();
+					var num_2 = parseInt( n2 );
+					if ( num_1 == min && min == num_2 ) {
+						$num_1.val( min + 1 );
+					} else if ( num_1 > min - 1 ) {
+						$num_1.val( num_1 );
+					}
+				} );
+				//控制按键值的上下限
+				function control(){
+					var n = $num_1.val();
+					var num_1 = parseInt( n );
+					var n2 = $num_2.val();
+					var num_2 = parseInt( n2 );
+					if ( num_1 >= max ) {
+						$num_1.val( max );
+					} else if ( num_1 == min && min == num_2 ) {
+						$num_1.val( min + 1 );
+					} else if ( num_1 < min ) {
+						$num_1.val( min );
+					}
+				}
+			};
+
+			$( document ).ready( function() {
+
+				new NumberText( $( "#add_1" ), $( "#jian_1" ), $( "#num_1" ), $( "#num_2" ) ,10);
+				new NumberText( $( "#add_2" ), $( "#jian_2" ), $( "#num_2" ), $( "#num_1" ) ,1000000);
+			} );
+			
+			//控制显示现货或者期货
+			function onTishi(){
+				var input_num = document.getElementById("num_1").value;
+				if(input_num >= 10){
+					document.getElementById("tishi").style.display = "block";
+				}
+			};
+			function no(){
+				document.getElementById("tishi").style.display = "none";
+			};
+			function yes(){
+				document.getElementById("tishi").style.display = "none";
+				document.getElementById("xianhuo").style.display = "none";
+				document.getElementById("qihuo").style.display = "block";
+			};
+			function all_yes(){
+				document.getElementById("tishi").style.display = "none";
+				document.getElementById("xianhuo").style.display = "block";
+				document.getElementById("qihuo").style.display = "block";
+			};
+		</script>
+        <div class="seller f20 font_yh blue"><a href="#">深圳达科为生物科技有限公司</a><img src="/bioec_html/images/13.gif"/></div>
+        <table cellpadding="0" cellspacing="0" class="shop_tab1 font_yh">
+        	<tr class="shop_tab1_tit">
+            	<td width="36%" align="left"><p>产品/货号/规格</p></td>
+            	<td width="20%" align="center"><p>生产商</p></td>
+                <td width="14%" align="center"><p>原价/折扣价（元）</p></td>
+                <td width="15%" align="center"><p>数量</p></td>
+                <td width="10%" align="center"><p>小计（元）</p></td>
+                <td width="5%" align="center"><p style="border:none">操作</p></td>
+            </tr>
+            <tr class="shop_tab1_main">
+            	<td class="shop_tab1_cp blue"><p><a href="#">APC anti-human CD31</a></p><p><span>货号：700001</span>规格：25 tests</p></td>
+                <td style="text-align:left">Biolegend</td>
+                <td><i>200.00</i><b>198.00</b></td>
+                <td>
+                	<div style="position:relative;">
+                        <div class="jiajian" id="xianhuo">
+                            <div class="jiajian_tit blue">现货</div>
+                            <input type="text" id="num_1" class="num" value="1" />
+                            <a href="###" id="jian_1" class="jian">-</a>
+                            <a href="###" id="add_1" class="add" onclick="onTishi()">+</a>
+                        </div>
+                        <div class="tishi blue none" id="tishi">目前现货库存量为10，是否改为预定期货？<a href="###" onclick="yes()">是</a><a href="###" onclick="no()">否</a><span><a href="###" onclick="all_yes();">详细设置</a></span></div>
+                        <div class="jiajian none" id="qihuo">
+                            <div class="jiajian_tit yellow">期货</div>
+                            <input type="text" id="num_2" class="num" value="1"/>
+                            <a href="###" id="jian_2" class="jian">-</a>
+                            <a href="###" id="add_2" class="add">+</a>
+                        </div>
+                    </div>
+                </td>
+                <td class="yellow"><b>396.00</b></td>
+                <td><div class="close"><a href="#" class="close_add">收藏</a><a href="#" class="close_del">删除</a></div></td>
+            </tr>
+            <tr class="shop_tab1_main">
+            	<td class="shop_tab1_cp blue"><p><a href="#">CD31/PECAM-1</a></p><p><span>货号：700001</span>规格：25 tests</p></td>
+                <td style="text-align:left">达科为生物科技有限公司</td>
+                <td><i>360.00</i><b>328.00</b></td>
+                <td>
+                	<div class="jiajian">
+                        <div class="jiajian_tit blue">现货</div>
+                        <input type="text" id="num_1" class="num" value="1"/>
+                        <a href="###" class="jian">-</a>
+                        <a href="###" class="add" onclick="onTishi()">+</a>
+                    </div>
+                </td>
+                <td class="yellow"><b>1260.00</b></td>
+                <td><div class="close"><a href="#" class="close_add">收藏</a><a href="#" class="close_del">删除</a></div></td>
+            </tr>
+            <tr class="shop_tab1_main">
+            	<td class="shop_tab1_cp blue"><p><a href="#">PE/Cy7 anti-human CD31</a></p><p><span>货号：700001</span>规格：25 tests</p></td>
+                <td style="text-align:left">Biolegend</td>
+                <td><i>1200.00</i><b>1100.00</b></td>
+                <td>
+                	<div class="jiajian">
+                        <div class="jiajian_tit blue">现货</div>
+                        <input type="text" id="num_1" class="num" value="1"/>
+                        <a href="###" class="jian">-</a>
+                        <a href="###" class="add" onclick="onTishi()">+</a>
+                    </div>
+                </td>
+                <td class="yellow"><b>8600.00</b></td>
+                <td><div class="close"><a href="#" class="close_add">收藏</a><a href="#" class="close_del">删除</a></div></td>
+            </tr>
+        </table>
+        <script type="text/javascript">
+            function refer1(){
+                document.getElementById("accounts").style.display = "none";
+                document.getElementById("submit_main").style.display = "block";
+			};
+			function refer2(){
+                document.getElementById("accounts").style.display = "block";
+                document.getElementById("submit_main").style.display = "none";
+			};
+		</script>
+        <div class="accounts" id="accounts">
+        	<div class="accounts_fh"><a href="###">继续购物</a></div>
+            <div class="accounts_js font_yh c9 f14">购买该商家共<span class="yellow"> 3件</span> 产品，总计：<span class="yellow f22">9910</span> 元</div>
+            <div class="accounts_md"><a href="###" onclick="refer1();"></a></div>
+        </div>
+        
+        <div class="submit_main none blue f14 font_yh" id="submit_main">
+        	<div class="submit_p"><p>购物车当前有1家以上经销商产品，一个订单一次只能结算一家！</p><p>本次结算<span>深圳达科为生物技术有限公司</span>的产品，是否确定结算？</p></div>
+            <div class="submit_btn"><span><a href="/bioec_html/shop/fill.html"></a></span><a href="###" onclick="refer2();">稍后再说</a></div>
+        </div>
+        
+        <div class="seller f20 font_yh blue"><a href="#">京东网上商城</a><img src="/bioec_html/images/jd.gif"/></div>
+        <table cellpadding="0" cellspacing="0" class="shop_tab1 font_yh">
+        	<tr class="shop_tab1_tit">
+            	<td width="36%" align="left"><p>产品/货号/规格</p></td>
+            	<td width="20%" align="center"><p>生产商</p></td>
+                <td width="14%" align="center"><p>原价/折扣价（元）</p></td>
+                <td width="15%" align="center"><p>数量</p></td>
+                <td width="10%" align="center"><p>小计（元）</p></td>
+                <td width="5%" align="center"><p style="border:none">操作</p></td>
+            </tr>
+            <tr class="shop_tab1_main">
+            	<td class="shop_tab1_cp blue"><p><a href="#">APC anti-human CD31</a></p><p><span>货号：700001</span>规格：25 tests</p></td>
+                <td style="text-align:left">Biolegend</td>
+                <td><i>200.00</i><b>198.00</b></td>
+                <td>
+                	<div class="jiajian">
+                        <div class="jiajian_tit blue">现货</div>
+                        <input type="text" id="num_1" class="num" value="1"/>
+                        <a href="###" class="jian">-</a>
+                        <a href="###" class="add" onclick="onTishi()">+</a>
+                    </div>
+                </td>
+                <td class="yellow"><b>500.00</b></td>
+                <td><div class="close"><a href="#" class="close_add">收藏</a><a href="#" class="close_del">删除</a></div></td>
+            </tr>
+            <tr class="shop_tab1_main">
+            	<td class="shop_tab1_cp blue"><p><a href="#">CD31/PECAM-1</a></p><p><span>货号：700001</span>规格：25 tests</p></td>
+                <td style="text-align:left">达科为生物科技有限公司</td>
+                <td><i>360.00</i><b>328.00</b></td>
+                <td>
+                	<div class="jiajian">
+                        <div class="jiajian_tit blue">现货</div>
+                        <input type="text" id="num_1" class="num" value="1"/>
+                        <a href="###" class="jian">-</a>
+                        <a href="###" class="add" onclick="onTishi()">+</a>
+                    </div>
+                </td>
+                <td class="yellow"><b>1260.00</b></td>
+                <td><div class="close"><a href="#" class="close_add">收藏</a><a href="#" class="close_del">删除</a></div></td>
+            </tr>
+        </table>
+        <div class="accounts">
+        	<div class="accounts_fh"><a href="###">继续购物</a></div>
+            <div class="accounts_js font_yh c9 f14">购买该商家共<span class="yellow"> 3件</span> 产品，总计：<span class="yellow f22">3261</span> 元</div>
+            <div class="accounts_md"><a href="/bioec_html/shop/fill.html"></a></div>
+        </div>
+        <div class="shop_none">
+        	<img src="/bioec_html/images/sleep.gif"/>
+            <p class="f16 font_yh blue">您的购物车还是空的，请选择商品后，来此结算！<a href="/bioec_html/">返回首页</a></p>
+        </div>
+        <div class="h40"></div>
+        <div class="f18 c6 font_yh letter_1 h40">您最近浏览</div>
+        <table cellpadding="0" cellspacing="0" class="shop_tab1 font_yh">
+        	<tr class="shop_tab1_tit">
+            	<td width="36%" align="left"><p>产品/货号/规格</p></td>
+            	<td width="20%" align="center"><p>生产商</p></td>
+                <td width="14%" align="center"><p>原价/折扣价（元）</p></td>
+                <td width="10%" align="center"><p>库存</p></td>
+                <td width="10%" align="center"><p>期货</p></td>
+                <td width="10%" align="center"><p style="border:none">操作</p></td>
+            </tr>
+            <tr class="shop_tab1_main">
+            	<td class="shop_tab1_cp blue"><p><a href="/bioec_html/product/product_content.html">APC anti-human CD31</a></p><p><span>货号：700001</span>规格：25 tests</p></td>
+                <td style="text-align:left">Biolegend</td>
+                <td><i>200.00</i><b>198.00</b></td>
+                <td>有</td>
+                <td>1-2周</td>
+                <td class="blue"><a href="/bioec_html/product/product_content.html" style="font-size:12px;">查看详情</a></td>
+            </tr>
+            <tr class="shop_tab1_main">
+            	<td class="shop_tab1_cp blue"><p><a href="/bioec_html/product/product_content.html">CD31/PECAM-1</a></p><p><span>货号：700001</span>规格：25 tests</p></td>
+                <td style="text-align:left">达科为生物科技有限公司</td>
+                <td><i>360.00</i><b>328.00</b></td>
+                <td>有</td>
+                <td>1-2周</td>
+                <td class="blue"><a href="/bioec_html/product/product_content.html" style="font-size:12px;">查看详情</a></td>
+            </tr>
+        </table>
+    </div>
+        
+</div>
+
+<div class="foot">
+	<div class="foot_main c6">
+    	<span>生物城搜索 Copyright © 2014</span>
+        <span>京ICP备11025281号</span>
+        <a href="/bioec_html/factory/factory.html">厂家</a>|<a href="/bioec_html/seller/seller.html">经销商</a>|<a href="/bioec_html/member/contact_us.html">联系我们</a>|<a href="/bioec_html/member/sell_enter.html">商家入驻</a>
+    </div>
+</div>
+
+</body>
+</html>
