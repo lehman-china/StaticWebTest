@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>unobservable</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<script src="avalon.js"></script>
+<script type="text/javascript">
+	var model = avalon.define( "model1", function( vm ) {
+		vm.user = {};
+		function init() {
+			console.log( "初始化开始" );
+			console.log( vm.user );
+			vm.user = {
+				name : "lehman",
+				age : 22
+			};
+			console.log( vm.user );
+			console.log( vm.user.name );
+		}
+		// 确认第二次,avalon编译后再 初始化.
+		vm.$id && init();
+		vm.clickInit = function() {
+			init();
+		};
+	} );
+</script>
+</head>
+<body>
+	<div ms-controller="model1">
+		{{user.name}}<br /> {{user.age}}<br /> <input type="submit" ms-click="clickInit()" />
+	</div>
+</body>
+</html>
