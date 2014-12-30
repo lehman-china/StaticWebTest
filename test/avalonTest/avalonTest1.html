@@ -9,6 +9,9 @@
             var model = avalon.define("test", function(vm) {
                 vm.firstName = "司徒"
                 vm.lastName = "正美"
+                vm.orderView = {
+                    productName : "cd3"
+                };
                 vm.fullName = {//一个包含set或get的对象会被当成PropertyDescriptor，
                     set: function(val) {//里面必须用this指向scope，不能使用scope
                         var array = (val || "").split(" ");
@@ -18,7 +21,7 @@
                     get: function() {
                         return this.firstName + " " + this.lastName;
                     }
-                }
+                };
                 vm.$watch("firstName",function(){
                 	
                 	
@@ -56,6 +59,7 @@
             <p>Last name: <input ms-duplex="lastName"  /></p>
             <p>Hello,    <input ms-duplex="fullName"></p>
             <div>{{firstName +" | "+ lastName }}</div>
+            <div>{{ orderView.productName }}</div>
             <ul>
                 <li><input type="checkbox" ms-duplex-radio="checkAllbool"  data-duplex-changed="checkAll"/>全选</li>
                 <li ms-repeat="arr" ><input type="checkbox" ms-value="el" ms-duplex="selected" data-duplex-changed="checkOne"/>{{el}}</li>

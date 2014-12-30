@@ -1,0 +1,803 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>产品对比</title>
+<link href="../css/base.css" rel="stylesheet" type="text/css"/>
+<link href="../css/public.css" rel="stylesheet" type="text/css"/>
+<link href="../css/product/product.css" rel="stylesheet" type="text/css"/>
+<link href="../css/zhezhao.css" rel="stylesheet" type="text/css"/>
+<link href="../css/pk.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/pk.js"></script>
+<script  type="text/javascript" src="js/gotop.js"></script>
+</head>
+
+<body style="behavior:url(csshover.htc);">
+
+<div class="header">
+    <div class="header_main">
+        <div class="logo_img"><a href="/bioec_html"><img src="/bioec_html/images/son_logo.gif"/></a></div>
+        <div class="head_search">
+            <span><input type="text" placeholder="CD31"/></span>
+            <span><a href="javascript:;"></a></span>
+        </div>
+        <div class="menu">
+            
+            <div class="menu_list">
+                <ul>
+                    <li class="list_one">您好 Bailly！<span>[<a href="/bioec_html" title="安全退出">安全退出</a>] [<a href="/bioec_html/member/member_index.html" title="进入会员中心">会员中心</a>]</span></li>
+                    <li class="list_hover">
+                        <i></i>
+                        <div class="menu_tit"><a href="/bioec_html/member/member_index.html">我的订单</a></div>
+                        <em></em>
+                        <div class="menu_hover none" id="my_dd">
+                            <b></b>
+                            <p><a href="/bioec_html/member/order_form.html">待发货</a> (3)</p>
+                            <p><a href="/bioec_html/member/order_form.html">待付款</a> (0)</p>
+                            <p><a href="/bioec_html/member/order_form.html">待开票</a> (1)</p>
+                        </div>
+                    </li>
+                    <li class="list_hover">
+                        <i></i>
+                        <div class="menu_tit"><a href="/bioec_html/postbar/postbar_index.html">贴吧消息</a></div>
+                        <em></em>
+                        <div class="menu_hover none" id="my_bar">
+                            <b></b>
+                            <p><a href="/bioec_html/postbar/postbar_index.html">未阅读回复</a> (3)</p>
+                            <p><a href="/bioec_html/postbar/postbar_index.html">关注的贴吧</a> </p>
+                            <p><a href="/bioec_html/postbar/postbar_index.html">收藏的主题</a> </p>
+                        </div>
+                    </li>
+                    <li class="list_hover">
+                        <i></i>
+                        <div class="menu_tit"><a href="/bioec_html/shop/shop.html">我的购物车</a></div>
+                        <em></em>
+                        <div class="menu_hover none" id="my_shop">
+                            <b></b>
+                            <h4>我的购物车</h4>
+                            <div class="shop_none none">购物车暂无商品，赶紧选购吧！</div>
+                            <dl class="menu_shop">
+                                <dd>
+                                    <div class="meshop_l"><p><a href="/bioec_html/product/product_content.html">Human IGF Binding Protein-5</a></p><p>10 tests</p></div>
+                                    <div class="meshop_r font_yh"><p><span>¥5400</span>x2</p><p><a href="javascript:;">删除</a></p></div>
+                                    <div class="c"></div>
+                                </dd>
+                                <dd>
+                                    <div class="meshop_l"><p><a href="/bioec_html/product/product_content.html">Purified anti-mouse CD31</a></p><p>50 tests</p></div>
+                                    <div class="meshop_r font_yh"><p><span>¥5400</span>x1</p><p><a href="javascript:;">删除</a></p></div>
+                                    <div class="c"></div>
+                                </dd>
+                            </dl>
+                            <div class="check">
+                                <p>共<span> x </span>件商品&nbsp;&nbsp;&nbsp;合计<span> ¥16200</span></p>
+                                <p class="font_yh letter_1"><a href="/bioec_html/shop/shop.html" class="check_btn">去结算</a></p>
+                                <div class="c"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list_one" style="padding:0; margin:0 8px 0 10px; _margin:0 4px 0 10px;">
+                        <i></i>
+                        <span><a href="/bioec_html/account/register.html">注册</a>&nbsp;&nbsp;<a href="/bioec_html/account/register.html">登录</a></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+
+	<div class="position f14 font_yh">
+    	<a href="#">网站首页</a>
+    	<span>></span>
+        <a href="#">产品列表</a>
+    	<span>></span>
+        <a href="#">产品对比</a>
+    </div>
+    <div class="h20"></div>
+    <div id="contrast" class="contrast">
+        <table cellpadding="0" cellspacing="0">
+            <tr class="contrast_tit1">
+                <td width="12%"><h4>产品信息对比</h4></td>
+                <td width="22%"><a href="#">取消对比</a></td>
+                <td width="22%"><a href="#">取消对比</a></td>
+                <td width="22%"><a href="#">取消对比</a></td>
+                <td width="22%"><a href="###" onclick="ShowDiv('Mylogin','fade')">添加产品</a></td>
+            </tr>
+            <tr class="contrast_main cpm blue">
+                <td class="contmtit">产品名称</td>
+                <td class="cpm_tit"><a href="/bioec_html/product/product_content.html">Human IGF Binding Protein-5</a></td>
+                <td class="cpm_tit"><a href="/bioec_html/product/product_content.html">Human IGF Binding Protein-3</a></td>
+                <td class="cpm_tit"><a href="/bioec_html/product/product_content.html">Brilliant Violet 605™ anti-mouse CD3</a></td>
+                <td class="addto font_yh cpm_tit"><a href="###" onclick="ShowDiv('Mylogin','fade')">+</a></td>
+            </tr>
+        </table>
+        <div id="share">
+        	<div class="right_box"><a href="javascript:;" onclick="pk('pkbox','pkbg')">对<br/>比<br/>管<br/>理</a></div>
+            <div class="totop"><a href="javascript:;" title="返回顶部"></a></div>
+        </div>
+        <script>
+		//scrolltotop
+		$(function(){
+				$(".totop").hide();
+				$(function () {
+					$(window).scroll(function(){
+						if ($(window).scrollTop()>100){
+							$(".totop").fadeIn();
+						}
+						else
+						{
+							$(".totop").fadeOut();
+						}
+					});
+					$(".totop").click(function(){
+						$('body,html').animate({scrollTop:0},500);
+						return false;
+					});
+				});
+			}); 
+		</script>
+    </div>
+    <script type="text/javascript">
+        function toolbar(el) {
+            el = typeof el == 'string' ? document.getElementById(el) : el;
+            var elTop = el.offsetTop;
+            var sTop = 0;
+            window.onscroll = function () {
+                sTop = document.body.scrollTop || document.documentElement.scrollTop;
+                if (sTop > elTop) {
+                    el.style.top = "0";
+                    el.style.position = "fixed";
+					$("#contrast").addClass("conhover");					
+					
+                } else {
+                    el.style.top = elTop + 'px';
+                    el.style.position = "absolute"
+					$("#contrast").removeClass("conhover");	
+                }
+            }
+        }
+        toolbar('contrast');
+
+    </script>
+    <table cellpadding="0" cellspacing="0" class="contrast" style="border-top:none; margin-top:119px;">
+        <tr class="contrast_main">
+        	<td width="12%" class="contmtit">规格</td>
+            <td width="22%">25 tests</td>
+            <td width="22%">25 tests</td>
+            <td width="22%">25 tests</td>
+            <td width="22%"></td>
+        </tr>
+        <tr class="contrast_main jiage">
+        	<td class="contmtit">零售价</td>
+            <td><span>$1990.00</span></td>
+            <td><span>$1950.00</span></td>
+            <td><span>$1980.00</span></td>
+            <td></td>
+        </tr>
+        <tr class="contrast_tit2">
+        	<td colspan="5"><span></span>基本参数</td>
+        </tr>
+        <tr class="contrast_main">
+        	<td class="contmtit">库存</td>
+            <td>有</td>
+            <td>有</td>
+            <td>有</td>
+            <td></td>
+        </tr>
+        <tr class="contrast_main">
+        	<td class="contmtit">期货</td>
+            <td>1-3周</td>
+            <td>1-2周</td>
+            <td>5-8天</td>
+            <td></td>
+        </tr>
+        <tr class="contrast_main">
+        	<td class="contmtit">发货周期</td>
+            <td>3天</td>
+            <td>1-2天</td>
+            <td>1周</td>
+            <td></td>
+        </tr>
+        <tr class="contrast_tit2">
+        	<td colspan="5"><span></span>经销商</td>
+        </tr>
+        <tr class="contrast_main jxs blue jiage">
+        	<td class="contmtit"><a href="/bioec_html/seller/seller_content.html">BD Pharmingen</a></td>
+            <td><span>￥1000.00</span><span class="M-main-E"><a href="#"></a></span></td>
+            <td><span>￥1500.00</span><span class="M-main-E"><a href="#"></a></span></td>
+            <td><span>￥2000.00</span><span class="M-main-E"><a href="#"></a></span></td>
+            <td></td>
+        </tr>
+        <tr class="contrast_main jxs blue jiage">
+        	<td class="contmtit"><a href="/bioec_html/seller/seller_content.html">Agrisera</a></td>
+            <td><span>￥1100.00</span><span class="M-main-E"><a href="#"></a></span></td>
+            <td><span>￥1600.00</span><span class="M-main-E"><a href="#"></a></span></td>
+            <td><span>￥2100.00</span><span class="M-main-E"><a href="#"></a></span></td>
+            <td></td>
+        </tr>
+        <tr class="contrast_tit2">
+        	<td colspan="5"><span></span>特殊属性</td>
+        </tr>
+        <tr class="contrast_main">
+        	<td class="contmtit">Product ID</td>
+            <td>
+            	<p>2736541</p>
+			</td>
+            <td>
+            	<p>2736542</p>
+			</td>
+            <td>
+            	<p>2736543</p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+        </tr>
+        <tr class="contrast_main">
+        	<td class="contmtit">Product name</td>
+            <td>
+            	<p>Purified anti-mouse CD31</p>
+			</td>
+            <td>
+            	<p>Purified anti-mouse CD32</p>
+			</td>
+            <td>
+            	<p>Purified anti-mouse CD33</p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+        </tr>
+        <tr class="contrast_main">
+        	<td class="contmtit">function</td>
+            <td>
+            	<p>Adhesion</p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+        </tr>
+        <tr class="contrast_main">
+        	<td class="contmtit">otherNamesWeb</td>
+            <td>
+            	<p>PECAM-1, EndoCAM, gpIIa</p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+        </tr>
+        <tr class="contrast_main">
+        	<td class="contmtit">reactivity</td>
+            <td>
+            	<p>Mouse</p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+        </tr>
+        <tr class="contrast_main">
+        	<td class="contmtit">Product name</td>
+            <td>
+            	<p>Purified anti-mouse CD31</p>
+			</td>
+            <td>
+            	<p>Purified anti-mouse CD32</p>
+			</td>
+            <td>
+            	<p>Purified anti-mouse CD33</p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+        </tr>
+        <tr class="contrast_main">
+        	<td class="contmtit">function</td>
+            <td>
+            	<p>Adhesion</p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+        </tr>
+        <tr class="contrast_main">
+        	<td class="contmtit">otherNamesWeb</td>
+            <td>
+            	<p>PECAM-1, EndoCAM, gpIIa</p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+        </tr>
+        <tr class="contrast_main">
+        	<td class="contmtit">reactivity</td>
+            <td>
+            	<p>Mouse</p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+        </tr>
+        <tr class="contrast_main">
+        	<td class="contmtit">Product name</td>
+            <td>
+            	<p>Purified anti-mouse CD31</p>
+			</td>
+            <td>
+            	<p>Purified anti-mouse CD32</p>
+			</td>
+            <td>
+            	<p>Purified anti-mouse CD33</p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+        </tr>
+        <tr class="contrast_main">
+        	<td class="contmtit">function</td>
+            <td>
+            	<p>Adhesion</p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+        </tr>
+        <tr class="contrast_main">
+        	<td class="contmtit">otherNamesWeb</td>
+            <td>
+            	<p>PECAM-1, EndoCAM, gpIIa</p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+        </tr>
+        <tr class="contrast_main">
+        	<td class="contmtit">reactivity</td>
+            <td>
+            	<p>Mouse</p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+        </tr>
+        <tr class="contrast_main">
+        	<td class="contmtit">Product name</td>
+            <td>
+            	<p>Purified anti-mouse CD31</p>
+			</td>
+            <td>
+            	<p>Purified anti-mouse CD32</p>
+			</td>
+            <td>
+            	<p>Purified anti-mouse CD33</p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+        </tr>
+        <tr class="contrast_main">
+        	<td class="contmtit">function</td>
+            <td>
+            	<p>Adhesion</p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+        </tr>
+        <tr class="contrast_main">
+        	<td class="contmtit">otherNamesWeb</td>
+            <td>
+            	<p>PECAM-1, EndoCAM, gpIIa</p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+        </tr>
+        <tr class="contrast_main">
+        	<td class="contmtit">reactivity</td>
+            <td>
+            	<p>Mouse</p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+        </tr>
+        <tr class="contrast_main">
+        	<td class="contmtit">Product name</td>
+            <td>
+            	<p>Purified anti-mouse CD31</p>
+			</td>
+            <td>
+            	<p>Purified anti-mouse CD32</p>
+			</td>
+            <td>
+            	<p>Purified anti-mouse CD33</p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+        </tr>
+        <tr class="contrast_main">
+        	<td class="contmtit">function</td>
+            <td>
+            	<p>Adhesion</p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+        </tr>
+        <tr class="contrast_main">
+        	<td class="contmtit">otherNamesWeb</td>
+            <td>
+            	<p>PECAM-1, EndoCAM, gpIIa</p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+        </tr>
+        <tr class="contrast_main">
+        	<td class="contmtit">reactivity</td>
+            <td>
+            	<p>Mouse</p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+            <td>
+            	<p></p>
+			</td>
+        </tr>
+    </table>
+</div>
+
+
+
+
+<!--弹窗js-->
+<script type="text/javascript">
+//弹出添加产品隐藏层
+function ShowDiv(show_div,bg_div){
+document.getElementById(show_div).style.display='block';
+document.getElementById(bg_div).style.display='block' ;
+var bgdiv = document.getElementById(bg_div);
+bgdiv.style.width = document.body.scrollWidth;
+// bgdiv.style.height = $(document).height();
+$("#"+bg_div).height($(document).height());
+};
+//关闭添加产品弹出层
+function CloseDiv(show_div,bg_div)
+{
+document.getElementById(show_div).style.display='none';
+document.getElementById(bg_div).style.display='none';
+};
+//弹出添加产品隐藏层
+function pk(show_div,bg_div){
+document.getElementById(show_div).style.display='block';
+document.getElementById(bg_div).style.display='block' ;
+var bgdiv = document.getElementById(bg_div);
+bgdiv.style.width = document.body.scrollWidth;
+// bgdiv.style.height = $(document).height();
+$("#"+bg_div).height($(document).height());
+};
+//关闭添加弹出层
+function CloseDiv(show_div,bg_div)
+{
+document.getElementById(show_div).style.display='none';
+document.getElementById(bg_div).style.display='none';
+};
+</script>
+
+<script>
+var dragobj={}
+window.onerror=function(){return false}
+function on_ini(){
+ String.prototype.inc=function(s){return this.indexOf(s)>-1?true:false}
+ var agent=navigator.userAgent
+ window.isOpr=agent.inc("Opera")
+ window.isIE=agent.inc("IE")&&!isOpr
+ window.isMoz=agent.inc("Mozilla")&&!isOpr&&!isIE
+ if(isMoz){
+  Event.prototype.__defineGetter__("x",function(){return this.clientX+2})
+  Event.prototype.__defineGetter__("y",function(){return this.clientY+2})
+ }
+ basic_ini()
+}
+function basic_ini(){
+ window.tuozhuai=function(obj){return typeof(obj)=="string"?document.getElementById(obj):obj}
+ window.oDel=function(obj){if(tuozhuai(obj)!=null){tuozhuai(obj).parentNode.removeChild(tuozhuai(obj))}}
+}
+window.onload=function(){
+ on_ini()
+ var o=document.getElementsByTagName("h1")
+ for(var i=0;i<o.length;i++){
+  o[i].onmousedown=function(e){
+   if(dragobj.o!=null)
+    return false
+   e=e||event
+   dragobj.o=this.parentNode
+   dragobj.xy=getxy(dragobj.o)
+   dragobj.xx=new Array((e.x-dragobj.xy[1]),(e.y-dragobj.xy[0]))
+   dragobj.o.style.width=dragobj.xy[2]+"px"
+   dragobj.o.style.height=dragobj.xy[3]+"px"
+   dragobj.o.style.left=(e.x-dragobj.xx[0])+"px"
+   dragobj.o.style.top=(e.y-dragobj.xx[1])+"px"   
+   dragobj.o.style.position="absolute"
+   var om=document.createElement("div")
+   dragobj.otemp=om
+   om.style.width=dragobj.xy[2]+"px"
+   om.style.height=dragobj.xy[3]+"px"
+   dragobj.o.parentNode.insertBefore(om,dragobj.o)
+   return false
+  }
+ }
+}
+document.onselectstart=function(){return false}
+window.onfocus=function(){document.onmouseup()}
+window.onblur=function(){document.onmouseup()}
+document.onmouseup=function(){
+ if(dragobj.o!=null){
+  dragobj.o.style.width="auto"
+  dragobj.o.style.height="auto"
+  dragobj.otemp.parentNode.insertBefore(dragobj.o,dragobj.otemp)
+  dragobj.o.style.position=""
+  oDel(dragobj.otemp)
+  dragobj={}
+ }
+}
+document.onmousemove=function(e){
+ e=e||event
+ if(dragobj.o!=null){
+  dragobj.o.style.left=(e.x-dragobj.xx[0])+"px"
+  dragobj.o.style.top=(e.y-dragobj.xx[1])+"px"
+  createtmpl(e)
+ }
+}
+function getxy(e){
+ var a=new Array()
+ var t=e.offsetTop;
+ var l=e.offsetLeft;
+ var w=e.offsetWidth;
+ var h=e.offsetHeight;
+ while(e=e.offsetParent){
+  t+=e.offsetTop;
+  l+=e.offsetLeft;
+ }
+ a[0]=t;a[1]=l;a[2]=w;a[3]=h
+  return a;
+}
+function inner(o,e){
+ var a=getxy(o)
+ if(e.x>a[1]&&e.x<(a[1]+a[2])&&e.y>a[0]&&e.y<(a[0]+a[3])){
+  if(e.y<(a[0]+a[3]/2))
+   return 1;
+  else
+   return 2;
+ }else
+  return 0;
+}
+function createtmpl(e){
+ for(var i=0;i<12;i++){
+  if(tuozhuai("m"+i)==dragobj.o)
+   continue
+  var b=inner(tuozhuai("m"+i),e)
+  if(b==0)
+   continue
+  dragobj.otemp.style.width=tuozhuai("m"+i).offsetWidth
+  if(b==1){
+   tuozhuai("m"+i).parentNode.insertBefore(dragobj.otemp,tuozhuai("m"+i))
+  }else{
+   if(tuozhuai("m"+i).nextSibling==null){
+    tuozhuai("m"+i).parentNode.appendChild(dragobj.otemp)
+   }else{
+    tuozhuai("m"+i).parentNode.insertBefore(dragobj.otemp,tuozhuai("m"+i).nextSibling)
+   }
+  }
+  return
+ }
+ for(var j=0;j<3;j++){
+  if(tuozhuai("dom"+j).innerHTML.inc("div")||tuozhuai("dom"+j).innerHTML.inc("div"))
+   continue
+  var op=getxy(tuozhuai("dom"+j))
+  if(e.x>(op[1]+10)&&e.x<(op[1]+op[2]-10)){
+   tuozhuai("dom"+j).appendChild(dragobj.otemp)
+   dragobj.otemp.style.width=(op[2]-10)+"px"
+   dragobj.otemp.style.heigth=(op[2]-10)+"px"
+  }
+ }
+}
+</script>
+<div id="pkbg" class="overlay"></div>
+<div style="height:20%; background:none;"></div>
+<div id="pkbox" class="popup">
+	<div class="popup_main" style="width:900px; margin-top:150px;_margin-top:150px; height:expression(width>800?"800px":height+"px");">
+    	<div class="drop_tit f16 font_yh">产品对比管理</div>
+        <div style="background:#fff;">
+            <div class="drop_tit1 f14 font_yh blue">已加入对比<a href="#" onclick="clean();">清空</a><span id="clean"><a href="#" onclick="clean_yes();">是</a><a href="#" onclick="clean_no();">否</a></span></div>
+            <script>
+				function clean(){
+					document.getElementById("clean").style.display = "inline-block"	
+				};
+				function clean_yes(){
+					document.getElementById("clean").style.display = "none"	
+				};
+				function clean_no(){
+					document.getElementById("clean").style.display = "none"	
+				};
+			</script>
+            <div class="drop_tit2 f14 font_yh">正在对比<i>最多添加4项进行对比</i></div>
+            <div class="c"></div>
+        </div>
+    	<div class="drop">
+            <div class="drop_left" id="dom0">
+                <div class="drop_box" id="m2"><h1><span><em><a href="#">添加</a><a href="#">删除</a></em><i><a href="#">移除</a></i></span>Rabbit anti-CDT1 Antibody<p>规格：100tests</p></h1></div>
+                <div class="drop_box" id="m3"><h1><span><em><a href="#">添加</a><a href="#">删除</a></em><i><a href="#">移除</a></i></span>Purified anti-mouse CD31<p>规格：100tests</p></h1></div>
+                <div class="drop_box" id="m0"></div>
+            </div>
+            <div class="duibi_center f16 font_yh">可以通过拖拽进行更改排序</div>
+            <div class="drop_right" id="dom1">
+                <div class="drop_box" id="m4"><h1><span><em><a href="#">添加</a><a href="#">删除</a></em><i><a href="#">移除</a></i></span>Rabbit anti-CD3<p>规格：100tests</p></h1></div>
+                <div class="drop_box" id="m5"><h1><span><em><a href="#">添加</a><a href="#">删除</a></em><i><a href="#">移除</a></i></span>Purified anti-mouse<p>规格：100tests</p></h1></div>
+                <div class="drop_box" id="m1"></div>
+            </div>
+            <div class="c"></div>
+        </div>
+        <div class="pktc_btn blue f14 font_yh">
+        	<span class="red">正在对比栏中最多添加4个产品</span>
+            <span><a href="javascript:window.location.reload()">保存设置</a></span>
+            <a onclick="CloseDiv('pkbg','pkbox')" href="###">取消</a>
+        </div>
+    </div>
+</div>
+
+
+<div id="fade" class="overlay"></div>
+<div id="Mylogin" class="popup">
+	<div class="popup_main" style="width:700px; margin-top:150px;_margin-top:150px;">
+    	<div class="denglu">
+        	<div class="h20"></div>
+            <div class="pktc_main">
+            	<input type="text" class="pktc1" name="text" placeholder="产品/货号"/>
+                <input type="button" class="pktc2" value="查询"/>
+            </div>
+            
+            <dl class="wind_pk font_yh result">
+                <dt><a href="#">Rabbit anti-CDT1 Antibody, Affin</a></dt>
+                <dd>
+                	<i class="mj_db">加入对比</i>
+                    <span>货号：553012</span>
+                    <span>规格：0.1 mg</span>
+                    <span>零售价：$1253</span>
+                </dd>
+            </dl>
+            <dl class="wind_pk font_yh result">
+                <dt><a href="#">Purified anti-mouse CD31</a></dt>
+                <dd>
+                	<i class="mj_db">加入对比</i>
+                    <span>货号：553012</span>
+                    <span>规格：0.1 mg</span>
+                    <span>零售价：$1253</span>
+                </dd>
+                <dd>
+                	<i class="mj_db">加入对比</i>
+                    <span>货号：546456</span>
+                    <span>规格：1.0 mg</span>
+                    <span>零售价：$12530</span>
+                </dd>
+            </dl>
+            <ul class="pktc_list f12 c6">
+            	<li class="pktc_sj blue f12">共匹配到<span id="resultCount">273</span>个产品，显示前<b>3</b>条<span><a href="/bioec_html/product/product.html">浏览所有</a></span></li>
+            </ul>
+            <div class="pktc_btn blue">
+                <span><a href="javascript:window.location.reload()">确定</a></span>
+                <a onclick="CloseDiv('Mylogin','fade')" href="###">取消</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="foot">
+	<div class="foot_main c6">
+    	<span>生物城搜索 Copyright © 2014</span>
+        <span>京ICP备11025281号</span>
+        <a href="/bioec_html/factory/factory.html">厂家</a>|<a href="/bioec_html/seller/seller.html">经销商</a>|<a href="/bioec_html/member/contact_us.html">联系我们</a>|<a href="/bioec_html/member/sell_enter.html">商家入驻</a>
+    </div>
+</div>
+
+<!--产品对比-->
+<div class="db_box none">
+    <div class="db_right"></div>
+    <div class="db_left"><a href="/bioec_html/product/contrast.html" target="_blank" title="">已添加<em>12</em>件</a></div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+body,html{ margin:0; padding:0; background:#fff;}
+html{ overflow-y:scroll!important; overflow-y:auto;}
+.content{ width:1000px; margin:auto; min-height:700px; background:#fff;}
+
+/*head1*/
+#head2{ height:80px; min-width:1000px; background:#2fa5d5;}
+	#head2_main{ width:1000px; margin:auto; position:relative;}
+	#logo{ width:112px; height:33px; position:absolute; top:24px;}
+	#search2{ width:182px; height:28px; position:absolute; top:27px; right:150px; background:url(/bioec_html/images/spis.png) 0px -77px no-repeat;}
+	#son_text2{ width:134px; height:20px; line-height:20px; font:14px arial; padding:4px 7px; position:absolute; left:0; top:0; background:none; border:none; color:#999;}
+	#son_btn2{ width:32px; height:28px; position:absolute; left:150px; top:0; background:none; border:none; float:left; cursor:pointer;}
+	#son_btn2:hover{ background:url(/bioec_html/images/spis.png) -202px -77px no-repeat;}
+	#navigation2{ height:80px; line-height:80px; color:#fff; position:absolute; right:0; font-size:16px; font-family:"Microsoft YaHei","微软雅黑","SimSun","宋体"; font-weight:500;}
+	#navigation2 span{ color:#fff; line-height:80px;}
+	#navigation2 b{ color:#ff0; font-weight:normal;}
+	#navigation2 a{ color:#fff; margin-left:15px;}
+	#navigation2 a:hover{ color:#ff0;}
+
+/*head2*/
+.header{ height:80px; min-width:1000px; background:#2fa5d5;}
+	.header_main{ width:1000px; height:80px; margin:auto;}
+	.logo_img{ width:112px; height:33px; float:left; position:relative; left:0; top:25px;}
+	.head_search{ width:182px; height:28px; float:left; position:relative; left:55px; top:29px;}
+	.head_search input{ width:140px; height:16px; line-height:16px; padding:6px 5px; background:#fff; border:none; border-radius:1px; position:absolute; top:0; left:0;}
+	.head_search a{ width:31px; height:28px; display:block; position:absolute; top:0; left:151px; background:url(/bioec_html/images/spis.png) -150px -77px;}
+	.switch{}
+	.switch span{ margin-left:10px;}
+	.switch a{ color:#fff;}
+	.switch a:hover{ color:#ff0;}
+	.menu{ color:#fff; float:right; position:relative; top:10px; right:0; text-align:right; z-index:99999;}
+	.menu_list{ padding-top:10px;}
+	.menu_list ul li{ width:auto; height:24px; color:#fff; padding:0 7px; margin:0 9px; float:left; position:relative; border:1px solid #2fa5d5; border-bottom:none;}
+	.menu_list ul li em{ width:6px; height:6px; display:block; overflow:hidden; position:absolute; top:-1px; right:-2px; background:url(/bioec_html/images/point1.gif) no-repeat;}
+	.menu_list ul li i{ width:0px; height:12px; border-left:1px solid #fff; overflow:hidden; display:block; position:absolute; top:5px; left:-10px;}
+	.menu_list ul li a{ color:#fff;}
+	.menu_list ul li:hover em{ display:none;}
+	.list_one{}
+	.list_one a:hover,.hover_none a:hover{ color:#ff0 !important;}
+	.list_hover{ border:1px solid #2fa5d5;}
+	.menu_list ul li.list_hover:hover{ background:#fff; border:1px solid #e2e2e2 !important; border-bottom:none;}
+	.list_hover:hover a{ color:#666 !important;}
+	.list_hover:hover a:hover{ color:#f27101 !important;}
+	.menu_hover{ background:#fff; border:1px solid #ddd; position:absolute; top:24px; right:-1px; _right:-3px; *right:-3px; text-align:left;
+				-moz-box-shadow:1px 1px 2px #bbb;
+				-webkit-box-shadow:1px 1px 2px #bbb;
+				box-shadow:1px 1px 2px #bbb;
+				filter: progid:DXImageTransform.Microsoft.Shadow(color='#969696', Direction=135, Strength=2);/*for ie6,7,8*/}
+	.menu_list ul li:hover .menu_hover{ display:block;}
+	.menu_hover b{ height:5px; border-top:1px solid #fff; display:block; overflow:hidden; background:#fff; position:relative; top:-3px;}
+	.menu_hover a:hover{ color:#f27101 !important;}
+	
+	#my_dd{ width:100px;}
+	#my_bar{ width:110px;}
+	#my_dd p,#my_bar p{ line-height:18px; padding:0 10px 5px 10px; color:#bbb;}
+	#my_dd b{ width:62px; left:38px;}
+	#my_bar b{ width:62px; left:48px;}
+	#my_shop{ width:330px;}
+	#my_shop b{ width:74px; left:256px;}
+	#my_shop h4{ font-size:12px; height:24px; line-height:24px; border-bottom:1px solid #e2e2e2; padding:0 10px 2px 10px; font-weight:bold; font-weight:bold; color:#777;}
+	.shop_none{ height:69px; line-height:69px; padding-left:60px; color:#999; margin-left:30px; background:url(/bioec_html/images/shop_none.gif) left center no-repeat;}
+	.menu_shop{ max-height:200px; overflow:auto; _height:expression(this.scrollHeight > 200 ? "200px" : "auto");}
+	.menu_shop dd{ height:40px; line-height:20px; border-bottom:1px dotted #e2e2e2; padding:5px 0; margin:0 10px; overflow:hidden;}
+	.meshop_l{ width:200px; float:left;}
+	.meshop_l p{ width:220px; color:#aaa; white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden;}
+	.meshop_r{ width:70px; float:right; text-align:right;}
+	.meshop_r p span{ color:#f27101; margin-right:2px;}
+	.check{ padding:10px; background:#f5f5f5; text-align:right;}
+	.check p{ color:#666;}
+	.check p span{ font-size:14px; font-weight:bold; color:#f27101;}
+	.check p .check_btn{ width:52px; height:22px; line-height:22px; float:right; margin-top:10px; display:block; text-align:center; color:#fff !important; border:1px solid #e57b09; background:#fc7720; border-radius:2px;}
+	.check p .check_btn:hover{ color:#fff !important; background:#eb5d00;}
+
+
+/*当前位置*/
+.position{ height:40px; line-height:40px; border-bottom:1px solid #f1f1f1;}
+	.position span{ color:#bcbcbc; margin:0 3px;}
+	.position a{ color:#888;}
+	.position a:hover{ color:#f27101;}
+
+
+/*分页*/
+.paging{ text-align:center; padding-top:40px; color:#999;}
+	.paging a{ width:40px; height:36px; display:inline-block; _display:inline; *display:inline; zoom:1; line-height:36px; text-decoration:none; border:1px solid #eaedf1; color:#999;}
+	.paging a:hover{ color:#f27101; background:#f5f5f5;}
+	.paging a span{ display:inline-block; _display:inline; *display:inline; zoom:1; cursor:pointer; height:36px; line-height:36px;}
+	#up,#down{ width:70px;}
+	.thispag{ color:#f27101 !important; background:#f5f5f5;}
+
+/*站底1*/
+.foot{ min-width:1000px; height:34px; line-height:34px; background:#e6e6e6; margin-top:80px;}
+	.foot1{ height:34px; line-height:34px; background:#e6e6e6; margin-top:80px; position:fixed; bottom:0; left:0; width:100%;}
+	.foot_main{ width:1000px; margin:auto; text-align:left;}
+	.foot_main span{ margin-right:30px;}
+	.foot_main a{ color:#333; margin: 0 10px;}
+	.foot_main a:hover{ color:#f27101;}

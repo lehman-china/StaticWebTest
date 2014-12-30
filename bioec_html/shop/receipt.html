@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>购物车_生成订单</title>
+<link href="../css/base.css" rel="stylesheet" type="text/css"/>
+<link href="../css/public.css" rel="stylesheet" type="text/css"/>
+<link href="../css/shop/shop.css" rel="stylesheet" type="text/css"/>
+</head>
+
+<body style="behavior:url(csshover.htc);">
+
+<div class="header">
+    <div class="header_main">
+        <div class="logo_img"><a href="/bioec_html"><img src="/bioec_html/images/son_logo.gif"/></a></div>
+        <div class="head_search">
+            <span><input type="text" placeholder="CD31"/></span>
+            <span><a href="javascript:;"></a></span>
+        </div>
+        <div class="menu">
+            <div class="switch">Hello,Bailly<span>[<a href="/bioec_html/" title="安全退出">安全退出</a>]</span></div>
+            <div class="menu_list">
+                <ul>
+                    <li class="list_one hover_none"><a href="/bioec_html/member/member_index.html">会员中心</a></li>
+                    <li class="list_one hover_none">
+                    	<i></i>
+                        <a href="/bioec_html/member/member_index.html">审核订单</a>
+                        <em style="display:block;"></em>
+                    </li>
+                    <li class="list_hover">
+                        <i></i>
+                        <div class="menu_tit hover_none"><a href="/bioec_html/member/member_index.html">我的订单</a></div>
+                        <em></em>
+                        <div class="menu_hover none" id="my_dd">
+                            <b></b>
+                            <p><a href="/bioec_html/member/order_form.html">待审核</a> (1)</p>
+                            <p><a href="/bioec_html/member/order_form.html">待发货</a> (3)</p>
+                            <p><a href="/bioec_html/member/order_form.html">待付款</a> (0)</p>
+                            <p><a href="/bioec_html/member/order_form.html">待开票</a> (1)</p>
+                        </div>
+                    </li>
+                    <li class="list_hover">
+                        <i></i>
+                        <div class="menu_tit"><a href="/bioec_html/postbar/postbar_index.html">贴吧消息</a></div>
+                        <div class="menu_hover none" id="my_bar">
+                            <b></b>
+                            <p><a href="/bioec_html/postbar/postbar_index.html">未阅读回复</a> (3)</p>
+                            <p><a href="/bioec_html/postbar/postbar_index.html">关注的贴吧</a> </p>
+                            <p><a href="/bioec_html/postbar/postbar_index.html">收藏的主题</a> </p>
+                        </div>
+                    </li>
+                    <li class="list_hover">
+                        <i></i>
+                        <div class="menu_tit"><a href="/bioec_html/shop/shop.html">我的购物车</a></div>
+                        <em></em>
+                        <div class="menu_hover none" id="my_shop">
+                            <b></b>
+                            <h4>我的购物车</h4>
+                            <div class="shop_none none">购物车暂无商品，赶紧选购吧！</div>
+                            <dl class="menu_shop">
+                                <dd>
+                                    <div class="meshop_l"><p><a href="/bioec_html/product/product_content.html">Human IGF Binding Protein-5</a></p><p>10 tests</p></div>
+                                    <div class="meshop_r font_yh"><p><span>¥5400</span>x2</p><p><a href="javascript:;">删除</a></p></div>
+                                    <div class="c"></div>
+                                </dd>
+                                <dd>
+                                    <div class="meshop_l"><p><a href="/bioec_html/product/product_content.html">Purified anti-mouse CD31</a></p><p>50 tests</p></div>
+                                    <div class="meshop_r font_yh"><p><span>¥5400</span>x1</p><p><a href="javascript:;">删除</a></p></div>
+                                    <div class="c"></div>
+                                </dd>
+                            </dl>
+                            <div class="check">
+                                <p>共<span> x </span>件商品&nbsp;&nbsp;&nbsp;合计<span> ¥16200</span></p>
+                                <p class="font_yh letter_1"><a href="/bioec_html/shop/shop.html" class="check_btn">去结算</a></p>
+                                <div class="c"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list_one" style="padding:0; margin:0 0 0 10px; _margin:0 0 0 10px;">
+                        <i></i>
+                        <span><a href="/bioec_html/account/register.html">注册</a>&nbsp;&nbsp;<a href="javascript:;" onclick="ShowDiv('Mylogin','view_order')">登录</a></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+	<div class="shop">
+    	<div class="shop_tit f26 font_yh c6 letter_2">提交订单</div>
+        <div class="shop_lc f16 font_yh shop_this" style="background:none; padding-right:0; margin-right:0;">3.成功提交订单</div>
+        <div class="shop_lc f16 font_yh c9 shop_this">2.填写核对订单信息</div>
+        <div class="shop_lc f16 font_yh shop_this">1.我的购物车</div>
+        <div class="c line2 h20"></div>
+        <div class="h10"></div>
+        <div class="order_success">
+        	<h4><img src="/bioec_html/images/dui.png"/>您的订单已成功提交！<p>目前订单正在审核中..</p></h4>
+            <h5>您的订单号为：20141011320820</h5>
+            <p><span>订购单位：达科为生物技术公司</span><span>订购组：科研采购小组</span><span>订购人：王成杰</span></p>
+            <div class="success_btn f16 font_yh letter_1">
+            	<a href="/bioec_html/shop/shop.html" class="success_btn1">回购物车继续结算</a>
+                <a href="/bioec_html/member/order_details.html" class="success_btn2">查看订单详情</a>
+            </div>
+        </div>
+        <div class="lately_see">
+        	<h4>最近浏览产品</h4>
+            <div class="lately_see_main font_yh f14">
+            	<a href="/bioec_html/product/product.html">APC anti-human CD31</a>
+                <a href="/bioec_html/product/product.html">CD31</a>
+                <a href="/bioec_html/product/product.html">CD31/PECAM-1</a>
+                <a href="/bioec_html/product/product.html">APC man CD31</a>
+                <a href="/bioec_html/product/product.html">PE/Cy7 anti-human CD31</a>
+                <a href="/bioec_html/product/product.html">APC anti-human CD31</a>
+                <a href="/bioec_html/product/product.html">细胞培育</a>
+                <a href="/bioec_html/product/product.html"> 细胞转染技术</a>
+            </div>
+        </div>
+    </div>        
+</div>
+
+<div class="foot">
+	<div class="foot_main c6">
+    	<span>生物城搜索 Copyright © 2014</span>
+        <span>京ICP备11025281号</span>
+        <a href="/bioec_html/factory/factory.html">厂家</a>|<a href="/bioec_html/seller/seller.html">经销商</a>|<a href="/bioec_html/member/contact_us.html">联系我们</a>|<a href="/bioec_html/member/sell_enter.html">商家入驻</a>
+    </div>
+</div>
+
+</body>
+</html>

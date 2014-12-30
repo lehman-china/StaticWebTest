@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=7"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+    <title>Qunar.com</title>
+    <meta name="Robots" content="index,follow,NOODP"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script src="require.js"></script>
+    <style>
+        input {
+            outline: none;
+            border: 1px solid #000;
+        }
+    </style>
+
+
+</head>
+<body style="padding:10px;">
+
+<h2>简单表单验证</h2>
+
+<div id="form1">
+    <pre>required</pre>
+    <input name="name" data-jvalidator-pattern="123"/>
+    <input name="name" data-jvalidator-pattern="required"/>
+    <input type="hidden" name="name" value="1" data-jvalidator-pattern="required"/>
+
+    <input type="button" value="验证"/>
+</div>
+
+<script>
+    require.config( {
+        shim: {
+            jvalidator: [ "jquery" ]
+        },
+        paths: {
+            jquery: "jquery",
+            jvalidator: "jvalidator"
+        }
+    } );
+    require( [ "jquery", "jvalidator" ], function () {
+        // ms-if="orderInfo.invoiceMethod==0"
+        $.jvalidator.addPattern( '123', {
+            success:function(){
+                 $( this.element ).css( 'border', '1px solid #0f0' );
+            },
+            fail: function () {
+                $( this.element ).css( 'border', '1px solid #00f' );
+            },
+            message: '必须写成123',
+            validate: function ( value, done ) {
+                done( value == "123" );
+            }
+        } );
+        function initForm( formSelector, options ) {
+            var jv = $( formSelector ).jvalidator();
+            options = options || {};
+
+            $( formSelector ).find( 'input:button' ).bind( 'click', function ( evt ) {
+
+                jv.validateAll( function ( result, elements ) {
+                    if ( result ) {
+                        alert( '验证通过.' );
+                    } else {
+                        var msg = [ '验证未通过.' ]
+                        for ( var i = 0; i < elements.length; i++ ) {
+                            msg.push( elements[ i ].getMessage() )
+                        }
+                        alert( msg.join( '\n' ) );
+                    }
+                } );
+            } );
+
+            jv.when( options.events );
+
+            jv.success( function () {
+                $( this.element ).css( 'border', '1px solid #000' );
+            } );
+
+            jv.fail( function ( $event, errors ) {
+                $( this.element ).css( 'border', '1px solid #f00' );
+                console.log( 123 )
+            } );
+
+            return jv;
+        }
+
+        $( function () {
+            initForm( '#form1' );
+        } );
+    } );
+
+</script>
+
+
+</body>
+</html> 
