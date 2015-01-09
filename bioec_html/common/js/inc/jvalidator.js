@@ -1,3 +1,8 @@
+/**
+ * jvalidator 0.3.9
+ * @param formSelector
+ * @constructor
+ */
 // TODO 10封装一下,使其可以验证嵌套区域
 var JValidator = function ( formSelector ) {
     var Async = function () {
@@ -215,6 +220,7 @@ var JValidator = function ( formSelector ) {
         //  `checkResult` boolean 检查结果
         //  `evt` 为触发的事件，可以没有
         //  `errors` array 错误信息
+        //
         check: function ( $event, checkCallback ) {
 
             var self = this;
@@ -423,8 +429,9 @@ var JValidator = function ( formSelector ) {
 
 // 判断元素可见并存在
     function _exists( el ) {
+        var $el = $( el );
         //TODO 4 允许验证hidden
-        return $( el ).closest( 'body' ).size() > 0 && ($( el ).is( ":visible" ) || $( el ).attr( "type" ) == "hidden");
+        return $el.closest( 'body' ).size() > 0 && ($el.is( ":visible" ) || $el.attr( "type" ) == "hidden");
     }
 
 // 得到指定元素的jvalidator
@@ -581,7 +588,6 @@ var JValidator = function ( formSelector ) {
             }
 
         },
-
         success: function ( selector, fn ) {
             this._bind_field_event( 'success', selector, fn );
         },

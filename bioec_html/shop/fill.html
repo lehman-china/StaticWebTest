@@ -7,7 +7,7 @@
 <link href="../css/public.css" rel="stylesheet" type="text/css"/>
 <link href="../css/shop/shop.css" rel="stylesheet" type="text/css"/>
 
-<script data-main="js/fill_in_order" src="/bioec_html/common/js/inc/require.js" type="text/javascript"  ></script>
+<script data-main="js/fillInOrder" src="/bioec_html/common/js/inc/require.js" type="text/javascript"  ></script>
 
 </head>
 <body ms-controller="fillOrderCtrl">
@@ -89,9 +89,7 @@
             </div>
         </div>
     </div>
-<form id="order_form">
-<div class="content">
-
+<div class="content" id="vali_order">
     <div class="shop">
         <div class="shop_tit f26 font_yh c6 letter_2">填写核对订单</div>
         <div class="shop_lc f16 font_yh c9" id="shop_last">3.成功提交订单</div>
@@ -101,7 +99,7 @@
     <div class="c"></div>
     <div class="h20 line2"></div>
     <div class="shop_main">
-        <div class="shop_main_tit font_yh f14" id="personal_tit1"><b>单位订购</b><span class="f12"><a href="javascript:;" ms-click="chengeOrderMethod()">切换到个人订购</a></span></div>
+        <div class="shop_main_tit font_yh f14" id="personal_tit1"><b>{{orderInfo.isOrderGroup?'小组':'个人'}}订购</b><span class="f12"><a href="javascript:;" ms-click="chengeOrderMethod()">切换到{{orderInfo.isOrderGroup?'个人':'小组'}}订购</a></span></div>
         <div class="shop_main_c" style="padding:10px 0 0 0;" ms-if="orderInfo.isOrderGroup">
             <table cellpadding="0" cellspacing="0" class="blue f12 font_yh xiaozu">
                 <thead>
@@ -116,11 +114,11 @@
                     <td>
                         <span ms-repeat-group="unit.groups" ms-css-color="group.id==0||group.id==-1?'#6eac65':''">
                             <label ms-attr-for="xiaozu{{$outer.unit.id+','+group.id}}">
-                                <input type="radio" name="xiaozu" ms-if="$outer.$index==0 && $index==0" data-jvalidator-pattern="own[请选择小组]" ms-attr-id="xiaozu{{$outer.unit.id+','+group.id}}" ms-click="chooseGroup($outer.unit.id+','+group.id)"/>
+                                <input type="radio" name="xiaozu" ms-if="$outer.$index==0 && $index==0" data-jvalidator-vali_order="own[请选择小组]" ms-attr-id="xiaozu{{$outer.unit.id+','+group.id}}" ms-click="chooseGroup($outer.unit.id+','+group.id)"/>
                                 <input type="radio" name="xiaozu" ms-if="$outer.$index!=0 || $index!=0" ms-attr-id="xiaozu{{$outer.unit.id+','+group.id}}" ms-click="chooseGroup($outer.unit.id+','+group.id)"/>
                                 {{group.name}}
                             </label>
-                            <input type="text"  ms-if="group.id==-1" ms-visible="($outer.unit.id+','+group.id)==orderInfo.orderGroup" ms-duplex="group.newName"  placeholder="小组名" class="news_xz"/>
+                            <input type="text" ms-if="group.id==-1" ms-visible="orderInfo.unit.group.id == -1 && $outer.unit.id == orderInfo.unit.id" ms-duplex="group.newName"  placeholder="小组名" class="news_xz"/>
                         </span>
                     </td>
                 </tr>
@@ -144,14 +142,17 @@
             <span>订购人：{{orderView.personal.name}}</span>
             <span>手机：{{orderView.personal.mobile}}</span>
         </div>
-        <div class="shop_main_c font_yh" ms-controller="addrCtrl">
+        <div class="shop_main_c font_yh" ms-controller="addrCtrl" ms-if="orderInfo.unit.id||!orderInfo.isOrderGroup">
             <h4>收货信息</h4>
             <!-- 用于验证表单 -->
-            <input type="hidden"  data-jvalidator-pattern="own[请选择收货地址]" ms-attr-value="useAddr.id"/>
+            <input type="hidden" id="hi_vali_addr" data-jvalidator-vali_order="own[请选择收货地址]" ms-attr-value="useAddr.id"/>
             <div ms-if="!useAddr.id" id="tabs1">
                 <div class="tab_nav grey">
-                    <span ms-visible="orderInfo.isOrderGroup"><a href="#tab1" class="selected"><strong>小组地址</strong></a></span><!--小组下单-->
-                    <span ms-visible="!orderInfo.isOrderGroup"><a href="#tab2"><strong>已使用过地址</strong></a></span><!--个人下单-->
+                    <!--待定,新增小组只显示新增地址 -->
+                    <span ms-if="orderInfo.unit.group.id!=0 && orderInfo.unit.group.id!=-1">
+                        <span ms-visible="orderInfo.isOrderGroup"><a href="#tab1" class="selected"><strong>小组地址</strong></a></span><!--小组下单-->
+                        <span ms-visible="!orderInfo.isOrderGroup"><a href="#tab2"><strong>已使用过地址</strong></a></span><!--个人下单-->
+                    </span>
                     <span><a href="#tab3" ms-click="openAddAddr()"><strong>新增地址</strong></a></span>
                 </div>
 
@@ -179,34 +180,40 @@
                     </table>
                     <!--小组修改地址-->
                     <div class="company_box yellow_border" ms-if="changeAddrOO">
-                        <dl class="company_news" style="padding-top:5px;">
+                        <dl class="company_news" style="padding-top:5px;"  id="vali_change" ms-controller="inputAddrFormCtrl">
                             <dt class="f14 font_yh"><b>修改收货地址</b></dt>
-                            <dd><em>收货人</em><input type="text" ms-duplex="addrCache.name"/></dd>
-                            <dd>
-                                <em>所在地区</em>
-                                <select name="">
-                                    <option value="">广东省</option>
-                                    <option value="">新疆省</option>
-                                </select>
-                                <select name="">
-                                    <option value="">深圳市</option>
-                                    <option value="">广州市</option>
-                                </select>
-                                <select name="">
-                                    <option value="">南山区</option>
-                                    <option value="">福田区</option>
-                                </select>
-                            </dd>
-                            <dd><em>街道地址</em><input type="text" ms-duplex="addrCache.addr" style="width:400px;"/></dd>
-                            <dd><em>手机</em><input type="text" ms-duplex="addrCache.telephone"/></dd>
-                            <dd><em>电话</em><input type="text" ms-duplex="addrCache.mobile"/></dd>
-                            <dt style="height:10px;"></dt>
-                            <dd class="blue"><em></em><a href="javascript:;" ms-click="changeAddr()" class="company_btn">确认保存</a><a href="javascript:;" ms-click="closeChangeAddr()">取消</a></dd>
+                            <dl class="company_news">
+                                <dd><em>收货人</em><input type="text" ms-duplex="addrInfo.name" data-jvalidator-vali_change="min_length[2]&max_length[16]" placeholder="收货人姓名"/></dd>
+                                <dd>
+                                    <em>所在地区</em>
+                                    <select ms-duplex="province" ms-change="changeProvince">
+                                        <option value="null">--请选择--</option>
+                                        <option ms-repeat="provinceOptions" ms-attr-value="el.id+'&'+el.title">{{el.title}}</option>
+                                    </select>
+                                    <select ms-duplex="city" ms-change="changeCity" ms-visible="cityOptions.length > 1">
+                                        <option value="null">--请选择--</option>
+                                        <option ms-repeat="cityOptions" ms-attr-value="el.id+'&'+el.title">{{el.title}}</option>
+                                    </select>
+                                    <select ms-duplex="town" ms-change="changeTown" ms-visible="townOptions.length > 1">
+                                        <option value="null">--请选择--</option>
+                                        <option ms-repeat="townOptions" ms-attr-value="el.id+'&'+el.title">{{el.title}}</option>
+                                    </select>
+                                    <select ms-duplex="street" ms-change="changeStreet" ms-visible="streetOptions.length > 1">
+                                        <option value="null">--请选择--</option>
+                                        <option ms-repeat="streetOptions" ms-attr-value="el.id+'&'+el.title">{{el.title}}</option>
+                                    </select>
+                                    <input type="hidden" ms-attr-value="addrInfo.regionId" data-jvalidator-vali_change="addr_region"/>
+                                </dd>
+                                <dd><em>街道地址</em><input type="text" ms-duplex="addrInfo.addr"  placeholder="街道详细地址"  style="width:400px;"/></dd>
+                                <dd><em>手机</em><input type="text" class="mobile" ms-duplex="addrInfo.mobile" data-jvalidator-vali_change="mobile" placeholder="收货人手机"/></dd>
+                                <dd><em>电话</em><input type="text" class="telephone" ms-duplex="addrInfo.telephone"  placeholder="如：0755-1234567"/></dd>
+                                <dt style="height:10px;"></dt>
+                            <dd class="blue"><em></em><a href="javascript:;" class="company_btn">确认保存</a><a href="javascript:;" ms-click="closeChangeAddr()">取消</a></dd>
                         </dl>
                     </div>
                 </div>
                 <div class="tab2 none">
-                    <table class="address blue" cellpadding="0" cellspacing="0" ms-if="!choosePersAddrOO">
+                    <table class="address blue" cellpadding="0" cellspacing="0" ms-if="!chooseOldAddrOO">
                         <tr>
                             <td width="15%">收货人</td>
                             <td width="45%">收货地址</td>
@@ -218,62 +225,72 @@
                             <td>{{addr.addr}}</td>
                             <td>{{addr.mobile}}</td>
                             <td align="center">
-                                <a href="javascript:;" ms-click="openChoosePersAddr(addr)">配送到该地址</a>
+                                <a href="javascript:;" ms-click="openChooseOldAddr(addr)">配送到该地址</a>
                             </td>
                         </tr>
                     </table>
                     <!--个人使用地址后的编辑层 -->
-                    <div class="company_box" ms-if="choosePersAddrOO">
-                        <dl class="company_news">
+                    <div class="company_box" ms-if="chooseOldAddrOO">
+                        <dl class="company_news" id="vali_old_addr" ms-controller="inputAddrFormCtrl">
                             <dt class="f14 font_yh">使用该地址提交订单后，将自动保存为您的已存收货地址！</dt>
-                            <dd><em>收货人</em><input type="text" ms-duplex="addrCache.name"/></dd>
+                            <dd><em>收货人</em><input type="text" ms-duplex="addrInfo.name" data-jvalidator-vali_old_addr="min_length[2]&max_length[16]" placeholder="收货人姓名"/></dd>
                             <dd>
                                 <em>所在地区</em>
-                                <select name="">
-                                    <option value="">广东省</option>
-                                    <option value="">新疆省</option>
+                                <select ms-duplex="province" ms-change="changeProvince">
+                                    <option value="null">--请选择--</option>
+                                    <option ms-repeat="provinceOptions" ms-attr-value="el.id+'&'+el.title">{{el.title}}</option>
                                 </select>
-                                <select name="">
-                                    <option value="">深圳市</option>
-                                    <option value="">广州市</option>
+                                <select ms-duplex="city" ms-change="changeCity" ms-visible="cityOptions.length > 1">
+                                    <option value="null">--请选择--</option>
+                                    <option ms-repeat="cityOptions" ms-attr-value="el.id+'&'+el.title">{{el.title}}</option>
                                 </select>
-                                <select name="">
-                                    <option value="">南山区</option>
-                                    <option value="">福田区</option>
+                                <select ms-duplex="town" ms-change="changeTown" ms-visible="townOptions.length > 1">
+                                    <option value="null">--请选择--</option>
+                                    <option ms-repeat="townOptions" ms-attr-value="el.id+'&'+el.title">{{el.title}}</option>
                                 </select>
+                                <select ms-duplex="street" ms-change="changeStreet" ms-visible="streetOptions.length > 1">
+                                    <option value="null">--请选择--</option>
+                                    <option ms-repeat="streetOptions" ms-attr-value="el.id+'&'+el.title">{{el.title}}</option>
+                                </select>
+                                <input type="hidden" ms-attr-value="addrInfo.regionId" data-jvalidator-vali_old_addr="addr_region"/>
                             </dd>
-                            <dd><em>街道地址</em><input type="text" ms-duplex="addrCache.addr" style="width:400px;"/></dd>
-                            <dd><em>手机</em><input type="text" ms-duplex="addrCache.mobile" /></dd>
-                            <dd><em>电话</em><input type="text" ms-duplex="addrCache.telephone" /></dd>
+                            <dd><em>街道地址</em><input type="text" ms-duplex="addrInfo.addr"  placeholder="街道详细地址"  style="width:400px;"/></dd>
+                            <dd><em>手机</em><input type="text" class="mobile" ms-duplex="addrInfo.mobile" data-jvalidator-vali_old_addr="mobile" placeholder="收货人手机"/></dd>
+                            <dd><em>电话</em><input type="text" class="telephone" ms-duplex="addrInfo.telephone"  placeholder="如：0755-1234567"/></dd>
                             <dt style="height:10px;"></dt>
-                            <dd class="blue"><em></em><a href="javascript:;" ms-click="choosePersAddr()" class="company_btn">确认使用</a><a ms-click="closeChoosePersAddr()" href="javascript:;">重新选择</a></dd>
+                            <dd class="blue"><em></em><a href="javascript:;" class="company_btn">确认使用</a><a ms-click="closeChooseOldAddr()" href="javascript:;">重新选择</a></dd>
                         </dl>
                     </div>
                 </div>
                 <div class="tab3 none">
-                    <div class="company_box">
+                    <div class="company_box" id="vali_addr" ms-controller="inputAddrFormCtrl">
                         <dl class="company_news">
-                            <dd><em>收货人</em><input type="text" ms-duplex="addrCache.name" placeholder="收货人姓名"/></dd>
+                            <dd><em>收货人</em><input type="text" ms-duplex="addrInfo.name" data-jvalidator-vali_addr="min_length[2]&max_length[16]" placeholder="收货人姓名"/></dd>
                             <dd>
                                 <em>所在地区</em>
-                                <select name="">
-                                    <option value="">广东省</option>
-                                    <option value="">新疆省</option>
+                                <select ms-duplex="province" ms-change="changeProvince">
+                                    <option value="null">--请选择--</option>
+                                    <option ms-repeat="provinceOptions" ms-attr-value="el.id+'&'+el.title">{{el.title}}</option>
                                 </select>
-                                <select name="">
-                                    <option value="">深圳市</option>
-                                    <option value="">广州市</option>
+                                <select ms-duplex="city" ms-change="changeCity" ms-visible="cityOptions.length > 1">
+                                    <option value="null">--请选择--</option>
+                                    <option ms-repeat="cityOptions" ms-attr-value="el.id+'&'+el.title">{{el.title}}</option>
                                 </select>
-                                <select name="">
-                                    <option value="">南山区</option>
-                                    <option value="">福田区</option>
+                                <select ms-duplex="town" ms-change="changeTown" ms-visible="townOptions.length > 1">
+                                    <option value="null">--请选择--</option>
+                                    <option ms-repeat="townOptions" ms-attr-value="el.id+'&'+el.title">{{el.title}}</option>
                                 </select>
+                                <select ms-duplex="street" ms-change="changeStreet" ms-visible="streetOptions.length > 1">
+                                    <option value="null">--请选择--</option>
+                                    <option ms-repeat="streetOptions" ms-attr-value="el.id+'&'+el.title">{{el.title}}</option>
+                                </select>
+                                <input type="hidden" ms-attr-value="addrInfo.regionId" data-jvalidator-vali_addr="addr_region"/>
                             </dd>
-                            <dd><em>街道地址</em><input type="text" ms-duplex="addrCache.addr" placeholder="街道详细地址" style="width:400px;"/></dd>
-                            <dd><em>手机</em><input type="text" ms-duplex="addrCache.mobile" placeholder="收货人手机"/></dd>
-                            <dd><em>电话</em><input type="text" ms-duplex="addrCache.telephone" placeholder="如：0755-1234567"/></dd>
+                            <dd><em>街道地址</em><input type="text" ms-duplex="addrInfo.addr"  placeholder="街道详细地址"  style="width:400px;"/></dd>
+                            <dd><em>手机</em><input type="text" class="mobile" ms-duplex="addrInfo.mobile" data-jvalidator-vali_addr="mobile" placeholder="收货人手机"/></dd>
+                            <dd><em>电话</em><input type="text" class="telephone" ms-duplex="addrInfo.telephone"  placeholder="如：0755-1234567"/></dd>
                             <dt style="height:10px;"></dt>
-                            <dd class="blue"><em></em><a href="javascript:" class="company_btn" ms-click="addAddr()">确认保存</a></dd>
+                            <dd class="blue"><em></em><a href="javascript:" class="company_btn">确认保存</a></dd>
                         </dl>
                     </div>
                 </div>
@@ -304,7 +321,7 @@
             <!--当有现货和期货时，出现选择配送方式-->
             <div id="xianqihuo">
                  <span ms-repeat="constant.SHIPPING_METHOD">
-                    <input type="radio" name="peisong" ms-attr-id="deli_{{$index}}" ms-if="$index==1"  ms-duplex-number="orderInfo.deliverMethod" data-jvalidator-pattern="own[请选择配送方式]" ms-attr-value="el.id"/>
+                    <input type="radio" name="peisong" ms-attr-id="deli_{{$index}}" ms-if="$index==1"  ms-duplex-number="orderInfo.deliverMethod" data-jvalidator-vali_order="own[请选择配送方式]" ms-attr-value="el.id"/>
                     <input type="radio" name="peisong" ms-attr-id="deli_{{$index}}" ms-if="$index!=1"  ms-duplex-number="orderInfo.deliverMethod" ms-attr-value="el.id"/>
                     <label ms-attr-for="deli_{{$index}}" >{{el.value}}</label>
 		        </span>
@@ -312,22 +329,24 @@
             </div>
         </div>
         <!--当信息未做选择时，加入样式class：yellow_border，边框为2个像素，颜色为黄色-->
-        <div class="shop_main_c font_yh fukuan" id="fapiao">
+        <div class="shop_main_c font_yh fukuan" id="fapiao" ms-controller="invoiceCtrl">
             <h4>发票信息</h4>
             <div id="kpzt" ms-if="!orderInfo.invoice.id">
                 <span ms-repeat="constant.INVOICE_METHOD">
-                	<input type="radio" name="fapiao" ms-if="$index==0" data-jvalidator-pattern="own[请选择发票类型]" ms-attr-id="fapiao_{{$index}}" ms-duplex-number="orderInfo.invoice.invoiceMethod" ms-attr-value="el.id"/>
+                	<input type="radio" name="fapiao" ms-if="$index==0" data-jvalidator-vali_order="own[请选择发票类型]" ms-attr-id="fapiao_{{$index}}" ms-duplex-number="orderInfo.invoice.invoiceMethod" ms-attr-value="el.id"/>
                 	<input type="radio" name="fapiao" ms-if="$index!=0" ms-attr-id="fapiao_{{$index}}" ms-duplex-number="orderInfo.invoice.invoiceMethod" ms-attr-value="el.id"/>
                     <label ms-attr-for="fapiao_{{$index}}">{{el.value}}</label>
                 </span>
             </div>
             <!--开票与为选择发票-->
-            <div id="tabs2" style="margin-top:20px;" ms-if="orderInfo.invoice.invoiceMethod==0 && !orderInfo.invoice.id">
-                <div class="tab_nav blue" ms-if="isGroup">
+            <div id="tabs2" style="margin-top:20px;" ms-if="orderInfo.invoice.invoiceMethod==constant.KFP_ID && !orderInfo.invoice.id">
+                <div class="tab_nav blue" ms-if="orderInfo.isOrderGroup">
                     <span><a href="#tab4" class="selected">已审核通过</a></span>
-                    <span><a href="#tab6">新增发票</a></span>
+                    <span><a href="#tab6" >新增发票</a></span>
                 </div>
                 <div class="tab4" style="display:block;" ms-if="orderInfo.isOrderGroup">
+                    <!--用于验证-->
+                    <div id="hi_vali_invo" data-jvalidator-vali_order="own[请选择发票]"  ms-attr-data-value="orderInfo.invoice.id"></div>
                     <table class="address blue" cellpadding="0" cellspacing="0">
                         <tr><!-- 已审核过的发票 -->
                             <td width="15%">发票类型</td>
@@ -344,46 +363,56 @@
                 <!-- 个人订购时，发票选择样式，显示时隐藏组订购发票选择样式 -->
                 <div class="invogr" ms-if="!orderInfo.isOrderGroup">
                     <h4>请选择或者新建发票抬头</h4>
-	                <span ms-repeat="listInvoice" ms-click="onSelInvoice($event,el)">
+	                <span ms-repeat-invoice="orderView.invoices" >
+	                	<input type="radio" name="invogr"/>
+	                	<input type="text" class="invogrin" ms-duplex="invoice.title" placeholder="请填写正确的发票抬头"/>
+	                </span>
+                    <span >
 	                	<input type="radio" name="invogr" />
-	                	<input type="text" class="invogrin" ms-duplex="el.invoiceTitle" placeholder="请填写正确的发票抬头"/>
+	                	<input type="text" class="invogrin" placeholder="请填写正确的发票抬头"/>
 	                </span>
                 </div>
-                <div class="tab6 none">
-                    <div class="company_box">
+                <div class="tab6 none" ms-if="orderInfo.isOrderGroup">
+                    <div class="company_box" id="vali_invoice">
                         <dl class="company_news">
-                            <dd><em>发票抬头</em><input type="text" placeholder="填写正确的发票抬头" style="width:400px;" ms-duplex="selInvoice.invoiceTitle"/></dd>
+                            <dd><em>发票抬头</em><input type="text" data-jvalidator-vali_invoice="requi[不能为空]" placeholder="填写正确的发票抬头" style="width:400px;" ms-duplex="newInvoice.title"/></dd>
                             <dd class="invoice_type">
                                 <em>发票类型</em>
-				                <span ms-repeat="constant.INVOICE_TYPES">
-						             <input ms-attr-id="invoice_type_{{$index}}" type="radio" name="invoice_type" ms-duplex-string="selInvoice.invoiceType" ms-attr-value="$index"/><label ms-attr-for="invoice_type_{{$index}}" >{{el.value}}</label>
-						        </span>
+                                <b id="hi_vali_invo_type" ms-attr-data-value="{{newInvoice.invoiceType}}"  data-jvalidator-vali_invoice="requi[请选择发票类型]">
+                                    <span ms-repeat="constant.INVOICE_TYPES" >
+                                        <input ms-attr-id="invoice_type_{{$index}}" type="radio" name="invoice_type"
+                                                    ms-duplex-string="newInvoice.invoiceType" ms-attr-value="$index"/>
+                                        <label ms-attr-for="invoice_type_{{$index}}" >{{el.value}}</label>
+                                    </span>
+                                </b>
                             </dd>
-                            <div id="vat_main" ms-if="selInvoice.invoiceType && selInvoice.invoiceType!=0">
-                                <dd><em>纳税人识别号</em><input type="text" ms-duplex="selInvoice.taxpayerNum"/></dd>
-                                <dd><em>开户银行</em><input type="text" ms-duplex="selInvoice.bank"/></dd>
-                                <dd><em>银行账号</em><input type="text" ms-duplex="selInvoice.bankAccount"/></dd>
+                            <div id="vat_main" ms-if="newInvoice.invoiceType && newInvoice.invoiceType!=constant.PTFP_ID">
+                                <dd><em>纳税人识别号</em><input type="text" ms-duplex="newInvoice.taxNo" data-jvalidator-vali_invoice="requi[不能为空]"/></dd>
+                                <dd><em>开户银行</em><input type="text" ms-duplex="newInvoice.registerBank" data-jvalidator-vali_invoice="requi[不能为空]"/></dd>
+                                <dd><em>银行账号</em><input type="text" ms-duplex="newInvoice.bankAccount" data-jvalidator-vali_invoice="requi[不能为空]"/></dd>
                             </div>
                             <dt style="height:10px;"></dt>
-                            <dd class="blue"><em></em><a href="javascript:;" onclick="qrfp();" class="company_btn">确认保存</a></dd>
+                            <dd class="blue"><em></em><a href="javascript:;" class="company_btn">确认保存</a></dd>
                         </dl>
                     </div>
                 </div>
             </div>
             <div id="qrfp" class="blue qrxx" ms-if="orderInfo.invoice.id">
                 <p>发票抬头：{{orderInfo.invoice.title}}<a href="javascript:;" ms-click="reChooseInvoice()">重新选择发票信息</a></p>
-                <p>发票类型：{{ constant.INVOICE_TYPES[ orderInfo.invoice.invoiceType||0 ].value }}</p>
+                <p>发票类型：{{ constant.INVOICE_TYPES[ orderInfo.invoice.invoiceType||1 ].value }}</p>
                 <p>纳税人识别号：{{orderInfo.invoice.taxNo}}</p>
                 <p>开户银行：{{orderInfo.invoice.registerBank}}</p>
                 <p>银行账号：{{orderInfo.invoice.bankAccount}}</p>
                 <div class="fpzt">
                     <span>发票是否合开
-                        <input type="radio" id="hekai"  name="hekai"  ms-duplex-number="orderInfo.invoice.invoiceNeedCombine" value="1"/><label for="hekai">合开</label>
+                        <input type="radio" data-jvalidator-vali_order="own[请选择发票合开]" id="hekai"  name="hekai"  ms-duplex-number="orderInfo.invoice.invoiceNeedCombine" value="1"/><label for="hekai">合开</label>
                         <input type="radio" id="buhekai" name="hekai" ms-duplex-number="orderInfo.invoice.invoiceNeedCombine" value="0"/><label for="buhekai">不合开</label>
                     </span>
-                    <span>单张发票金额是否限制<input type="radio" id="xianzhi" name="xianzhi" ms-duplex-number="orderInfo.invoice.invoiceLimit" value="1"/><label for="xianzhi">限制</label><input type="radio" id="buxianzhi" name="xianzhi" ms-duplex-number="orderInfo.invoice.invoiceLimit" value="0"/><label for="buxianzhi">不限制</label></span>
+                    <span>单张发票金额是否限制
+                        <input type="radio" data-jvalidator-vali_order="own[请选择限制金额]" id="xianzhi" name="xianzhi" ms-duplex-number="orderInfo.invoice.invoiceLimit" value="1"/><label for="xianzhi">限制</label>
+                        <input type="radio" id="buxianzhi" name="xianzhi" ms-duplex-number="orderInfo.invoice.invoiceLimit" value="0"/><label for="buxianzhi">不限制</label></span>
                     <span id="jine" ms-if="orderInfo.invoice.invoiceLimit">
-                        每张发票最高限额<input type="text" class="jine"  ms-duplex-number="orderInfo.invoice.invoiceLimitAmount"/>元
+                        每张发票最高限额<input type="text" class="jine" data-jvalidator-vali_order="own[请填写发票金额]"  ms-duplex-natural_num="orderInfo.invoice.invoiceLimitAmount"/>元
                     </span>
                 </div>
             </div>
@@ -404,20 +433,20 @@
                 </tr>
                 <tr class="shop_tab1_main" ms-repeat-product="orderView.products">
                     <td class="shop_tab1_cp blue"><p><a href="#">{{product.name}}</a></p><p><span>货号：{{product.sn}}</span>规格：{{product.spec}}</p></td>
-                    <td style="text-align:left">Agrisera</td>
+                    <td style="text-align:left">{{product.mfgName}}</td>
                     <td><b>{{product.price | number(2) }}</b></td>
                     <td>
                         <div class="spots"><span>现货</span><em>{{product.quantity}}</em></div>
                         <div class="futures"><span>期货</span><em>{{product.futuresQty}}</em></div>
                     </td>
-                    <td><b>39446.00</b></td>
+                    <td><b>{{product.price*product.quantity + product.price*product.futuresQty|number(2)}}</b></td>
                 </tr>
             </table>
             <div class="orderbz font_yh">
                 <div class="jiage f14">
-                    <p>商品总计：<i>3200</i>元</p>
-                    <p>运费：<i>300</i>元</p>
-                    <p>应付总额：<b><i>3500</i></b>元</p>
+                    <p>商品总计：<i>{{ totalPrice() | number(2) }}</i>元</p>
+                    <p>运费：<i>{{freight | number(2)}}</i>元</p>
+                    <p>应付总额：<b><i>{{ totalPrice() +freight | number(2) }}</i></b>元</p>
                 </div>
                 <em>订单备注</em>
                 <input type="text" ms-duplex="orderInfo.orderRemark"/>
@@ -473,9 +502,10 @@
             <div class="popup_main_list">
                 <div class="order_tit f14">发票信息</div>
                 <ul class="order_fp">
-                    <li ms-if="!orderInfo.invoice.id">{{ constant.INVOICE_METHOD[ orderInfo.invoice.invoiceMethod ].value }}</li>
+                    <li ms-if="!orderInfo.invoice.id">{{ constant.INVOICE_METHOD[ orderInfo.invoice.invoiceMethod||0 ].value }}</li>
                     <li ms-if="orderInfo.invoice.id">发票抬头：{{orderInfo.invoice.title}}</li>
-                    <li ms-if="orderInfo.invoice.id">发票：{{orderInfo.invoice.title}}、{{orderInfo.invoice.invoiceNeedCombine}}{{orderInfo.invoice.invoiceLimit==0 ? '、单张限额' + orderInfo.invoice.invoiceLimitAmount + '元' : ''}}</li>
+                    <li ms-if="orderInfo.invoice.id">发票：{{ constant.INVOICE_TYPES[ orderInfo.invoice.invoiceType||1 ].value }}、
+                        {{orderInfo.invoice.invoiceNeedCombine?'合开':'不合开'}}{{orderInfo.invoice.invoiceLimit&&orderInfo.invoice.invoiceLimit ? '、单张限额' + orderInfo.invoice.invoiceLimitAmount + '元' : ''}}</li>
                 </ul>
             </div>
             <div class="c"></div>
@@ -490,25 +520,25 @@
                         <td align="center">小计（元）</td>
                     </tr>
 
-                    <tr ms-repeat-product="orderView.products">
+                    <tr ms-repeat-product="products">
                         <td><p>{{product.name }}</p><em>货号:{{product.sn }}</em><em>规格：{{product.spec }}</em></td>
                         <td align="left">Agrisera</td>
                         <td align="right" style="padding-right:25px;">{{product.price | number(2) }}</td>
                         <!-- 商品上架 -->
                         <td ms-if="!product.isSoldOut">
                             <!--通过检测,不可编辑和变换隐藏 -->
-                            <div ms-if="orderInfo.isPassChack">
+                            <div ms-if="orderInfo.isPassAuth">
                                 <p ms-if="product.quantity>0">现货 {{product.quantity }}</p>
                                 <p ms-if="product.futuresQty>0">期货 {{product.futuresQty }}</p>
                             </div>
                             <!--未通过检测,编辑-->
-                            <div ms-if="!orderInfo.isPassChack">
+                            <div ms-if="!orderInfo.isPassAuth">
                                 <p class="red" ms-if="product.quantity > product.stock">
                                     现货不足，请调整数量
                                 </p>
                                 <div class="product_none">
-                                    <p>现货<input type="text" class="order_num_inp" ms-duplex="product.quantity"/>库存{{product.stock}}</p>
-                                    <p>期货<input type="text" class="order_num_inp" ms-duplex="product.futuresQty"/></p>
+                                    <p>现货<input type="text" class="order_num_inp" ms-duplex-natural_num="product.quantity"/>库存{{product.stock}}</p>
+                                    <p>期货<input type="text" class="order_num_inp" ms-duplex-natural_num="product.futuresQty"/></p>
                                 </div>
                             </div>
                         </td>
@@ -526,21 +556,21 @@
             </div>
             <div class="order_foot font_yh">
                 <div class="jiage">
-                    <p>商品总计：<i>{{totalPrice()}}</i>元</p>
-                    <p>运费：<i>300</i>元</p>
-                    <p>应付总额：<b><i>{{totalPrice()+300}}</i></b>元</p>
+                    <p>商品总计：<i>{{ totalPrice() | number(2) }}</i>元</p>
+                    <p>运费：<i>{{freight | number(2)}}</i>元</p>
+                    <p>应付总额：<b><i>{{ totalPrice() +freight | number(2) }}</i></b>元</p>
                 </div>
                 <div class="order_foot_left">订单备注：{{orderInfo.orderRemark || '无备注' }}</div>
                 <div class="c"></div>
             </div>
+
             <div class="success_btn f16 font_yh letter_1" style="padding:10px 0;">
-                <a href="${path}/pages/foreground/common/shop/receipt.html" class="success_btn1" style="width:120px; height:26px; line-height:26px; font-size:14px;">确认提交订单</a>
+                <a href="javascript:" ms-click="submitOrder()" class="success_btn1" style="width:120px; height:26px; line-height:26px; font-size:14px;">确认提交订单</a>
                 <a href="javascript:" ms-click="closeOrderPreviewLayer()" class="success_btn2" style="width:100px; height:26px; line-height:26px; font-size:14px;">返回修改</a>
             </div>
         </div>
     </div>
 </div>
 </div>
-</form>
 </body>
 </html>

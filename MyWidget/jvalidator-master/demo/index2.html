@@ -21,17 +21,27 @@
 <body style="padding:10px;">
 
 <h2>简单表单验证</h2>
+{div<br><br>
 
 <div id="form1">
-    <pre>required</pre>
-    <input name="name" data-jvalidator-pattern="123"/>
-    <input name="name" data-jvalidator-pattern="required"/>
-    <input type="hidden" name="name" value="1" data-jvalidator-pattern="required"/>
-
-    <input type="button" value="验证"/>
+    独立验证方法<input name="name" data-jvalidator-form1="123"/><br><br>
+    统一验证方法<input name="name" data-jvalidator-form1="chs_numeric"/><br><br>
+    {div
+    <div id="form2">
+        &nbsp;&nbsp;独立验证方法<input name="name" data-jvalidator-form2="123|alpha"/>
+        &nbsp;&nbsp;统一验证方法<input name="name" data-jvalidator-form2="chs_numeric"/>
+        <input id="sub2" type="button" value="验证"/>
+    </div>
+    /div}<br><br>
+    独立验证方法<input name="name" data-jvalidator-form1="123&chs_numeric"/><br><br>
+    统一验证方法<input name="name" data-jvalidator-form1="chs_numeric"/><br><br>
+    <!-- hidden 的验证-->
+    <input type="hidden" name="name" value="1" data-jvalidator-form1="chs_numeric"/>
+    <input id="sub1" type="button" value="验证"/>
 </div>
-
+/div}<br><br>
 <script>
+
     require.config( {
         shim: {
             jvalidator: [ "jquery" ]
@@ -43,53 +53,61 @@
     } );
     require( [ "jquery", "jvalidator" ], function () {
         // ms-if="orderInfo.invoiceMethod==0"
-        $.jvalidator.addPattern( '123', {
-            success:function(){
-                 $( this.element ).css( 'border', '1px solid #0f0' );
-            },
-            fail: function () {
-                $( this.element ).css( 'border', '1px solid #00f' );
-            },
-            message: '必须写成123',
-            validate: function ( value, done ) {
-                done( value == "123" );
-            }
-        } );
-        function initForm( formSelector, options ) {
-            var jv = $( formSelector ).jvalidator();
-            options = options || {};
 
-            $( formSelector ).find( 'input:button' ).bind( 'click', function ( evt ) {
-
+        function initForm( formSelector, submitSelector ) {
+            var jv = new JValidator( formSelector );
+            jv.addPattern( '123', {
+                message: '必须写成123',
+                validate: function ( value, done ) {
+                    done( value == "123" );
+                }
+            } );
+            $( submitSelector ).bind( 'click', function ( evt ) {
                 jv.validateAll( function ( result, elements ) {
                     if ( result ) {
                         alert( '验证通过.' );
                     } else {
-                        var msg = [ '验证未通过.' ]
+                        var msg = [ '********************验证结果:未通过*********************' ]
                         for ( var i = 0; i < elements.length; i++ ) {
                             msg.push( elements[ i ].getMessage() )
                         }
-                        alert( msg.join( '\n' ) );
+                        if ( console && console.log ) {
+                            console.log( msg.join( '\n' ) );
+                        } else {
+                            alert( msg.join( '\n' ) );
+                        }
                     }
                 } );
             } );
 
-            jv.when( options.events );
+            jv.when( "input:even", [ "blur" ] );
 
+            jv.success( "input:even", function () {
+                console.log( "独立成功验证" + new Date().getTime() );
+                $( this.element ).css( 'border', '1px solid #0f0' );
+            } );
+            jv.fail( "input:even", function () {
+                console.log( "独立错误验证" + new Date().getTime() );
+                $( this.element ).css( 'border', '1px solid #00f' );
+            } );
             jv.success( function () {
-                $( this.element ).css( 'border', '1px solid #000' );
+                console.log( "统一成功验证" + new Date().getTime() );
+                $( this.element ).css( 'border', '1px solid #0f0' );
             } );
-
             jv.fail( function ( $event, errors ) {
+                console.log( "统一错误验证" + new Date().getTime() );
                 $( this.element ).css( 'border', '1px solid #f00' );
-                console.log( 123 )
             } );
-
-            return jv;
+            //设置焦点事件
+            $( formSelector ).find( "[data-jvalidator-"+$( formSelector )[ 0 ].id+"]" ).focus( function () {
+                $( this ).css( 'border', '1px solid #000' );
+            } );
         }
 
         $( function () {
-            initForm( '#form1' );
+            initForm( '#form1', "#sub1" );
+
+            initForm( '#form2', "#sub2" );
         } );
     } );
 

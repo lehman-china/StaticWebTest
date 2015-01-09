@@ -1,333 +1,258 @@
-﻿
-/** ***************************Service *************************** */
-function DeliveAddressService() {
-}
-/**
- * XXX
- * 
- * @description 检测 收货地址表单
- * 
+﻿/**
+ * 独立出来的,地址验证,和地址填写功能
  */
-DeliveAddressService.checkAddress = function( vm ) {
-	vm.errorMsg = {
-		bookNameMsg : "",
-		regionMsg : "",
-		bookAddressMsg : "",
-		bookPostmanMsg : "",
-		bookMobileMsg : "",
-		bookPhoneMsg : "",
-		bookEmailMsg : ""
-	};
-	// 检测收货人姓名
-	function checkConsigneeName() {
-		var errorFlag = false;
-		var errorMessage = "";
-		var value = vm.selAddress.bookName;
-		if ( isEmpty( value ) ) {
-			errorFlag = true;
-			errorMessage = "请您填写收货人姓名";
-		} else {
-			if ( value.length > 25 ) {
-				errorFlag = true;
-				errorMessage = "收货人姓名不能大于25位";
-			}
-			if ( !is_forbid( value ) ) {
-				errorFlag = true;
-				errorMessage = "收货人姓名中含有非法字符";
-			}
-		}
-		if ( errorFlag ) {
-			vm.errorMsg.bookNameMsg = errorMessage;
-		} else {
-			vm.errorMsg.bookNameMsg = "";
-		}
-		return errorFlag;
-	}
-	// 检测选择地区
-	function checkArea() {
-		var errorFlag = false;
-		var errorMessage = "";
-		// 验证地区是否正确
-		if ( isEmpty( vm.province ) || isEmpty( vm.city ) || isEmpty( vm.town ) || vm.town.id == -1 ) {
-			errorFlag = true;
-			errorMessage = "地区不完整";
-		}
-		if ( errorFlag ) {
-			vm.errorMsg.regionMsg = errorMessage;
-		} else {
-			vm.errorMsg.regionMsg = "";
-		}
-		return errorFlag;
-	}
+define( [ "jquery", "jvalidator", "avalon", "region" ], function () {
+    var inputAddrFormCtrl = avalon.define( "inputAddrFormCtrl", function ( vm ) {
+        ///////////////////////////////////////选择地区///////////////////////////////
+        vm.nullOption = "&"
+        vm.provinceOptions = loadChildRegion( "" );
+        vm.province = null;
+        vm.city = null;
+        vm.cityOptions = [];
+        vm.town = null;
+        vm.townOptions = [];
+        vm.street = null;
+        vm.streetOptions = [];
+        vm.addrInfo = {
+            id : null,
+            name : "",
+            regionId : "",
+            addr : "",
+            mobile : "",
+            telephone : "0731-"
+        };
 
-	// 检测详细地址
-	function checkConsigneeAddress() {
-		var errorFlag = false;
-		var errorMessage = "";
-		var value = vm.selAddress.bookAddress;
-		if ( isEmpty( value ) ) {
-			errorFlag = true;
-			errorMessage = "详细地址不完整";
-		} else {
-			if ( !is_forbid( value ) ) {
-				errorFlag = true;
-				errorMessage = "不能含有非法字符";
-			}
-			if ( value.length > 50 ) {
-				errorFlag = true;
-				errorMessage = "详细地址过长(<50)";
-			}
-		}
-		if ( errorFlag ) {
-			vm.errorMsg.bookAddressMsg = errorMessage;
-		} else {
-			vm.errorMsg.bookAddressMsg = "";
-		}
-		return errorFlag;
-	}
-	// 检测手机和电话
-	function checkMobileAndPhone() {
-		if ( isEmpty( vm.selAddress.bookMobile ) && isEmpty( vm.selAddress.bookPhone ) ) {
-			vm.errorMsg.bookMobileMsg = "电话和手机请至少填写一个";
-			vm.errorMsg.bookPhoneMsg = "";
-			return true;
-		}
-		// 手机和电话,只要通过一个即可
-		if ( !checkMobile() || !checkPhone() ) {
-			vm.errorMsg.bookMobileMsg = "";
-			vm.errorMsg.bookPhoneMsg = "";
-			return false;
-		} else {
-			return true;
-		}
-	}
-	// 检测手机
-	function checkMobile() {
-		var errorFlag = false;
-		var errorMessage = "";
-		var value = vm.selAddress.bookMobile;
 
-		if ( isEmpty( value ) ) {
-			errorFlag = true;
-			errorMessage = "请您填写收货人手机号码";
-		} else {
-			var regu = /^\d{11}$/;
-			var re = new RegExp( regu );
-			if ( !re.test( value ) ) {
-				errorFlag = true;
-				errorMessage = "手机号码格式不正确";
-			}
-		}
-		if ( errorFlag ) {
-			vm.errorMsg.bookMobileMsg = errorMessage;
-		} else {
-			vm.errorMsg.bookMobileMsg = "";
-			vm.errorMsg.bookPhoneMsg = "";
-		}
-		return errorFlag;
-	}
+        function loadRegionTmp( id, regions ) {
+            for ( var key in regions ) {
+                var region = regions[ key ];
+                if ( region.id == id ) {
+                    return region;
+                }
+            }
+            return null;
+        }
 
-	// 检测电话
-	function checkPhone() {
-		// 电话
-		var value = vm.selAddress.bookPhone;
+        /**
+         * 保存实时的详细地址
+         */
+        vm.fullAddress = function ( bookRegionid ) {
+            var region = [ vm.province, vm.city, vm.town, vm.street ];
+            var fullTitle = "";
+            for ( var i = 0; i < 4; i++ ) {
+                try {
+                    var title = region[ i ].split( "&" )[ 1 ]
+                    fullTitle += typeof title == "undefined" ? '' : title;
+                } catch ( e ) {
+                    break;
+                }
+            }
+            vm.addrInfo.regionId = bookRegionid;
+            return vm.addrInfo.addr = fullTitle;
+        };
 
-		var errorFlag = false;
-		var errorMessage = "";
+        /**
+         * XXX 选择省
+         */
+        vm.changeProvince = function () {
+            vm.city = null;
+            if ( vm.province == null ) {
+                vm.cityOptions = null;
+                return;
+            }
+            var id = vm.province.split( "&" )[ 0 ];
+            vm.cityOptions = loadChildRegion( id );
+            vm.city = null;
+            vm.townOptions = vm.streetOptions = [];
+            // 2
+            vm.fullAddress( id );
+        };
 
-		if ( isEmpty( value ) ) {
-			errorFlag = true;
-			errorMessage = "请您填写收货人固定电话";
-		} else {
-			if ( !is_forbid( value ) ) {
-				errorFlag = true;
-				errorMessage = "固定电话号码中含有非法字符";
-			}
-			if ( value.length > 20 ) {
-				errorFlag = true;
-				errorMessage = "固定电话号码过长";
-			}
-			var patternStr = "(0123456789-)";
-			var strlength = value.length;
-			for ( var i = 0; i < strlength; i++ ) {
-				var tempchar = value.substring( i, i + 1 );
-				if ( patternStr.indexOf( tempchar ) < 0 ) {
-					errorFlag = true;
-					errorMessage = "固定电话号码格式不正确";
-					break;
-				}
-			}
-		}
+        /**
+         * 选择市
+         */
+        vm.changeCity = function () {
+            vm.town = null;
+            if ( vm.city == null ) {
+                vm.townOptions = null;
+                return;
+            }
+            var id = vm.city.split( "&" )[ 0 ];
+            vm.townOptions = loadChildRegion( id );
+            vm.town = null;
+            vm.streetOptions = [];
 
-		if ( errorFlag ) {
-			vm.errorMsg.bookPhoneMsg = errorMessage;
-		} else {
-			vm.errorMsg.bookMobileMsg = "";
-			vm.errorMsg.bookPhoneMsg = "";
-		}
-		return errorFlag;
-	}
+            // 2
+            vm.fullAddress( id );
+        };
+        /**
+         * 选择镇
+         */
+        vm.changeTown = function () {
+            vm.street = null;
+            if ( vm.town == null ) {
+                vm.streetOptions = null;
+                return;
+            }
+            var id = vm.town.split( "&" )[ 0 ];
+            $.ajax( {
+                url : "orderLoadChildRegion.ajax?regionId=" + id,
+                dataType : "json",
+                success : function ( streets ) {
+                    vm.streetOptions = streets;
+                    vm.street = null;
+                }
+            } );
+            vm.fullAddress( id );
+        };
+        /**
+         * 选择街道
+         */
+        vm.changeStreet = function () {
+            if ( vm.street != null ) {
+                vm.fullAddress( vm.street.split( "&" )[ 0 ] );
+            }
+        };
+        /**
+         * 初始化选择地区
+         */
+        vm.initSelectRegion = function ( regionId ) {
+            if ( !regionId ) {//如果为 null 清空选择
+                vm.cityOptions = vm.townOptions = vm.streetOptions = [];
+                vm.province = "null";
+                return;
+            }
+            // 解析出各层 地区ID
+            var pId = regionId.substring( 0, 2 ) + "0000";
+            var cId = regionId.substring( 0, 4 ) + "00";
+            var tId = regionId.substring( 0, 6 );
+            var sId = regionId;
+            // 初始地区,省
+            var province = loadRegion( pId );
+            vm.province = province.id + "&" + province.title;
+            // 初始市
+            vm.cityOptions = loadChildRegion( pId );
+            var city = loadRegion( cId );
+            vm.city = city.id + "&" + city.title;
+            // 初始镇
+            vm.townOptions = loadChildRegion( cId );
+            var town = loadRegion( tId );
+            vm.town = town.id + "&" + town.title;
+            // 初始街道
+            $.ajax( {
+                url : "orderLoadChildRegion.ajax?regionId=" + tId,
+                dataType : "json",
+                success : function ( streets ) {
+                    vm.streetOptions = streets;
+                    var isSelectStreet = false;
+                    // 初始街道
+                    for ( var key in streets ) {
+                        var street = streets[ key ];
+                        if ( street.id == sId ) {
+                            vm.street = street.id + "&" + street.title;
+                            isSelectStreet = true;
+                        }
+                    }
+                    if ( !isSelectStreet )
+                        vm.street = vm.streetOptions[ 0 ].id;
+                }
+            } );
+        };
+///////////***************/////////////////////////////////////////////////////////////////
 
-	/**
-	 * 检查是否含有非法字符
-	 * 
-	 * @param temp_str
-	 * @returns {Boolean}
-	 */
-	function is_forbid( temp_str ) {
-		temp_str = temp_str.replace( /(^\s*)|(\s*$)/g, "" );
-		temp_str = temp_str.replace( '*', "@" );
-		temp_str = temp_str.replace( '--', "@" );
-		temp_str = temp_str.replace( '/', "@" );
-		temp_str = temp_str.replace( '+', "@" );
-		temp_str = temp_str.replace( '\'', "@" );
-		temp_str = temp_str.replace( '\\', "@" );
-		temp_str = temp_str.replace( '$', "@" );
-		temp_str = temp_str.replace( '^', "@" );
-		temp_str = temp_str.replace( '.', "@" );
-		temp_str = temp_str.replace( ';', "@" );
-		temp_str = temp_str.replace( '<', "@" );
-		temp_str = temp_str.replace( '>', "@" );
-		temp_str = temp_str.replace( '"', "@" );
-		temp_str = temp_str.replace( '=', "@" );
-		temp_str = temp_str.replace( '{', "@" );
-		temp_str = temp_str.replace( '}', "@" );
-		var forbid_str = new String( '@,%,~,&' );
-		var forbid_array = new Array();
-		forbid_array = forbid_str.split( ',' );
-		for ( var i = 0; i < forbid_array.length; i++ ) {
-			if ( temp_str.search( new RegExp( forbid_array[i] ) ) != -1 )
-				return false;
-		}
-		return true;
-	}
 
-	/**
-	 * @description 判断是否是空
-	 * @param value
-	 */
-	function isEmpty( value ) {
-		if ( value == null || value == "" || value == "undefined" || value == undefined || value == "null" ) {
-			return true;
-		} else {
-			value = (value + "").replace( /\s/g, '' );
-			if ( value == "" ) {
-				return true;
-			}
-			return false;
-		}
-	}
-	/**
-	 * 检测表单所有的项,所有的通过,返回true
-	 */
-	vm.checkAddress = function() {
-		if ( checkConsigneeName() || checkArea() || checkConsigneeAddress() || checkMobileAndPhone() ) {
-			return false;
-		} else {
-			return true;
-		}
-	};
-};
-/**
- * XXX 地区选择
- */
-DeliveAddressService.region = function( vm ) {
-	vm.nullOption = "&"
-	vm.provinceOptions = loadChildRegion( "" );
-	vm.province = null;
-	vm.city = null;
-	vm.cityOptions = [];
-	vm.town = null;
-	vm.townOptions = [];
-	vm.street = null;
-	vm.streetOptions = [];
+        //*********************************************验证模块/////////////////////////////////
 
-	function loadRegionTmp( id, regions ) {
-		for ( var key in regions ) {
-			var region = regions[key];
-			if ( region.id == id ) {
-				return region;
-			}
-		}
-		return null;
-	}
-	/**
-	 * 保存实时的详细地址
-	 */
-	vm.fullAddress = function( bookRegionid ) {
-		var region = [vm.province, vm.city, vm.town, vm.street];
-		var fullTitle = "";
-		for ( var i = 0; i < 4; i++ ) {
-			try {
-				fullTitle += region[i].split( "&" )[1];
-			} catch ( e ) {
-				break;
-			}
-		}
-		vm.selAddress.bioecRegion.id = bookRegionid;
-		return vm.selAddress.bookRegion = fullTitle;
-	};
+        /**
+         * @memberOf addrCtrl
+         * @description 收货地址表单初始化方法
+         * @type function(formSelector,submitSelector, resultFn)
+         */
+        vm.initValiForm = (function () {
+            /**
+             * @description 移除验证样式
+             * @param {element} el
+             */
+            function removeStyle( $el ) {
+                $el.nextAll( ".error" ).remove();
+            }
 
-	/**
-	 * XXX 选择省
-	 */
-	vm.changeProvince = function() {
-		vm.city = null;
-		if ( vm.province == null ) {
-			vm.cityOptions = null;
-			return;
-		}
-		var id = vm.province.split( "&" )[0];
-		vm.cityOptions = loadChildRegion( id );
-		vm.city = null;
-		vm.townOptions = vm.streetOptions = [];
-		// 2
-		vm.fullAddress( id );
-	};
+            /**
+             * @description 设置验证样式
+             * @param {boolean} isPass 是否通过验证
+             * @param {element}  el 元素
+             * @param {Object} errors 验证组建的对象.data.getMessage()获得错误提示
+             */
+            function authStyle( isPass, $el, errors ) {
+                removeStyle( $el );// 1 先移除验证的样式
+                if ( isPass ) {
+                    $el.css( "border-color", "green" );
+                } else {
+                    console.log( errors.getMessage() )
+                    $el.css( "border-color", "red" );
+                    $el.after( "<span class='error'>" + errors.getMessage() + "</span>" );
+                }
+            }
 
-	/**
-	 * 选择市
-	 */
-	vm.changeCity = function() {
-		vm.town = null;
-		if ( vm.city == null ) {
-			vm.townOptions = null;
-			return;
-		}
-		var id = vm.city.split( "&" )[0];
-		vm.townOptions = loadChildRegion( id );
-		vm.town = null;
-		vm.streetOptions = [];
+            function addVali( jv ) {
+                // 选择地区
+                jv.addPattern( 'addr_region', {
+                    message : '请选择完整的地区',
+                    validate : function ( value, done ) {
+                        if ( value.length < 6 ) done( false );
+                        else done( parseInt( value.substring( 4, 6 ) ) != 0 );
+                    }
+                } );
+                // 2选1  TODO
+                jv.addPattern( 'mobileOrTele', {
+                    agrument : true,
+                    message : '手机或电话须填写一个',
+                    validate : function ( value, done ) {
+                        var $form = this.element._field_validator.$form;
+                        var pass = (!$form.find( ".mobile" ).next().hasClass() || !$form.find( ".telephone" ).next().hasClass());
+                        done( false )
+                    }
+                } );
+            }
 
-		// 2
-		vm.fullAddress( id );
-	};
-	/**
-	 * 选择镇
-	 */
-	vm.changeTown = function() {
-		vm.street = null;
-		if ( vm.town == null ) {
-			vm.streetOptions = null;
-			return;
-		}
-		var id = vm.town.split( "&" )[0];
-		$.ajax( {
-					url : "orderLoadChildRegion.ajax?regionId=" + id,
-					dataType : "json",
-					success : function( streets ) {
-						vm.streetOptions = streets;
-						vm.street = null;
-					}
-				} );
-		vm.fullAddress( id );
-	};
-	/**
-	 * 选择街道
-	 */
-	vm.changeStreet = function() {
-		if ( vm.street != null ) {
-			vm.fullAddress( vm.street.split( "&" )[0] );
-		}
-	};
-};
+            /**
+             * 初始化收货地址表单验证
+             * @param {string} formSelector  // 验证的元素选择器
+             * @param {string} submitSelector //提交的标签选择器
+             * @param {function(Boolan)} resultFn 验证通过与否的回调
+             * @returns {JValidator}
+             */
+            function init( formSelector, submitSelector, resultFn ) {
+                var $formSelector = $( formSelector );
+                var jv = new JValidator( $formSelector );
+                addVali( jv );
+                $formSelector.find( "" );
+                // 全部验证
+                $( submitSelector ).click( function () {
+                    jv.validateAll( function ( result, elements ) {
+                        resultFn( result );
+                    } );
+                } );
+                jv.when( [ 'blur' ] );
+                jv.success( function ( $event ) {
+                    authStyle( true, $( this.element ) );
+                } );
+
+                jv.fail( function ( $event, errors ) {
+                    authStyle( false, $( this.element ), errors );
+                } );
+                return jv;
+            }
+
+            return init;
+        })();
+    } );
+    // 注入到管理....
+    /**
+     * @memberOf avalon.spring
+     */
+    avalon.spring.inputAddrVM = inputAddrFormCtrl;
+    avalon.scan();
+} );
+
+

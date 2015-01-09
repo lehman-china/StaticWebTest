@@ -1,6 +1,16 @@
 jvalidator
 =======================
 
+=======================================雷建军 2015-1-4 12:08:41= 该版后==
+
+指定要验证的元素- data-jvalidator-form1  ( "data-jvalidator-" +验证区域元素ID )
+
+//设置焦点事件
+$( formSelector ).find( "[data-jvalidator-"+$( formSelector )[ 0 ].id+"]" ).focus( function () {
+    $( this ).css( 'border', '1px solid #000' );
+} );
+
+
 ### Change Log ###
 0.3.0 去除jquery依赖
 0.3.3 简化 parser， 不再使用 jison
@@ -126,10 +136,6 @@ jvalidator
 - **decimal** 无
 
     浮点数
-
-- **idcard** 无
-
-    15及18位身份证格式
 
 - **passport** 无
 
