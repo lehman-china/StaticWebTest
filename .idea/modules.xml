@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/MyWidget/MyWidget.iml" filepath="$PROJECT_DIR$/MyWidget/MyWidget.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SC_dissect/SC_dissect.iml" filepath="$PROJECT_DIR$/SC_dissect/SC_dissect.iml" />
       <module fileurl="file://$PROJECT_DIR$/StaticWebTest.iml" filepath="$PROJECT_DIR$/StaticWebTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SC_dissect/angular/angular.iml" filepath="$PROJECT_DIR$/SC_dissect/angular/angular.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bioec_html/bioec_html.iml" filepath="$PROJECT_DIR$/bioec_html/bioec_html.iml" />
     </modules>
   </component>
 </project>
