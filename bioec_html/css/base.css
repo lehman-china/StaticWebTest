@@ -90,22 +90,17 @@ dl,ul,dt,dd,input{font:12px/20px tahoma,宋体;}
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+body { behavior: url("csshover.htc"); }
+/*avalon 加载样式*/
+.ms-controller{
+    visibility: hidden;
+}
+.ms-loading{
+    visibility: hidden;
+    position:absolute;
+    top:50%;
+    left:50%;
+}
+.ms-controller .ms-loading{
+    visibility: visible;
+}

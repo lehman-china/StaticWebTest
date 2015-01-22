@@ -8,7 +8,10 @@
     <meta name="Robots" content="index,follow,NOODP"/>
     <meta http-equiv="cache-control" content="no-cache"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <script src="require.js"></script>
+    <script src="../../../common/js/inc/jquip.all.min.js"></script>
+    <script src="jvalidator.js"></script>
+
+
     <style>
         input {
             outline: none;
@@ -42,74 +45,64 @@
 /div}<br><br>
 <script>
 
-    require.config( {
-        shim: {
-            jvalidator: [ "jquery" ]
-        },
-        paths: {
-            jquery: "jquery",
-            jvalidator: "jvalidator"
-        }
-    } );
-    require( [ "jquery", "jvalidator" ], function () {
-        // ms-if="orderInfo.invoiceMethod==0"
+    // ms-if="orderInfo.invoiceMethod==0"
 
-        function initForm( formSelector, submitSelector ) {
-            var jv = new JValidator( formSelector );
-            jv.addPattern( '123', {
-                message: '必须写成123',
-                validate: function ( value, done ) {
-                    done( value == "123" );
+    function initForm( formSelector, submitSelector ) {
+        var jv = new JValidator( formSelector );
+        jv.addPattern( '123', {
+            message : '必须写成123',
+            validate : function ( value, done ) {
+                done( value == "123" );
+            }
+        } );
+        $( submitSelector ).bind( 'click', function ( evt ) {
+            jv.validateAll( function ( result, elements ) {
+                if ( result ) {
+                    alert( '验证通过.' );
+                } else {
+                    var msg = [ '********************验证结果:未通过*********************' ]
+                    for ( var i = 0; i < elements.length; i++ ) {
+                        msg.push( elements[ i ].getMessage() )
+                    }
+                    if ( console && console.log ) {
+                        console.log( msg.join( '\n' ) );
+                    } else {
+                        alert( msg.join( '\n' ) );
+                    }
                 }
             } );
-            $( submitSelector ).bind( 'click', function ( evt ) {
-                jv.validateAll( function ( result, elements ) {
-                    if ( result ) {
-                        alert( '验证通过.' );
-                    } else {
-                        var msg = [ '********************验证结果:未通过*********************' ]
-                        for ( var i = 0; i < elements.length; i++ ) {
-                            msg.push( elements[ i ].getMessage() )
-                        }
-                        if ( console && console.log ) {
-                            console.log( msg.join( '\n' ) );
-                        } else {
-                            alert( msg.join( '\n' ) );
-                        }
-                    }
-                } );
-            } );
-
-            jv.when( "input:even", [ "blur" ] );
-
-            jv.success( "input:even", function () {
-                console.log( "独立成功验证" + new Date().getTime() );
-                $( this.element ).css( 'border', '1px solid #0f0' );
-            } );
-            jv.fail( "input:even", function () {
-                console.log( "独立错误验证" + new Date().getTime() );
-                $( this.element ).css( 'border', '1px solid #00f' );
-            } );
-            jv.success( function () {
-                console.log( "统一成功验证" + new Date().getTime() );
-                $( this.element ).css( 'border', '1px solid #0f0' );
-            } );
-            jv.fail( function ( $event, errors ) {
-                console.log( "统一错误验证" + new Date().getTime() );
-                $( this.element ).css( 'border', '1px solid #f00' );
-            } );
-            //设置焦点事件
-            $( formSelector ).find( "[data-jvalidator-"+$( formSelector )[ 0 ].id+"]" ).focus( function () {
-                $( this ).css( 'border', '1px solid #000' );
-            } );
-        }
-
-        $( function () {
-            initForm( '#form1', "#sub1" );
-
-            initForm( '#form2', "#sub2" );
         } );
+
+        jv.when( "input:even", [ "blur" ] );
+
+        jv.success( "input:even", function () {
+            console.log( "独立成功验证" + new Date().getTime() );
+            $( this.element ).css( 'border', '1px solid #0f0' );
+        } );
+        jv.fail( "input:even", function () {
+            console.log( "独立错误验证" + new Date().getTime() );
+            $( this.element ).css( 'border', '1px solid #00f' );
+        } );
+        jv.success( function () {
+            console.log( "统一成功验证" + new Date().getTime() );
+            $( this.element ).css( 'border', '1px solid #0f0' );
+        } );
+        jv.fail( function ( $event, errors ) {
+            console.log( "统一错误验证" + new Date().getTime() );
+            $( this.element ).css( 'border', '1px solid #f00' );
+        } );
+        //设置焦点事件
+        $( formSelector ).find( "[data-jvalidator-" + $( formSelector )[ 0 ].id + "]" ).focus( function () {
+            $( this ).css( 'border', '1px solid #000' );
+        } );
+    }
+
+    $( function () {
+        initForm( '#form1', "#sub1" );
+
+        initForm( '#form2', "#sub2" );
     } );
+
 
 </script>
 

@@ -103,15 +103,16 @@ body,html{ margin:0; padding:0; height:100%;}
 .product_right{ width:290px; min-height:230px; padding-left:10px; float:left; margin-bottom:10px;}
 	.product_right h4{ display:block; height:24px; line-height:24px; margin-bottom:10px; font-weight:500; color:#333; padding-left:5px; background:#fff6ee;}
 	.param{ padding:0 0 0 5px;}
-	.param li{ height:26px; line-height:26px; margin-top:5px;}
+	.param li{ height:24px; line-height:24px;}
 	.param li b{ font-size:22px; color:#d00; font-family:"Microsoft YaHei"; margin:0 7px 0 -5px;}
 	.param li i{ text-decoration:line-through;}
 	.param li em{ color:#999; margin-right:7px;}
+	.huohao{ margin-top:14px;}
 	
 	.deliver{ padding-left:5px; position:relative;}
 	.selected_add{ height:24px; padding:10px 0; line-height:24px;}
 	.selected_add p{ display:inline-block; _display:inline; *display:inline; zoom:1;}
-	#selected_add{ height:22px; line-height:22px; position:absolute; left:54px; _left:49px; top:9px; z-index:9999;}
+	#selected_add{ height:22px; line-height:22px; position:absolute; left:45px; _left:40px; top:9px; z-index:9999;}
 	#selected_add span{ display:inline-block; _display:inline; *display:inline; zoom:1; cursor:pointer; margin:0 7px; padding:0 20px 0 7px; border:1px solid #cecece; background:#fff url(/bioec_html/images/product/xzjt.gif) right center no-repeat;}
 	.selected_close{ width:17px; height:17px; overflow:hidden; position:absolute; z-index:99999; right:0px; top:27px;}
 	#selected_list{ width:300px; padding:10px; position:absolute; right:7px; top:32px; z-index:999; border:1px solid #cecece; background:#fff;
@@ -120,13 +121,16 @@ body,html{ margin:0; padding:0; height:100%;}
 					box-shadow:1px 1px 2px #ccc;
 					filter: progid:DXImageTransform.Microsoft.Shadow(color='#969696', Direction=135, Strength=3);/*for ie6,7,8*/}
 					
-	.btn_buy1{ width:89px; height:31px; float:left; margin:0 15px 0 5px; background:url(/bioec_html/images/spis.png) -600px -318px;}
-	.btn_put1{ width:105px; height:31px; float:left; background:url(/bioec_html/images/spis.png) -704px -318px;}
-	.btn_buy1 a,.btn_put1 a{ width:100%; height:100%; display:block; cursor:not-allowed !important;}
-	.btn_buy2{ width:89px; height:31px; float:left; margin:0 15px 0 5px; background:url(/bioec_html/images/spis.png) -600px -267px;}
-	.btn_put2{ width:105px; height:31px; float:left; background:url(/bioec_html/images/spis.png) -704px -267px;}
-	.btn_buy2 a,.btn_put2 a{ width:100%; height:100%; display:inline-block; _display:inline; *display:inline; zoom:1;}
-	.loading{ width:18px; height:18px; float:left; margin:7px 0 0 10px;}
+	.btn_put1{ width:140px; height:34px; background:#ffcc80; border-radius:2px; margin-left:5px; margin-top:5px;}
+	.btn_put1 a{ display:block; cursor:not-allowed !important;}
+	.btn_put2{ width:140px; height:34px; background:#ff9800; border-radius:2px; margin-left:5px; margin-top:15px;}
+	.btn_put2:hover{ background:#ff7100;}
+	.btn_put1 a,.btn_put2 a{ width:100%; display:inline-block; color:#fff; font-size:17px; font-family:"Microsoft YaHei"; line-height:20px; text-align:center; margin:7px 0 0 12px; background:url(/bioec_html/images/product/shoping.png) left top no-repeat;}
+	.btn_put3{ margin-top:15px;}
+	.btn_put3 span{ width:140px; height:34px; float:left; background:#ffcc80; margin-left:5px; color:#fff; font-size:16px; font-family:"Microsoft YaHei"; line-height:32px; text-align:center; display:inline-block; _display:inline; *display:inline; zoom:1; border-radius:2px;}
+	.btn_put3 a{ margin-left:15px; line-height:32px;}
+	.kucun{ height:24px; line-height:24px; margin-left:5px;}
+	.kucun span,.kucun p{ display:inline-block; _display:inline; zoom:1;}
 	
 	.gmnumber{}
 	.gmnumber li{ float:left; height:30px; line-height:30px;}

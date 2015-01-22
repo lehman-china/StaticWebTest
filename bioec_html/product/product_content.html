@@ -34,11 +34,19 @@ $(document).ready(function() {
     <div class="header_main">
         <div class="logo_img"><a href="/bioec_html"><img src="/bioec_html/images/son_logo.gif"/></a></div>
         <div class="head_search">
-            <span><input type="text" placeholder="CD31"/></span>
-            <span><a href="javascript:;"></a></span>
+        	<div class="search_switch">
+                <div class="search_swlist" id="search_swlist">品名</div>
+                <div class="search_swcont none" id="search_swcont">货号</div>
+                <div class="search_swmain none grey" id="search_swmain"><a href="javascript:;" onclick="swh1();" id="pinming" class="none">品名</a><a href="javascript:;" onclick="swh2();" id="huohao">货号</a></div>
+            </div>
+            <div class="search_swimg"><span><img src="/bioec_html/images/qhjt2.gif"/></span></div>
+            <div class="search_text"><input type="text" id="search_text" placeholder="关键字"/></div>
+            <div class="search_btn"><a href="javascript:;"></a></div>
+            <script type="text/javascript" src="../js/public.js"></script>
         </div>
         <div class="menu">
-            <div class="switch">Hello,Bailly<span>[<a href="/bioec_html/" title="安全退出">安全退出</a>]</span></div>
+            <div class="switch">Hello,Bailly<a href="/bioec_html/account/login.html" title="安全退出">[退出]</a></div>
+            <div class="switch">中国科学院北京生物技术研究所<a href="/bioec_html/member/manage_work.html" title="切换账号">[切换]</a></div>
             <div class="menu_list">
                 <ul>
                     <li class="list_one hover_none"><a href="/bioec_html/member/member_index.html">会员中心</a></li>
@@ -120,7 +128,7 @@ $(document).ready(function() {
     <div class="top_img"><a href="/bioec_html/product/product_images.html" target="_blank"><img src="/bioec_html/images/product/img1_ss.jpg" title="点击查看产品图片"/></a></div>
     <div class="nametit">
     	<h1>Kinase Inhibitor Library</h1>
-        <div class="collect blue"><b>+</b><a href="#">收藏</a></div>
+        <div class="collect blue"><b>+</b><a href="#">关注</a></div>
         <div class="specpk blue"><a href="#">产品对比</a>
         	<div class="pk_main">
             	<div class="specpk_img"></div>
@@ -207,24 +215,30 @@ $(document).ready(function() {
         <ul class="param">
         	<li><em>原价/折扣价</em> -</li>
             <li><em>货号</em> -</li>
+            
+            <!-- 个人订购时增加此项
             <li><em>配送至</em> -</li>
-            <li><em>购买数量</em> -</li>
+            -->
+            
+            <li><em>库存</em> -</li>
         </ul>
         <div class="h10"></div>
-        <div class="btn_buy1"><a href="javascript:;"></a></div>
-        <div class="btn_put1"><a href="javascript:;"></a></div>
+        <div class="btn_put1"><a href="javascript:;">加入购物车</a></div>
         <div class="c"></div>
     </div>
     
     <div class="product_right focus_right2 none">
-        <ul class="param">
+        <ul class="param" style="margin-top:20px;">
         	<li><b>￥1,799.00</b><i>￥1,800.00&nbsp;</i></li>
-            <li style="margin-top:20px;"><em>货号</em>7267326512</li>
+            <li class="huohao"><em>货号</em>7267326512</li>
         </ul>
+        
+        <!-- 个人订购时，显示地址选择，单位订购则不出现
+        
         <div class="deliver">
         	<div class="selected_add">
                 <p class="c9">配送至</p>
-                <div id="selected_add"><span onclick="add_hover();" id="add_hover">广东省深圳市福田区</span><em>库存11401件</em></div>
+                <div id="selected_add"><span onclick="add_hover();" id="add_hover">广东省深圳市福田区</span></div>
             </div>
             <div class="selected_close none"><a href="javascript:;" onclick="selected_close();"><img src="/bioec_html/images/product/xx.png"/></a></div>
             <div id="selected_list" class="none">
@@ -274,145 +288,49 @@ $(document).ready(function() {
                 </div>
                 <script>
 					$("#add_tab").idTabs("!mousedown");
+					function add_hover(){
+						$("#selected_list").show();
+						$(".selected_close").show();
+						document.getElementById("add_hover").style.borderBottomColor = "#fff";
+					};
+					function selected_close(){
+						$("#selected_list").hide();
+						$(".selected_close").hide();
+						document.getElementById("add_hover").style.borderBottomColor = "#cecece";
+					};
+					function btn_put(){
+						$("#btn_put2").hide();
+						$(".btn_put3").show();
+					};
 				</script> 
             </div>
         </div>
-        <ul class="gmnumber">
-        	<li><em>购买数量</em></li>
-            <li style="position:relative; height:auto;">
-            	<div class="xianhuo2" id="xianhuo"><i>现货</i></div>
-                <div class="hint_input2" id="xianhuo_num">
-                    <a href="javascript:;" id="jian_1" class="jian"></a><input type="text" id="num_1" class="num" value="1" /><a href="javascript:;" id="add_1" class="add" onclick="onTishi()"></a>
-                    <div class="tishi blue none font_yh" id="tishi">目前现货库存量不足，是否改为预定期货？<a href="javascript:;" onclick="yes()">是</a><a href="javascript:;" onclick="no()">否</a><span><a href="javascript:;" onclick="all_yes();">详细设置</a></span></div>
-                </div>
-                <div class="c"></div>
-                <div class="qihuo none" id="qihuo"><i>期货</i></div>
-                <div class="hint_input2 none" id="qihuo_num">
-                    <a href="javascript:;" id="jian_2" class="jian"></a><input type="text" id="num_2" class="num" value="5" /><a href="javascript:;" id="add_2" class="add"></a>
-                </div>
-            </li>
-            <li class="xhno none red">很抱歉，该规格产品已下架！</li>
-        </ul>
         
-        <div class="c h10"></div>
-        <div class="btn_buy1 none" id="btn_buy1"></div>
-        <div class="btn_put1 none" id="btn_put1"></div>
-        <div class="btn_buy2" id="btn_buy2"><a href="/bioec_html/shop/shop.html"></a></div>
-        <div class="btn_put2" id="btn_put2"><a href="javascript:;" onclick="btn_put();"></a></div>
-        <div class="loading none" id="loading"><img src="/bioec_html/images/loading.gif"/></div>
-        <div class="c"></div>
+        -->
         
+        <div class="kucun">
+            <p class="c9">库存</p>
+            <span>1350</span>
+        </div>
+        <div class="btn_put2" id="btn_put2"><a href="javascript:;" onclick="btn_put();">加入购物车</a></div>
+        
+        
+        <!--无库存时样式
+        <div class="kucun c9">无库存</div>
+        <div class="btn_put2" id="btn_put2"><a href="javascript:;" onclick="btn_put();">预定期货</a></div>
+        -->
+        <div class="btn_put3 none blue">
+        	<span>已加入到购物车</span>
+            <a href="/bioec_html/shop/shop.html">去结算</a>
+        </div>
+        <script>
+			function btn_put(){
+				$("#btn_put2").hide();
+				$(".btn_put3").show();
+			};
+		</script>
     </div>
     <div class="c"></div>
-	   
-    <script>
-		/**
-		* 控制货物数量 框，
-		*/
-		var NumberText = function( $add, $reduce, $num_1, $num_2 ,max) {
-			var _this = this;
-			var $num = $( ".num" );
-			
-			var min = 1;
-			//控制只能输入数字
-			$num.keyup( function() {//按键抬起
-				this.value = this.value.replace( /\D/g, '' );
-				control();//控制按键值的上下限
-			} );
-			$num.contextmenu( function() {//取消右键
-				return false;
-			} );
-			//控制   点击上下限
-			$add.click( function() {
-				var n = $num_1.val();
-				var num_1 = parseInt( n ) + 1;
-				if ( num_1 >= max ) {
-					$num_1.val( max );
-				} else {
-					$num_1.val( num_1 );
-				}
-			} );
-			$reduce.click( function() {
-				var n = $num_1.val();
-				var num_1 = parseInt( n ) - 1;
-				var n2 = $num_2.val();
-				var num_2 = parseInt( n2 );
-				if ( num_1 == min && min == num_2 ) {
-					$num_1.val( min + 1 );
-				} else if ( num_1 > min - 1 ) {
-					$num_1.val( num_1 );
-				}
-			} );
-			//控制按键值的上下限
-			function control(){
-				var n = $num_1.val();
-				var num_1 = parseInt( n );
-				var n2 = $num_2.val();
-				var num_2 = parseInt( n2 );
-				if ( num_1 >= max ) {
-					$num_1.val( max );
-				} else if ( num_1 == min && min == num_2 ) {
-					$num_1.val( min + 1 );
-				} else if ( num_1 < min ) {
-					$num_1.val( min );
-				}
-			}
-		};
-
-		$( document ).ready( function() {
-
-			new NumberText( $( "#add_1" ), $( "#jian_1" ), $( "#num_1" ), $( "#num_2" ) ,5);
-			new NumberText( $( "#add_2" ), $( "#jian_2" ), $( "#num_2" ), $( "#num_1" ) ,1000000);
-		} );
-		
-		//控制显示现货或者期货
-		function onTishi(){
-			var input_num = document.getElementById("num_1").value;
-			if(input_num >= 5){
-				document.getElementById("tishi").style.display = "block";
-			}
-		};
-		function add_hover(){
-			$("#selected_list").show();
-			$(".selected_close").show();
-			document.getElementById("add_hover").style.borderBottomColor = "#fff";
-		};
-		function selected_close(){
-			$("#selected_list").hide();
-			$(".selected_close").hide();
-			document.getElementById("add_hover").style.borderBottomColor = "#cecece";
-		};
-		function no(){
-			$("#tishi").hide();
-			$("#qihuo").hide();
-			$("#qihuo_num").hide();
-		};
-		function yes(){
-			$("#tishi").show();
-			$("#xianhuo").hide();
-			$("#xianhuo_num").hide();
-			$("#qihuo").show();
-			$("#qihuo_num").show();
-		};
-		function all_yes(){
-			$("#tishi").hide();
-			$("#xianhuo").show();
-			$("#xianhuo_num").show();
-			$("#qihuo").show();
-			$("#qihuo_num").show();
-		};
-		function btn_put(){
-			$("#btn_buy2").hide();
-			$("#btn_put2").hide();
-			$("#btn_buy1").show();
-			$("#btn_put1").show();
-			$("#loading").show();
-			$("#loading").show();
-		};
-	</script>
-
-    <div class="c"></div>
-    
     <div class="expand">
     	<div class="share">
         	<i></i>

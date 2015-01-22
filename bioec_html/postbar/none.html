@@ -16,11 +16,19 @@
     <div class="header_main">
         <div class="logo_img"><a href="/bioec_html"><img src="/bioec_html/images/son_logo.gif"/></a></div>
         <div class="head_search">
-            <span><input type="text" placeholder="CD31"/></span>
-            <span><a href="javascript:;"></a></span>
+        	<div class="search_switch">
+                <div class="search_swlist" id="search_swlist">品名</div>
+                <div class="search_swcont none" id="search_swcont">货号</div>
+                <div class="search_swmain none grey" id="search_swmain"><a href="javascript:;" onclick="swh1();" id="pinming" class="none">品名</a><a href="javascript:;" onclick="swh2();" id="huohao">货号</a></div>
+            </div>
+            <div class="search_swimg"><span><img src="/bioec_html/images/qhjt2.gif"/></span></div>
+            <div class="search_text"><input type="text" id="search_text" placeholder="关键字"/></div>
+            <div class="search_btn"><a href="javascript:;"></a></div>
+            <script type="text/javascript" src="../js/public.js"></script>
         </div>
         <div class="menu">
-            <div class="switch">Hello,Bailly<span>[<a href="/bioec_html/" title="安全退出">安全退出</a>]</span></div>
+            <div class="switch">Hello,Bailly<a href="/bioec_html/account/login.html" title="安全退出">[退出]</a></div>
+            <div class="switch">中国科学院北京生物技术研究所<a href="/bioec_html/member/manage_work.html" title="切换账号">[切换]</a></div>
             <div class="menu_list">
                 <ul>
                     <li class="list_one hover_none"><a href="/bioec_html/member/member_index.html">会员中心</a></li>

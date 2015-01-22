@@ -6,6 +6,7 @@
 <link href="../css/base.css" rel="stylesheet" type="text/css"/>
 <link href="../css/public.css" rel="stylesheet" type="text/css"/>
 <link href="../css/member/member.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
 
 </head>
 
@@ -15,20 +16,34 @@
     <div class="header_main">
         <div class="logo_img"><a href="/bioec_html"><img src="/bioec_html/images/son_logo.gif"/></a></div>
         <div class="head_search">
-            <span><input type="text" placeholder="CD31"/></span>
-            <span><a href="javascript:;"></a></span>
+        	<div class="search_switch">
+                <div class="search_swlist" id="search_swlist">品名</div>
+                <div class="search_swcont none" id="search_swcont">货号</div>
+                <div class="search_swmain none grey" id="search_swmain"><a href="javascript:;" onclick="swh1();" id="pinming" class="none">品名</a><a href="javascript:;" onclick="swh2();" id="huohao">货号</a></div>
+            </div>
+            <div class="search_swimg"><span><img src="/bioec_html/images/qhjt2.gif"/></span></div>
+            <div class="search_text"><input type="text" id="search_text" placeholder="关键字"/></div>
+            <div class="search_btn"><a href="javascript:;"></a></div>
+            <script type="text/javascript" src="../js/public.js"></script>
         </div>
         <div class="menu">
-            
+            <div class="switch">Hello,Bailly<a href="/bioec_html/account/login.html" title="安全退出"><img src="/bioec_html/images/tuichu.png"/></a></div>
+            <div class="switch"><a href="/bioec_html/member/manage_work.html" title="切换账号">北京301医院<img src="/bioec_html/images/qiehuan3.png"/></a></div>
             <div class="menu_list">
                 <ul>
-                    <li class="list_one">您好 Bailly！<span>[<a href="/bioec_html" title="安全退出">安全退出</a>] [<a href="/bioec_html/member/member_index.html" title="进入会员中心">会员中心</a>]</span></li>
+                    <li class="list_one hover_none"><a href="/bioec_html/member/member_index.html">会员中心</a></li>
+                    <li class="list_one hover_none">
+                    	<i></i>
+                        <a href="/bioec_html/member/member_index.html">审核订单</a>
+                        <em style="display:block;"></em>
+                    </li>
                     <li class="list_hover">
                         <i></i>
-                        <div class="menu_tit"><a href="/bioec_html/member/member_index.html">我的订单</a></div>
+                        <div class="menu_tit hover_none"><a href="/bioec_html/member/member_index.html">我的订单</a></div>
                         <em></em>
                         <div class="menu_hover none" id="my_dd">
                             <b></b>
+                            <p><a href="/bioec_html/member/order_form.html">待审核</a> (1)</p>
                             <p><a href="/bioec_html/member/order_form.html">待发货</a> (3)</p>
                             <p><a href="/bioec_html/member/order_form.html">待付款</a> (0)</p>
                             <p><a href="/bioec_html/member/order_form.html">待开票</a> (1)</p>
@@ -37,7 +52,6 @@
                     <li class="list_hover">
                         <i></i>
                         <div class="menu_tit"><a href="/bioec_html/postbar/postbar_index.html">贴吧消息</a></div>
-                        <em></em>
                         <div class="menu_hover none" id="my_bar">
                             <b></b>
                             <p><a href="/bioec_html/postbar/postbar_index.html">未阅读回复</a> (3)</p>
@@ -72,9 +86,9 @@
                             </div>
                         </div>
                     </li>
-                    <li class="list_one" style="padding:0; margin:0 8px 0 10px; _margin:0 4px 0 10px;">
+                    <li class="list_one" style="padding:0; margin:0 0 0 10px; _margin:0 0 0 10px;">
                         <i></i>
-                        <span><a href="/bioec_html/account/register.html">注册</a>&nbsp;&nbsp;<a href="/bioec_html/account/register.html">登录</a></span>
+                        <span><a href="/bioec_html/account/register.html">注册</a>&nbsp;&nbsp;<a href="javascript:;" onclick="ShowDiv('Mylogin','view_order')">登录</a></span>
                     </li>
                 </ul>
             </div>
@@ -90,14 +104,12 @@
     	<h1>个人订购</h1>
     </div>
     <div class="work_main">
-    	<div class="work_tit2 f14 font_yh blue"><a href="#">切换到个人账户</a>订购人：<b>王成杰</b></div>
+    	<div class="work_tit2 f14 font_yh blue"><a href="/bioec_html/shop/shop.html">切换到个人账户</a><b>账户信息</b></div>
         <div class="geren f14 font_yh c6">
         	<span>联系人：王成杰</span>
             <span>手机：13632879450</span>
             <span>电话：0755-1234567</span>
-            <span>邮编：835208</span>
-            <span>传真：0755-1234567</span>
-            <span class="geren_add">联系地址：深圳南山区蛇口沿山路佳丽泰大厦3c</span>
+            <span class="geren_add">联系地址：新疆省伊犁哈萨克自治州霍城县萨尔布拉克镇四宫村一组</span>
         </div>
     </div>
     
@@ -106,37 +118,29 @@
     	<h1>订购单位</h1>
     </div>
     <div class="work_main">
-    	<div class="work_tit2 f14 font_yh blue"><a href="#">切换该订购单位</a><b>中科院生物技术研究所</b><i class="renzheng1">已审核</i></div>       
+    	<div class="work_tit2 f14 font_yh blue"><a href="/bioec_html/shop/shop.html">切换该订购单位</a><b>中科院生物技术研究所</b><i class="renzheng1">已审核</i></div>
+        <div class="geren f14 font_yh c6">订购小组：产品采购小组、产品研发部</div>       
         <div class="geren f14 font_yh c6">
-            <span>机构代码：876546133</span>
-            <span>机构登记证号：474641314654644</span>
-            <span class="geren_add">单位地址：广东省深圳市南山区蛇口沿山路创业壹号大厦</span>
+            <span class="geren_add">单位地址：广东省深圳市福田区车公庙下沙二坊</span>
         </div>
-        <div class="geren f14 font_yh c6">订购小组：产品采购小组、产品研发部</div>
     </div>
     <div class="work_main work_main_this">
-    	<div class="work_tit2 f14 font_yh blue"><span>正在使用</span><b>北京301医院</b><i class="renzheng1">已审核</i></div>       
+    	<div class="work_tit2 f14 font_yh blue"><a href="/bioec_html/shop/shop.html">切换该订购单位</a><b>北京301医院</b><i class="renzheng1">已审核</i></div>
+        <div class="geren f14 font_yh c6">订购小组：雷擎项目开发部</div>       
         <div class="geren f14 font_yh c6">
-            <span>机构代码：876546133</span>
-            <span>机构登记证号：474641314654644</span>
             <span class="geren_add">单位地址：广东省深圳市南山区蛇口沿山路创业壹号大厦</span>
         </div>
-        <div class="geren f14 font_yh c6">订购小组：雷擎项目开发部</div>
     </div>
     <div class="work_main">
-    	<div class="work_tit2 f14 font_yh blue"><span>审核通过才能切换</span><b>新疆医科大学附属医院</b><i class="renzheng2">待审核</i></div>       
-        <div class="geren f14 font_yh c6">
-            <span>机构代码：715244316</span>
-            <span>机构登记证号：440301103816485</span>
-            <span class="geren_add">单位地址：新疆省乌鲁木齐市西北路241号新疆医科大学</span>
-        </div>
+    	<div class="work_tit2 f14 font_yh blue"><span>审核通过才能切换</span><b>新疆医科大学附属医院</b><i class="renzheng2">待审核</i></div>
         <div class="geren f14 font_yh c6">订购小组：生物技术研发采购组</div>
+        <div class="geren f14 font_yh c6">
+            <span class="geren_add">单位地址：北京市海淀区中关村南大街38号</span>
+        </div>
     </div>
     <div class="work_main">
     	<div class="work_tit2 f14 font_yh blue"><span>审核通过才能切换</span><b>北京301医院</b><i class="renzheng3">未通过审核</i></div>       
         <div class="geren f14 font_yh c6">
-            <span>机构代码：876546454</span>
-            <span>机构登记证号：440301103816485</span>
             <span class="geren_add">单位地址：北京市海淀区中关一桥中科院</span>
         </div>
     </div>

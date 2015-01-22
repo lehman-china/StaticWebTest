@@ -546,18 +546,18 @@ html{ overflow-y:scroll!important; overflow-y:auto;}
 	
 
 /*管理单位*/
-.work_tit1{ padding:45px 10px 15px 0;}
+.work_tit1{ padding:45px 10px 10px 0;}
 	.work_tit1 h1{ font-size:22px; font-weight:500; color:#666; letter-spacing:1px;}
 	.work_tit1 a{ float:right; font-size:14px; text-decoration:none; margin-top:13px;}
 	.work_none{ width:500px; height:200px; line-height:200px; margin:auto; padding-left:35px; background:url(../../images/info_16.png) left center no-repeat;}
 	
-.work_main{ border:1px solid #e2e2e2; border-top:2px solid #d9edf5; margin-bottom:10px; padding-bottom:5px;}
+.work_main{ border:1px solid #e2e2e2; border-top:2px solid #d9edf5; margin-bottom:15px; padding-bottom:15px;}
 	.work_main:hover{ border:1px solid #ff9a0d; border-top:2px solid #ff9a0d;}
 	.work_main:hover .work_tit2{ background:#fffaf3;}
 	.work_tit2{ height:40px; line-height:40px; padding:0 10px; margin-bottom:10px; background:#f6f6f6;}
 	.work_tit2 a{ float:right; font-size:12px;}
 	.work_tit2 span{ float:right; font-size:12px; color:#999;}
-	.geren{ padding:0 10px 10px 10px;}
+	.geren{ padding:0 10px}
 	.geren span{ height:24px; line-height:24px; margin-right:50px; padding-top:5px; display:inline-block; _display:inline; *display:inline; zoom:1;}
 	.geren_add{ display:block;}
 	.work_tit2 i{ width:auto; height:15px; line-height:15px; border-radius:2px; padding:0 3px; display:inline-block; *display:inline; _display:inline; color:#fff; font-size:12px; margin-left:10px;}

@@ -21,12 +21,22 @@ html{ overflow-y:scroll!important; overflow-y:auto;}
 	.header_main{ width:1000px; height:80px; margin:auto;}
 	.logo_img{ width:112px; height:33px; float:left; position:relative; left:0; top:25px;}
 	.head_search{ width:182px; height:28px; float:left; position:relative; left:55px; top:29px;}
-	.head_search input{ width:140px; height:16px; line-height:16px; padding:6px 5px; background:#fff; border:none; border-radius:1px; position:absolute; top:0; left:0;}
-	.head_search a{ width:31px; height:28px; display:block; position:absolute; top:0; left:151px; background:url(/bioec_html/images/spis.png) -150px -77px;}
-	.switch{}
-	.switch span{ margin-left:10px;}
-	.switch a{ color:#fff;}
-	.switch a:hover{ color:#ff0;}
+	
+	.search_switch{ width:40px; height:28px; padding-left:6px; line-height:28px; text-align:left; position:relative; left:0; top:0; z-index:999999; background:#fff;}
+	.search_swlist,.search_swcont{ font-size:12px; cursor:pointer; color:#999;}
+	.search_switch:hover .search_swlist,.search_switch:hover .search_swcont{ color:#333;}
+	.search_swmain{ width:40px; height:20px; line-height:20px; padding-left:6px; font-size:12px; text-align:left; background:#fff; position:absolute; top:28px; left:0; z-index:9999;}
+	.search_swimg{ width:13px; height:14px; border-right:1px solid #ddd; background:#fff; position:absolute; left:32px; top:7px; text-align:center; z-index:999999;}
+	.search_swimg span img{ margin-top:5px; _margin-top:1px;}
+	
+	.search_text{ width:140px; height:28px; _height:26px; background:#fff; border-radius:1px; position:absolute; top:0; left:45px;}
+	.search_text input{ width:132px; height:16px; line-height:15px; padding:6px 4px 6px 5px; _padding:5px 4px 5px 5px; background:#fff; border:none;}
+	.search_btn{ width:31px; height:28px; position:absolute; top:0; left:187px; z-index:99999; background:#fff;}
+	.search_btn a{ width:31px; height:28px; display:block; background:url(/bioec_html/images/spis.png) -150px -77px;}
+	
+	.switch{ display:inline; margin-left:20px;}
+	.switch a{ color:#fff; margin-left:3px;}
+	.switch a:hover{ color:#ff0}
 	.menu{ color:#fff; float:right; position:relative; top:10px; right:0; text-align:right; z-index:99999;}
 	.menu_list{ padding-top:10px;}
 	.menu_list ul li{ width:auto; height:24px; color:#fff; padding:0 7px; margin:0 9px; float:left; position:relative; border:1px solid #2fa5d5; border-bottom:none;}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title></title>
+	<script src="avalon.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		require.config({
+			paths: {
+				jquery: "../../../common/js/inc/jquip.all.min",
+				avalon: "avalon",
+				FEUI: "FEUI"
+			},
+			shim: {
+				jquery: {
+					exports: "jQuery"
+				},
+				avalon: {
+					exports: "avalon"
+				}
+			}
+		})
+		require(["jquery", "avalon","FEUI"], function() {
+			$(function(){
+				FEUI.tips({html:'测试气泡',follow:'div'});
+			});
+		});
+
+		require(["jquery"], function() {
+			console.log( $.extend({name:123},{age:523}));
+
+		});
+	</script>
+</head>
+<body ms-controller="test">
+<br><br><br><br>
+<div>
+	TEST
+</div>
+
+</body>
+</html>
