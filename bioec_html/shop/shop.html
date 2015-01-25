@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>购物车_产品管理</title>
+    <title>购物车</title>
     <link href="../css/base.css" rel="stylesheet" type="text/css"/>
     <link href="../css/public.css" rel="stylesheet" type="text/css"/>
     <link href="../css/shop/shop.css" rel="stylesheet" type="text/css"/>
@@ -155,7 +155,7 @@
                        ms-click="changeAllBuy( merchant,isAllBuy(merchant) ,$event.target)"
                        href="javascript:"></a>{{merchant.name}}
                 </div>
-                <div class="shop_unit_r">经销商授权联系人：{{merchant.linkman.name}} {{merchant.linkman.way}}</div>
+                <div class="shop_unit_r">联系商家：{{merchant.linkman.name}} {{merchant.linkman.way}}</div>
             </div>
             <table class="shop_tabs font_yh" cellpadding="0" cellspacing="0" style="border-top:none;">
                 <thead>
@@ -170,8 +170,8 @@
                     <td width="5%">操作</td>
                 </tr>
                 </thead>
-                <tbody>
-                <tr ms-repeat-product="merchant.products" ms-class="pitch:product.isBuy">
+                <tbody ms-repeat-product="merchant.products" ms-class="pitch:product.isBuy">
+                <tr  ms-if="!product.isDel" >
                     <td class="reque">
                         <a name="checkWeek" class="choice CheckBoxNoSel"
                            ms-class="CheckBoxSel:product.isBuy"
@@ -189,7 +189,12 @@
                         <b class="price2">{{product.fPrice | currency }}</b>
                     </td>
                     <td>
-                        <div class="errts" ms-if="product.quantity>product.stock">
+                        <!--提示 -->
+                        <div class="errts" ms-if="product.isBuy && (product.quantity+product.futuresQty)==0">
+                            <p>请填数量</p>
+                            <b></b>
+                        </div>
+                        <div class="errts" ms-if="product.isBuy && product.quantity>product.stock && product.stock > 0">
                             <p>库存不足</p>
                             <b></b>
                         </div>
@@ -197,8 +202,7 @@
                         <div class="number" id="xianhuo" ms-if="product.stock > 0">
                             <i>现货</i>
                             <em class="jian"><a href="javascript:" ms-click="subQuantity(product)">-</a></em>
-                            <input type="text" class="num_input" ms-duplex-natural_num="product.quantity"
-                                   ms-class="errint:product.quantity>product.stock"/>
+                            <input type="text" class="num_input" ms-duplex-natural_num="product.quantity"/>
                             <em class="jia"><a href="javascript:" ms-click="addQuantity(product)">+</a></em>
                         </div>
                         <div class="number" id="qihuo">
@@ -211,7 +215,10 @@
                     <!--库存不足不显示库存数量 -->
                     <td><p ms-if="product.stock > 0">{{product.stock}}</p></td>
                     <td class="subt">{{(product.quantity+product.futuresQty)*product.fPrice  | currency}}</td>
-                    <td><a href="javascript:" class="shop_del">删除</a></td>
+                    <td><a href="javascript:" class="shop_del" ms-click="delCartProduct($outer.$index,$index)">删除</a></td>
+                </tr>
+                <tr class="deltr" ms-if="product.isDel">
+                    <td colspan="8" class="blue" align="right"><p>成功删除一件商品，如有误，可<a href="javascript:;" ms-click="repealDel(product)">撤销本次删除</a></p></td>
                 </tr>
                 </tbody>
             </table>
@@ -225,13 +232,33 @@
                 </span>
                 <!-- 勾选后,显示的结算按钮 -->
                 <span class="btn2" id="btn2" ms-if="getCheckNum(merchant) > 0" >
-                    <a href="/bioec_html/shop/fill.html">去结算</a>
+                    <a href="javascript:" ms-click="jieSuan(merchant)">去结算</a>
                 </span>
                 <!--禁用效果层 -->
-                <div ms-if="!isPass(merchant)" style="left:910px;width:90px;height:40px;background-color:#FFF;opacity:0.7;position:absolute;"></div>
+                <div ms-if="!isPass(merchant)" style="left:910px;width:90px;height:40px;background-color:#FFF; opacity:0.4;position:absolute;"></div>
 
             </div>
         </div>
+
+        <!-- 购物车为空样式 -->
+        <div id="shop_none" ms-if="!view.merchants.size()" style="margin-top:20px;">
+            <div class="shop_none">
+                <img src="/bioec_html/images/sleep.gif" />
+                <p class="f16 font_yh blue">
+                    您的购物车还是空的，请选择商品后，来此结算！<a href="${path }">返回首页</a>
+                </p>
+            </div>
+            <div class="h40"></div>
+            <div class="f18 c6 font_yh letter_1 h40">您最近浏览</div>
+
+            <div class="record">
+                <div class="record_main blue f14 font_yh">
+                    <!-- 浏览记录 -->
+                    <a href="/product_content.html?productId=120">cd3</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+            </div>
+        </div>
+
 
     </div>
 
