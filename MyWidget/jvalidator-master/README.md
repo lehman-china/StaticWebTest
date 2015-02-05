@@ -1,7 +1,7 @@
 jvalidator
 =======================
 
-=======================================雷建军 2015-1-4 12:08:41= 该版后==
+=======================================雷建军 2015-1-4 12:08:41= 改版后==
 
 指定要验证的元素- data-jvalidator-form1  ( "data-jvalidator-" +验证区域元素ID )
 
@@ -9,6 +9,17 @@ jvalidator
 $( formSelector ).find( "[data-jvalidator-"+$( formSelector )[ 0 ].id+"]" ).focus( function () {
     $( this ).css( 'border', '1px solid #000' );
 } );
+
+
+// 单独事件配置,大多数事件都可举一反三,  这个只能是 "#g_r_s_h input" jq 的选择器.字符串,其他的不行
+// 个人收货信息单独的验证效果
+jv.success("#g_r_s_h input",function($event){
+	authStyleGRSH( true, $(this.element) );
+});
+jv.fail("#g_r_s_h input",function( $event, errors  ){
+	authStyleGRSH( false, $(this.element), errors );
+});
+
 
 
 ### Change Log ###
