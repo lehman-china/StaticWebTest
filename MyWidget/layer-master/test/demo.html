@@ -1,96 +1,221 @@
 ﻿<!doctype html>
 <html>
 <head>
-<title>layer-更懂你的web弹窗解决方案</title>
-<script src="../../../common/js/inc/jquery-1.8.3.js"></script>
-<script src="../layer.min.js"></script>
+    <title>layer-更懂你的web弹窗解决方案</title>
+    <script src="../../../common/js/inc/jquery-1.8.3.js"></script>
+    <script src="../layer.js"></script>
 
-<style>
-html{background-color:#E3E3E3; font-size:14px; color:#000; font-family:'微软雅黑'}
-a,a:hover{ text-decoration:none;}
-pre{font-family:'微软雅黑'}
-.box{padding:20px; background-color:#fff; margin:50px 100px; border-radius:5px;}
-.box a{padding-right:15px;}
-#about_hide{display:none}
-.layer_text{background-color:#fff; padding:20px;}
-.layer_text p{margin-bottom: 10px; text-indent: 2em; line-height: 23px;}
-.button{display:inline-block; *display:inline; *zoom:1; line-height:30px; padding:0 20px; background-color:#56B4DC; color:#fff; font-size:14px; border-radius:3px; cursor:pointer; font-weight:normal;}
-.imgs img{width:300px;}
-</style>
 </head>
 <body>
-<div class="box">
-<pre>
- @Name：layer-v<script>document.write(layer.v)</script> 弹层组件说明
- @Author：贤心
- @Blog：<a href="http://sentsin.com" target="_blank">http://sentsin.com</a>
- @官网：<a href="http://sentsin.com/jquery/layer"  target="_blank">http://sentsin.com/jquery/layer</a>
 
+<br/>1
+<br/>2
+<br/>3
+<br/>3
+<br/>3
+<br/>3
+<div id="zxsj" style="background-color: #31a8aa;height: 250px;width: 250px;">
 
-<strong>【注意事项】</strong>
-一、使用时，请把文件夹layer整个放置在您站点的任何一个目录，只需引入layer.min.js即可，除jQuery外，其它文件无需再引入。
-二、如果您的js引入是通过合并处理或者您不想采用layer自动获取的绝对路径，您需要打开layer.min.js 去配置相对路径url。（默认采用自动获取layer所在的路径）
-三、jquery必须为1.8或1.8以上版本（原因，更小，性能更好，且新版layer使用了部分jq1.8+的特性），下载包里doc文件里有jquery1.9下载地址
-四、更多使用说明与演示（demo），请参见layer官网。
-五、使用时请务必保留来源，请勿用于违反我国法律的web平台。
-六、layer遵循LGPL协议，将永久性提供无偿服务。版权最终解释权：贤心。
-</pre>
+    中心数据
 </div>
-
-<div class="box">
-    <h2 style="padding-bottom:20px;">layer1.8相册模块，点击下述图片试试</h2>
-    <div id="imgs" class="imgs">
-        <img src="http://static.oschina.net/uploads/space/2014/0516/012728_nAh8_1168184.jpg" alt="layer宣传图">
-        <img src="http://sentsin.qiniudn.com/sentsinmy5.jpg" alt="我入互联网这五年">
-        <img src="http://sentsin.qiniudn.com/sentsin_39101a660cf4671b7ec297a74cc652c74152104f.jpg" alt="微摄影">
-        <img src="http://sentsin.qiniudn.com/sentsinsan01.jpg" alt="三清山">
-    </div>
-</div>
+<br/>3
+<br/>3
+<br/>3
+<br/>3
+<br/>3
+<br/>3
+<br/>3
 
 
+
+<br/>3
+<br/>3
+<br/>3
+<br/>3
+<br/>3
+<br/>3
+<br/>3
+<br/>3
+<br/>3
+<br/>3
+<br/>3
+<br/>3
+<br/>3
+<br/>3
+<br/>3
+<br/>3
+<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3
+<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3
+<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3
+<br/>3
+<br/>3
 <div class="box" style="text-align:center">
     <a href="http://sentsin.com/jquery/layer/api.html" target="_blank">使用文档</a>
     <a href="http://say.sentsin.com/say-706.html" target="_blank">更新日志</a>
     <a href="http://say.sentsin.com/home-48.html" id="suggest">交流反馈</a>
-</div>
-
+</div><br/>
 <script>
-;!function(){
-
-$(function(){
-    layer.load('加载带文字', 300);
 
 
-});
+    $( function () {
+        layer.load(  { follow:"#zxsj",time:300,text:"加载中..."} );
+        return;
+        //【信息框】：
+        layer.alert( '白菜级别前端攻城师贤心', 8 ); //风格一
+        layer.msg( '前端攻城师贤心' ); //风格二
+//当然，远远不止这两种风格。
+
+        //【询问框】：
+        $.layer( {
+            shade : [ 0 ],
+            area : [ 'auto', 'auto' ],
+            dialog : {
+                msg : '您是如何看待前端开发？',
+                btns : 2,
+                type : 4,
+                btn : [ '重要', '奇葩' ],
+                yes : function () {
+                    layer.msg( '重要', 1, 1 );
+                }, no : function () {
+                    layer.msg( '奇葩', 1, 13 );
+                }
+            }
+        } );
+//还可用layer.confirm()快捷调用
+
+        //【页面层一】
+        $.layer( {
+            type : 1,
+            shade : [ 0 ],
+            area : [ 'auto', 'auto' ],
+            title : false,
+            border : [ 0 ],
+            page : { dom : '.layer_notice' }
+        } );
+
+//【页面层二】
+        var pageii = $.layer( {
+            type : 1,
+            title : false,
+            area : [ 'auto', 'auto' ],
+            border : [ 0 ], //去掉默认边框
+            shade : [ 0 ], //去掉遮罩
+            closeBtn : [ 0, false ], //去掉默认关闭按钮
+            shift : 'left', //从左动画弹出
+            page : {
+                html : '<div style="width:420px; height:260px; padding:20px; border:1px solid #ccc; background-color:#eee;"><p>我从左边来，我自定了风格。</p><button id="pagebtn" class="btns" onclick="">关闭</button></div>'
+            }
+        } );
+//自设关闭
+        $( '#pagebtn' ).on( 'click', function () {
+            layer.close( pageii );
+        } );
+
+//【iframe层一】
+        $.layer( {
+            type : 2,
+            shadeClose : true,
+            title : false,
+            closeBtn : [ 0, false ],
+            shade : [ 0.8, '#000' ],
+            border : [ 0 ],
+            offset : [ '20px', '' ],
+            area : [ '1000px', ($( window ).height() - 50) + 'px' ],
+            iframe : { src : 'http://f2e.sentsin.com/chat' }
+        } );
+
+//【iframe层二】
+        layer.tips( '5秒后右下角窗口自动关闭，并生成一个新的iframe', this, {
+            time : 5,
+            maxWidth : 260
+        } );
+        $.layer( {
+            type : 2,
+            closeBtn : false,
+            shadeClose : true,
+            shade : [ 0.1, '#fff' ],
+            border : [ 0 ],
+            time : 5,
+            iframe : {
+                src : 'test/guodu.html'
+            },
+            title : false,
+            area : [ '300px', '250px' ],
+            shift : 'right-bottom',
+            end : function () {
+                $.layer( {
+                    type : 2,
+                    title : '贤心博客 - sentsin.com',
+                    shadeClose : true,
+                    maxmin : true,
+                    fix : false,
+                    area : [ '1024px', 500 ],
+                    iframe : {
+                        src : 'http://sentsin.com/'
+                    }
+                } );
+            }
+        } );
+
+//【加载层一】
+        layer.load( 3 );
+
+//【加载层二】
+        layer.load( '加载带文字', 3 );
+
+//【tips层一】
+        layer.tips( 'tips的样式并非是固定的，您可自定义外观。', this, {
+            style : [ 'background-color:#78BA32; color:#fff', '#78BA32' ],
+            maxWidth : 185,
+            time : 3,
+            closeBtn : [ 0, true ]
+        } );
+
+//【tips层二】
+        layer.tips( '默认没有关闭按钮', this, { guide : 1, time : 2 } );
+
+//【输入 / 文件层】
+//普通文本
+        layer.prompt( { title : '您的名字？' }, function ( name ) {
+            alert( name );
+        } );
+//密码文本
+        layer.prompt( { title : '输入任何口令，并确认', type : 1 }, function ( pass ) {
+            alert( pass );
+        } );
+//文件上传
+        layer.prompt( { title : '随便上传个东东，并确认', type : 2 }, function ( file ) {
+            alert( file );
+        } );
+//多行文本
+        layer.prompt( { title : '随便写点啥，并确认', type : 3 }, function ( val ) {
+            alert( val );
+        } );
+
+//【tab层】
+        layer.tab( {
+            area : [ '1000px', '500px' ],
+            data : [
+                { title : 'Say', content : 'Hi，Main' },
+                { title : '无题', content : '支持html传入' }
+            ]
+        } );
+
+//【相册层】
+//此处为异步请求模式，具体的json格式，请等待文档更新。或者你直接通过请求看photos.json
+        var conf = {};
+        $.getJSON( 'ajax地址', {}, function ( json ) {
+            conf.photoJSON = json; //保存json，以便下次直接读取内存数据
+            layer.photos( {
+                html : '这里传入自定义的html，也可以不用传入（这意味着不会输出右侧区域）。相册支持左右方向键、Esc关闭',
+                json : json
+            } );
+        } );
 
 
-layer.use('extend/layer.ext.js', function(){
-    //初始加载即调用，所以需放在ext回调里
-    layer.ext = function(){
-        layer.photosPage({
-            html: '<div style="padding:20px;">这里传入自定义的html<p>相册支持左右方向键，支持Esc关闭</p><p>另外还可以通过异步返回json实现相册。更多用法详见官网。</p><p>'+ unescape("%u8FD8%u6709%u5E0C%u671B%u5927%u5BB6%u5E73%u65F6%u6709%u7A7A%u70B9%u4E0B%u5B98%u7F51%u7684%u5E7F%u544A%u54C8%uFF0C%u4E00%u5929%u4E0D%u8981%u8D85%u8FC7%u4E00%u6B21%uFF0C%u8C22%u8C22%u62C9") +'</p><p id="change"></p></div>',
-            title: '快捷模式-获取页面元素包含的所有图片',
-            id: 112, //相册id，可选
-            parent: '#imgs'
-        });
-    };
-});
+    } );
 
-$('#suggest').on('click',function(event){
-	var height = $(window).height(), index = $.layer({
-		type : 2,
-		shade : [0.5 , '#000' , true],
-		shadeClose : true,
-		border : [!0],
-		title : false,
-		offset : ['25px',''],
-		area : ['90%', (height - 50)+'px'],
-		iframe : {src : $(this).attr('href')}
-	});
-    event.preventDefault();
-});
 
-}();
 </script>
 </body>
 </html>
