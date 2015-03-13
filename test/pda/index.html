@@ -18,6 +18,10 @@
   <ion-nav-bar class="bar-positive">
     <ion-nav-back-button>
     </ion-nav-back-button>
+
+    <ion-nav-buttons side="ight">
+      <button menu-toggle="right" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
   </ion-nav-bar>
 
   <ion-nav-view></ion-nav-view>
@@ -42,16 +46,34 @@
   <!--底座 -->
   <script id="tabs.html" type="text/ng-template">
     <ion-tabs class="tabs-icon-top tabs-positive">
-
-      <ion-tab title="首页" icon="ion-home" href="#/tab/home">
-        <ion-nav-view name="home-tab"></ion-nav-view>
+      <ion-tab title="退出登录" icon="ion-log-out"  href="#/sign-in">
       </ion-tab>
-
-      <ion-tab title="关于" icon="ion-ios7-information" href="#/tab/about">
+      <ion-tab title="来料收货" icon="ion-arrow-down-a" href="#/tab/into_storage">
+        <ion-nav-view name="intoStorage-tab"></ion-nav-view>
+      </ion-tab>
+      <ion-tab title="上架/移位" icon="ion-arrow-move" href="#/tab/about">
         <ion-nav-view name="about-tab"></ion-nav-view>
       </ion-tab>
-
-      <ion-tab title="退出登录" icon="ion-log-out" href="#/sign-in">
+      <ion-tab title="正常出库" icon="ion-arrow-up-a" href="#/tab/home">
+        <ion-nav-view name="home-tab"></ion-nav-view>
+      </ion-tab>
+      <ion-tab title="特殊入库" icon="ion-android-arrow-down" href="#/tab/home">
+        <ion-nav-view name="home-tab"></ion-nav-view>
+      </ion-tab>
+      <ion-tab title="库存调拨" icon="ion-shuffle" href="#/tab/home">
+        <ion-nav-view name="home-tab"></ion-nav-view>
+      </ion-tab>
+      <ion-tab title="扫描快递单" icon="ion-clipboard" href="#/tab/home">
+        <ion-nav-view name="home-tab"></ion-nav-view>
+      </ion-tab>
+      <ion-tab title="库存盘点" icon="ion-filing" href="#/tab/home">
+        <ion-nav-view name="home-tab"></ion-nav-view>
+      </ion-tab>
+      <ion-tab title="特殊出库" icon="ion-android-arrow-up" href="#/tab/home">
+        <ion-nav-view name="home-tab"></ion-nav-view>
+      </ion-tab>
+      <ion-tab title="报废处理" icon="ion-ios-trash" href="#/tab/home">
+        <ion-nav-view name="home-tab"></ion-nav-view>
       </ion-tab>
 
     </ion-tabs>
@@ -60,7 +82,7 @@
   <script id="facts.html" type="text/ng-template">
     <ion-view title="扫码入库">
       <ion-content padding="true">
-        <p>测试页面</p>
+        <p><input type="text"/></p>
         <p>Dogs have four toes on their hind feet, and five on their front feet.</p>
         <p>The ant can lift 50 times its own weight, can pull 30 times its own weight and always falls over on its right side when intoxicated.</p>
         <p>A cockroach will live nine days without it's head, before it starves to death.</p>
@@ -91,14 +113,9 @@
   </script>
 
   <script id="about.html" type="text/ng-template">
-    <ion-view title="About">
+    <ion-view title="上架/移位">
       <ion-content padding="true">
-        <h3>Create hybrid mobile apps with the web technologies you love.</h3>
-        <p>Free and open source, Ionic offers a library of mobile-optimized HTML, CSS and JS components for building highly interactive apps.</p>
-        <p>Built with Sass and optimized for AngularJS.</p>
-        <p>
-          <a class="button icon icon-right ion-chevron-right" href="#/tab/navstack">Tabs Nav Stack</a>
-        </p>
+        上架/移位
       </ion-content>
     </ion-view>
   </script>
