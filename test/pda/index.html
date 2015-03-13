@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+  <title>PDA</title>
+
+  <link href="/test/pda/common/js/framework/ionic/css/ionic.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+  <script data-main="js/route" src="common/js/inc/require.js"></script>
+
+</head>
+
+<body>
+  <ion-nav-bar class="bar-positive">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+  </ion-nav-bar>
+
+  <ion-nav-view></ion-nav-view>
+
+  <script id="forgot-password.html" type="text/ng-template">
+    <ion-view title="Forgot Password">
+      <ion-content padding="true">
+        <p>
+          Yeah this is just a demo showing how views can be shown without tabs, then you can navigate
+          to views within tabs. Additionally, only one set of tabs needs to be written for all of the different views that should go inside the tabs. (Compared to written the same tab links in the footer of every view that's in a tab.)
+        </p>
+        <p>
+          There's no username/password, just click
+          the Sign-In button back a the sign-in view.
+        </p>
+        <p>
+          Return to <a href="#/sign-in">Sign-In</a>.
+        </p>
+      </ion-content>
+    </ion-view>
+  </script>
+  <!--底座 -->
+  <script id="tabs.html" type="text/ng-template">
+    <ion-tabs class="tabs-icon-top tabs-positive">
+
+      <ion-tab title="首页" icon="ion-home" href="#/tab/home">
+        <ion-nav-view name="home-tab"></ion-nav-view>
+      </ion-tab>
+
+      <ion-tab title="关于" icon="ion-ios7-information" href="#/tab/about">
+        <ion-nav-view name="about-tab"></ion-nav-view>
+      </ion-tab>
+
+      <ion-tab title="退出登录" icon="ion-log-out" href="#/sign-in">
+      </ion-tab>
+
+    </ion-tabs>
+  </script>
+
+  <script id="facts.html" type="text/ng-template">
+    <ion-view title="扫码入库">
+      <ion-content padding="true">
+        <p>测试页面</p>
+        <p>Dogs have four toes on their hind feet, and five on their front feet.</p>
+        <p>The ant can lift 50 times its own weight, can pull 30 times its own weight and always falls over on its right side when intoxicated.</p>
+        <p>A cockroach will live nine days without it's head, before it starves to death.</p>
+        <p>Polar bears are left handed.</p>
+        <p>
+          <a class="button icon ion-home" href="#/tab/home"> Home</a>
+          <a class="button icon icon-right ion-chevron-right" href="#/tab/facts2">More Facts</a>
+        </p>
+      </ion-content>
+    </ion-view>
+  </script>
+
+  <script id="facts2.html" type="text/ng-template">
+    <ion-view title="Also Factual">
+      <ion-content padding="true">
+        <p>111,111,111 x 111,111,111 = 12,345,678,987,654,321</p>
+        <p>1 in every 4 Americans has appeared on T.V.</p>
+        <p>11% of the world is left-handed.</p>
+        <p>1 in 8 Americans has worked at a McDonalds restaurant.</p>
+        <p>$283,200 is the absolute highest amount of money you can win on Jeopardy.</p>
+        <p>101 Dalmatians, Peter Pan, Lady and the Tramp, and Mulan are the only Disney cartoons where both parents are present and don't die throughout the movie.</p>
+        <p>
+          <a class="button icon ion-home" href="#/tab/home"> Home</a>
+          <a class="button icon ion-chevron-left" href="#/tab/facts"> Scientific Facts</a>
+        </p>
+      </ion-content>
+    </ion-view>
+  </script>
+
+  <script id="about.html" type="text/ng-template">
+    <ion-view title="About">
+      <ion-content padding="true">
+        <h3>Create hybrid mobile apps with the web technologies you love.</h3>
+        <p>Free and open source, Ionic offers a library of mobile-optimized HTML, CSS and JS components for building highly interactive apps.</p>
+        <p>Built with Sass and optimized for AngularJS.</p>
+        <p>
+          <a class="button icon icon-right ion-chevron-right" href="#/tab/navstack">Tabs Nav Stack</a>
+        </p>
+      </ion-content>
+    </ion-view>
+  </script>
+
+  <script id="nav-stack.html" type="text/ng-template">
+    <ion-view title="Tab Nav Stack">
+      <ion-content padding="true">
+        <p><img src="http://ionicframework.com/img/diagrams/tabs-nav-stack.png" style="width:100%"></p>
+      </ion-content>
+    </ion-view>
+  </script>
+
+</body>
+</html>

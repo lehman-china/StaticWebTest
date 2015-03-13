@@ -8,7 +8,7 @@
     <meta name="Robots" content="index,follow,NOODP"/>
     <meta http-equiv="cache-control" content="no-cache"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <script src="../../../common/js/inc/jquip.all.min.js"></script>
+    <script src="../../../common/js/inc/jquery-1.8.3.js"></script>
     <script src="jvalidator.js"></script>
 
 
@@ -27,28 +27,33 @@
 {div<br><br>
 
 <div id="form1">
-    独立验证方法<input name="name" data-jvalidator-form1="123"/><br><br>
-    统一验证方法<input name="name" data-jvalidator-form1="chs_numeric"/><br><br>
+    独立验证方法<input id="id_1" name="name" data-jvalidator-form1="123"/><br><br>
+    统一验证方法<input id="id_2" name="name" data-jvalidator-form1="chs_numeric"/><br><br>
     {div
     <div id="form2">
-        &nbsp;&nbsp;独立验证方法<input name="name" data-jvalidator-form2="123|alpha"/>
-        &nbsp;&nbsp;统一验证方法<input name="name" data-jvalidator-form2="chs_numeric"/>
+        &nbsp;&nbsp;独立验证方法<input id="id_3" name="name" data-jvalidator-form2="123|alpha"/>
+        &nbsp;&nbsp;统一验证方法<input id="id_4" name="name" data-jvalidator-form2="chs_numeric"/>
         <input id="sub2" type="button" value="验证"/>
     </div>
     /div}<br><br>
-    独立验证方法<input name="name" data-jvalidator-form1="123&chs_numeric"/><br><br>
-    统一验证方法<input name="name" data-jvalidator-form1="chs_numeric"/><br><br>
+    独立验证方法<input id="id_5" name="name" data-jvalidator-form1="123&chs_numeric"/><br><br>
+    统一验证方法<input id="id_6" name="name" data-jvalidator-form1="chs_numeric"/><br><br>
     <!-- hidden 的验证-->
-    <input type="hidden" name="name" value="1" data-jvalidator-form1="chs_numeric"/>
+    <input type="hidden" id="id_7"  name="name" value="1" data-jvalidator-form1="chs_numeric"/>
     <input id="sub1" type="button" value="验证"/>
 </div>
 /div}<br><br>
 <script>
 
+
+
+
+
     // ms-if="orderInfo.invoiceMethod==0"
 
     function initForm( formSelector, submitSelector ) {
         var jv = new JValidator( formSelector );
+        jv.setContinueCheck( false);
         jv.addPattern( '123', {
             message : '必须写成123',
             validate : function ( value, done ) {
@@ -76,19 +81,19 @@
         jv.when( "input:even", [ "blur" ] );
 
         jv.success( "input:even", function () {
-            console.log( "独立成功验证" + new Date().getTime() );
+            console.log( $( this.element ).attr("id")+"独立成功验证" + new Date().getTime() );
             $( this.element ).css( 'border', '1px solid #0f0' );
         } );
         jv.fail( "input:even", function () {
-            console.log( "独立错误验证" + new Date().getTime() );
+            console.log( $( this.element ).attr("id")+"独立错误验证" + new Date().getTime() );
             $( this.element ).css( 'border', '1px solid #00f' );
         } );
         jv.success( function () {
-            console.log( "统一成功验证" + new Date().getTime() );
+            console.log( $( this.element ).attr("id")+"统一成功验证" + new Date().getTime() );
             $( this.element ).css( 'border', '1px solid #0f0' );
         } );
         jv.fail( function ( $event, errors ) {
-            console.log( "统一错误验证" + new Date().getTime() );
+            console.log( $( this.element ).attr("id")+"统一错误验证" + new Date().getTime() );
             $( this.element ).css( 'border', '1px solid #f00' );
         } );
         //设置焦点事件

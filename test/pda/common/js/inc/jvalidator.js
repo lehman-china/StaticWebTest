@@ -128,7 +128,7 @@ var JValidator = function ( formSelector ) {
     };
 //**********************************************************************************************************************
     var $valiTag = null;// TODO 修改点1 要验证的元素,以前只能验证form
-    var continueCheck = true; //遇到错误是否继续验证
+    var continueCheck = true; //遇到错误是否继续验证,(默认继续验证)
     var PATTERNS = {};
     var CONSTANT = {
         PATTERN: "",
