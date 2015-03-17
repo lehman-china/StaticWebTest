@@ -27,7 +27,6 @@
 <br/>3
 
 
-
 <br/>3
 <br/>3
 <br/>3
@@ -53,12 +52,27 @@
     <a href="http://sentsin.com/jquery/layer/api.html" target="_blank">使用文档</a>
     <a href="http://say.sentsin.com/say-706.html" target="_blank">更新日志</a>
     <a href="http://say.sentsin.com/home-48.html" id="suggest">交流反馈</a>
-</div><br/>
+</div>
+<br/>
 <script>
 
 
     $( function () {
-        layer.load(  { follow:"#zxsj",time:300,text:"加载中..."} );
+        var index = layer.ajaxLoad( "#zxsj" );
+        console.log(index)
+        setTimeout( function () {
+            layer.close( index );
+        }, 6000 );
+
+
+        /**
+
+         // 吸附的对象
+         var $f = $( parme.follow );
+         var x = $( $f ).offset().left, y = $( $f ).offset().top, w = $( $f ).outerWidth( true ), h = $( $f ).outerHeight( true );
+
+         */
+
         return;
         //【信息框】：
         layer.alert( '白菜级别前端攻城师贤心', 8 ); //风格一
@@ -67,16 +81,16 @@
 
         //【询问框】：
         $.layer( {
-            shade : [ 0 ],
-            area : [ 'auto', 'auto' ],
-            dialog : {
-                msg : '您是如何看待前端开发？',
-                btns : 2,
-                type : 4,
-                btn : [ '重要', '奇葩' ],
-                yes : function () {
+            shade: [ 0 ],
+            area: [ 'auto', 'auto' ],
+            dialog: {
+                msg: '您是如何看待前端开发？',
+                btns: 2,
+                type: 4,
+                btn: [ '重要', '奇葩' ],
+                yes: function () {
                     layer.msg( '重要', 1, 1 );
-                }, no : function () {
+                }, no: function () {
                     layer.msg( '奇葩', 1, 13 );
                 }
             }
@@ -85,25 +99,25 @@
 
         //【页面层一】
         $.layer( {
-            type : 1,
-            shade : [ 0 ],
-            area : [ 'auto', 'auto' ],
-            title : false,
-            border : [ 0 ],
-            page : { dom : '.layer_notice' }
+            type: 1,
+            shade: [ 0 ],
+            area: [ 'auto', 'auto' ],
+            title: false,
+            border: [ 0 ],
+            page: { dom: '.layer_notice' }
         } );
 
 //【页面层二】
         var pageii = $.layer( {
-            type : 1,
-            title : false,
-            area : [ 'auto', 'auto' ],
-            border : [ 0 ], //去掉默认边框
-            shade : [ 0 ], //去掉遮罩
-            closeBtn : [ 0, false ], //去掉默认关闭按钮
-            shift : 'left', //从左动画弹出
-            page : {
-                html : '<div style="width:420px; height:260px; padding:20px; border:1px solid #ccc; background-color:#eee;"><p>我从左边来，我自定了风格。</p><button id="pagebtn" class="btns" onclick="">关闭</button></div>'
+            type: 1,
+            title: false,
+            area: [ 'auto', 'auto' ],
+            border: [ 0 ], //去掉默认边框
+            shade: [ 0 ], //去掉遮罩
+            closeBtn: [ 0, false ], //去掉默认关闭按钮
+            shift: 'left', //从左动画弹出
+            page: {
+                html: '<div style="width:420px; height:260px; padding:20px; border:1px solid #ccc; background-color:#eee;"><p>我从左边来，我自定了风格。</p><button id="pagebtn" class="btns" onclick="">关闭</button></div>'
             }
         } );
 //自设关闭
@@ -113,45 +127,45 @@
 
 //【iframe层一】
         $.layer( {
-            type : 2,
-            shadeClose : true,
-            title : false,
-            closeBtn : [ 0, false ],
-            shade : [ 0.8, '#000' ],
-            border : [ 0 ],
-            offset : [ '20px', '' ],
-            area : [ '1000px', ($( window ).height() - 50) + 'px' ],
-            iframe : { src : 'http://f2e.sentsin.com/chat' }
+            type: 2,
+            shadeClose: true,
+            title: false,
+            closeBtn: [ 0, false ],
+            shade: [ 0.8, '#000' ],
+            border: [ 0 ],
+            offset: [ '20px', '' ],
+            area: [ '1000px', ($( window ).height() - 50) + 'px' ],
+            iframe: { src: 'http://f2e.sentsin.com/chat' }
         } );
 
 //【iframe层二】
         layer.tips( '5秒后右下角窗口自动关闭，并生成一个新的iframe', this, {
-            time : 5,
-            maxWidth : 260
+            time: 5,
+            maxWidth: 260
         } );
         $.layer( {
-            type : 2,
-            closeBtn : false,
-            shadeClose : true,
-            shade : [ 0.1, '#fff' ],
-            border : [ 0 ],
-            time : 5,
-            iframe : {
-                src : 'test/guodu.html'
+            type: 2,
+            closeBtn: false,
+            shadeClose: true,
+            shade: [ 0.1, '#fff' ],
+            border: [ 0 ],
+            time: 5,
+            iframe: {
+                src: 'test/guodu.html'
             },
-            title : false,
-            area : [ '300px', '250px' ],
-            shift : 'right-bottom',
-            end : function () {
+            title: false,
+            area: [ '300px', '250px' ],
+            shift: 'right-bottom',
+            end: function () {
                 $.layer( {
-                    type : 2,
-                    title : '贤心博客 - sentsin.com',
-                    shadeClose : true,
-                    maxmin : true,
-                    fix : false,
-                    area : [ '1024px', 500 ],
-                    iframe : {
-                        src : 'http://sentsin.com/'
+                    type: 2,
+                    title: '贤心博客 - sentsin.com',
+                    shadeClose: true,
+                    maxmin: true,
+                    fix: false,
+                    area: [ '1024px', 500 ],
+                    iframe: {
+                        src: 'http://sentsin.com/'
                     }
                 } );
             }
@@ -165,39 +179,39 @@
 
 //【tips层一】
         layer.tips( 'tips的样式并非是固定的，您可自定义外观。', this, {
-            style : [ 'background-color:#78BA32; color:#fff', '#78BA32' ],
-            maxWidth : 185,
-            time : 3,
-            closeBtn : [ 0, true ]
+            style: [ 'background-color:#78BA32; color:#fff', '#78BA32' ],
+            maxWidth: 185,
+            time: 3,
+            closeBtn: [ 0, true ]
         } );
 
 //【tips层二】
-        layer.tips( '默认没有关闭按钮', this, { guide : 1, time : 2 } );
+        layer.tips( '默认没有关闭按钮', this, { guide: 1, time: 2 } );
 
 //【输入 / 文件层】
 //普通文本
-        layer.prompt( { title : '您的名字？' }, function ( name ) {
+        layer.prompt( { title: '您的名字？' }, function ( name ) {
             alert( name );
         } );
 //密码文本
-        layer.prompt( { title : '输入任何口令，并确认', type : 1 }, function ( pass ) {
+        layer.prompt( { title: '输入任何口令，并确认', type: 1 }, function ( pass ) {
             alert( pass );
         } );
 //文件上传
-        layer.prompt( { title : '随便上传个东东，并确认', type : 2 }, function ( file ) {
+        layer.prompt( { title: '随便上传个东东，并确认', type: 2 }, function ( file ) {
             alert( file );
         } );
 //多行文本
-        layer.prompt( { title : '随便写点啥，并确认', type : 3 }, function ( val ) {
+        layer.prompt( { title: '随便写点啥，并确认', type: 3 }, function ( val ) {
             alert( val );
         } );
 
 //【tab层】
         layer.tab( {
-            area : [ '1000px', '500px' ],
-            data : [
-                { title : 'Say', content : 'Hi，Main' },
-                { title : '无题', content : '支持html传入' }
+            area: [ '1000px', '500px' ],
+            data: [
+                { title: 'Say', content: 'Hi，Main' },
+                { title: '无题', content: '支持html传入' }
             ]
         } );
 
@@ -207,8 +221,8 @@
         $.getJSON( 'ajax地址', {}, function ( json ) {
             conf.photoJSON = json; //保存json，以便下次直接读取内存数据
             layer.photos( {
-                html : '这里传入自定义的html，也可以不用传入（这意味着不会输出右侧区域）。相册支持左右方向键、Esc关闭',
-                json : json
+                html: '这里传入自定义的html，也可以不用传入（这意味着不会输出右侧区域）。相册支持左右方向键、Esc关闭',
+                json: json
             } );
         } );
 
