@@ -1,0 +1,238 @@
+<html>
+<head >
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>angular vs jquery</title>
+
+    <script src="/common/js/inc/jquery-1.8.3.js"></script>
+
+    <!--  bootstrap css样式  美观,不用自己写样式 -->
+    <link rel="stylesheet" href="/common/css/bootstrap.min.css">
+    <!-- 引入他的框架JS 即可 -->
+    <script src="/common/js/framework/angular/angular.min.js"></script>
+
+    <script src="js/angularVSjquery.js"></script>
+
+</head>
+<!-- html 代码  -->
+<body ng-app="myapp" ng-controller="testCtrl">
+<div class="container" >
+    <br/><br/>------------------------angular显示与隐藏----------------------------<br/>
+    {{isShow}}
+    <h1 style="color: red;" ng-show="isShow" >angular显示与隐藏</h1>
+
+    <button class="btn btn-success" ng-click="isShow = true">显示</button>
+    <button class="btn btn-danger" ng-click="isShow = false">隐藏</button>
+
+    <br/><br/>------------------------jquery显示与隐藏----------------------------<br/>
+
+    <h1 style="color: red;" id="is-show">jquery显示与隐藏</h1>
+
+    <button class="btn btn-success" onclick="$('#is-show').show()">显示</button>
+    <button class="btn btn-danger" onclick="$('#is-show').hide()">隐藏</button>
+
+
+
+    <br/><br/><br/><br/><br/>
+
+
+
+    <br/><br/>------------------------angular class样式切换----------------------------<br/>
+
+    {{btn}}
+    <button class="btn" ng-class="{'btn-danger':btn=='1'}" ng-mouseover="btn='1'">按钮1</button>
+    <button class="btn" ng-class="{'btn-danger':btn=='2'}" ng-mouseover="btn='2'">按钮2</button>
+    <button class="btn" ng-class="{'btn-danger':btn=='3'}" ng-mouseover="btn='3'">按钮3</button>
+
+    <br/><br/>------------------------jquery class样式切换----------------------------<br/>
+
+
+    <span id="print">按钮1</span>
+    <button class="btn my-btn btn-danger">按钮1</button>
+    <button class="btn my-btn">按钮2</button>
+    <button class="btn my-btn">按钮3</button>
+
+    <script>
+        $(".my-btn" ).click(function(){
+            $(".my-btn" ).removeClass("btn-danger");
+            $(this ).addClass("btn-danger");
+            $("#print" ).html(  $(this ).html() );
+        });
+    </script>
+
+
+    <br/><br/><br/><br/><br/>
+
+
+    <br/><br/>------------------------angular 循环数据----------------------------<br/>
+    <li ng-repeat="data in datas">产品{{data}}</li>
+
+
+    <br/><br/>------------------------jquery 循环数据----------------------------<br/>
+    <div id="print-repeat-data"></div>
+    <script>
+        var html = "";
+        var jqDatas = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ];
+        for ( var i = 0; i < jqDatas.length; i++ ) {
+            var data = jqDatas[ i ];
+            html += "<li >产品" + data + "</li>";
+        }
+        $( "#print-repeat-data" ).html( html );
+        g_scope
+    </script>
+
+
+
+    <br/><br/><br/><br/><br/>
+
+
+
+
+    <br/><br/>------------------------angular 表格数据增,删,查,改,排序----------------------------<br/>
+
+    <div ng-show="users.length">
+        <h3>用户列表</h3>
+        <table class="table table-striped  table-bordered" >
+            <thead>
+                <tr>
+                    <th>操作</th>
+                    <th><a href="javascript:" ng-click="order('id')"> 编号<span class="glyphicon glyphicon-sort-by-attributes"></span></a></th>
+                    <th><a href="javascript:" ng-click="order('name')">名称<span class="glyphicon glyphicon-sort-by-attributes"></span></a></th>
+                    <th><a href="javascript:" ng-click="order('age')"> 年龄<span class="glyphicon glyphicon-sort-by-attributes"></span></a></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in users" ng-class="{info:selUser.id==user.id}">
+                    <td>
+                        <button class="btn  btn-info" ng-click="editUser($index)">
+                            <span class="glyphicon glyphicon-pencil"></span>编辑
+                        </button>
+                        <button class="btn btn-danger" ng-click="deleteUser($index)">
+                            <span class="glyphicon glyphicon-trash"></span> 删除
+                        </button>
+                    </td>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.age }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <h3>创建新用户:</h3>
+    新用户数据及时显示:{{selUser}}<br/>
+    编号:<input type="text" ng-model="selUser.id" ng-disabled="true" placeholder="编号">
+    名称:<input type="text" ng-model="selUser.name" placeholder="名称">
+    年龄:<input type="text" ng-model="selUser.age" placeholder="年龄">
+
+    <hr>
+    <button class="btn btn-success" ng-click="addUser()">创建新用户</button>
+
+
+
+
+    <br/><br/>------------------------jquery 表格数据增,删,查,改,排序----------------------------<br/>
+
+    <div >
+        <h3>用户列表</h3>
+        <table class="table table-striped  table-bordered" >
+            <thead>
+            <tr>
+                <th>操作</th>
+                <th><a href="javascript:" onclick="jqOrder('id')"> 编号<span class="glyphicon glyphicon-sort-by-attributes"></span></a></th>
+                <th><a href="javascript:" onclick="jqOrder('name')">名称<span class="glyphicon glyphicon-sort-by-attributes"></span></a></th>
+                <th><a href="javascript:" onclick="jqOrder('age')"> 年龄<span class="glyphicon glyphicon-sort-by-attributes"></span></a></th>
+            </tr>
+            </thead>
+            <tbody id="user-print">
+            </tbody>
+        </table>
+    </div>
+    <h3>创建新用户:</h3>
+    新用户数据及时显示:<div id="new-user-print"></div><br/>
+    编号:<input type="text" id="user-id" ng-disabled="true" placeholder="编号">
+    名称:<input type="text" id="user-name" placeholder="名称">
+    年龄:<input type="text" id="user-age" placeholder="年龄">
+
+    <hr>
+    <button class="btn btn-success" onclick="jqAddUser()">创建新用户</button>
+    <script>
+        var users = [];
+        function jqAddUser(){
+            var user = {
+                id: new Date().getTime(),
+                name: $("#user-name" ).val(),
+                age: $("#user-age").val()
+            };
+            users.push( user );
+            refresh();
+        }
+        function jqEditUser( $index ) {
+            var user =  users[ $index ];
+            $("#user-id" ).val( user.id );
+            $("#user-name" ).val( user.name );
+            $("#user-age" ).val( user.age );
+        }
+        function jqDeleteUser( $index ) {
+            users.splice( $index, 1 );
+            refresh();
+        }
+
+        function jqOrder( title ) {
+            users.sort( function ( a, b ) {
+                return a[ title ] > b[ title ] ? 1 : -1;
+            } );
+            refresh();
+        }
+
+        var editInx = -1;
+        function refresh(){
+            var html = "";
+            for ( var i = 0; i < users.length; i++ ) {
+                var user = users[ i ];
+                var strVar = "";
+                strVar += "<tr >";
+                strVar += "    <td>";
+                strVar += "        <button class=\"btn  btn-info jq-edit\" >";
+                strVar += "            <span class=\"glyphicon glyphicon-pencil\"><\/span>编辑";
+                strVar += "        <\/button>";
+                strVar += "        <button class=\"btn btn-danger jq-delete\" >";
+                strVar += "            <span class=\"glyphicon glyphicon-trash\"><\/span> 删除";
+                strVar += "        <\/button>";
+                strVar += "    <\/td>";
+                strVar += "    <td>"+user.id+"<\/td>";
+                strVar += "    <td>"+user.name+"<\/td>";
+                strVar += "    <td>"+user.age+"<\/td>";
+                strVar += "<\/tr>";
+                html += strVar;
+            }
+            $( "#user-print" ).html( html );
+
+            $( ".jq-delete" ).click( function () {
+                var inx = $( ".jq-delete" ).index( this );
+                jqDeleteUser( inx );
+            } );
+
+            $( ".jq-edit" ).click( function () {
+                editInx = $( ".jq-edit" ).index( this );
+                $( ".jq-edit" ).closest( "tr" ).removeClass( "info" );
+                $( this ).closest( "tr" ).addClass( "info" );
+                jqEditUser( editInx );
+            } );
+            // 刷新后 记录上一次class
+            if ( editInx != -1 )
+                $( ".jq-edit" ).closest( "tr" ).eq( editInx ).addClass( "info" );
+        }
+
+        $( "#user-name,#user-age" ).keyup( function () {
+            var user = {
+                id: $( "#user-id" ).val(),
+                name: $( "#user-name" ).val(),
+                age: $( "#user-age" ).val()
+            };
+            $( "#new-user-print" ).html( JSON.stringify( user ) );
+        } );
+
+    </script>
+</div>
+
+</body>
+</html>

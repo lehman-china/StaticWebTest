@@ -1,8 +1,8 @@
 /**
  * *************************Util*************************
  */
-function Util() {
-}
+var Util = Util || function () {
+    };
 
 /** ***********************************************其他方法************************************** */
 /** *********************************************************************************************** */
@@ -164,100 +164,6 @@ function createPage( $scope, varName ) {
     return page;
 }
 
-
-//************************************jvalidator 验证表单*************
-/**
- * 用于全局表单验证
- * class,vali_area标志提示区域,
- * data-jvalidator-publ_vali="requi[请添加产品]" 标识元素
- *
- *  <!-- 验证angular变量用-->
- *  <input type="hidden" ng-value="form.products.length?'1':''" data-jvalidator-publ_vali="requi[请添加产品]"/>
- */
-Util.publicValiForm = (function () {
-    /**
-     * @description 移除验证样式
-     * @param {element} el
-     */
-    function removeStyle( $el ) {
-        $el.closest( ".vali_area" ).removeClass( "prompt" );
-        if ( $el[ 0 ].tips ) {
-            $el[ 0 ].tips.close();// 关闭气泡
-            $el[ 0 ].tips = null;
-        }
-    }
-
-
-    /**
-     * @description 设置验证样式
-     * @param {boolean} isPass 是否通过验证
-     * @param {element}  el 元素
-     * @param {Object} errors 验证组建的对象.data.getMessage()获得错误提示
-     */
-    function authStyle( isPass, $el, errors ) {
-        removeStyle( $el );// 1 先移除验证的样式
-        var $valiArea = $el.closest( ".vali_area" );
-        if ( isPass ) {
-
-        } else {
-            $valiArea.addClass( "prompt" );
-            $el[ 0 ].tips = FEUI.tips( { html: errors.getMessage(), follow: $valiArea[ 0 ] } );
-            //   $el.closest( "span" ).after( "<div class='error_text'>" + errors.getMessage() + "</div>" );
-        }
-    }
-
-    // 添加自定义验证
-    function addVali( jv ) {
-        //不能为空,自定义提示语
-        jv.addPattern( 'requi', {
-            argument: true,
-            message: '%argu',
-            validate: function ( value, done ) {
-                done( !!value );
-            }
-        } );
-    }
-
-    /**
-     * 表单验证
-     * @param {string} formSelector  // 验证局域,元素选择器
-     * @param {string} submitSelector// 提交元素选择器
-     * @param {function} resultFunc// 验证回调
-     * @returns {JValidator}
-     */
-    function init( formSelector, submitSelector, resultFunc ) {
-        var $formSelector = $( formSelector );
-        var jv = new JValidator( $formSelector );
-        addVali( jv ); // 添加自定义验证
-        $( submitSelector ).click( function () {// 提交按钮验证全部
-            jv.validateAll( function ( isPass ) {
-                // 如果有错误,则滚动到错误区域
-                try {
-                    // 页面滚动到错误区域
-                    $( "html,body" ).animate( {
-                        scrollTop: $( ".prompt:visible:eq(0)" ).offset().top - 120
-                    }, 200 );
-                } catch ( e ) {
-                }
-                resultFunc( isPass );
-            } );
-        } );
-        jv.setContinueCheck( false );// 遇到错误不继续向下验证
-        jv.when( [ 'blur' ] );//离开事件验证自身
-
-        jv.success( function ( $event ) {
-            authStyle( true, $( this.element ) );
-        } );
-        jv.fail( function ( $event, errors ) {
-            authStyle( false, $( this.element ), errors );
-        } );
-        return jv;
-    }
-
-    return init;
-})();
-
-
 //********************************sqlitl 封装
 // 例: moBanTiHuan( "values(?,?,?,?,?)", [ '1', 2, 3, 4, '5' ] );
 // 结果:values('1',2,3,4,'5')
@@ -280,55 +186,86 @@ Util.getTime = function () {
 };
 
 // 同步的ajax
-Util.syncAjax = function ( url, data ) {
+Util.syncAjax = function ( param ) {
     var result;
     $.ajax( {
-        url: url,
-        type: "post",
+        url: param.url,
+        type: param.type || "post",
         async: false,
-        timeout: 3000, //超时时间设置，单位毫秒
-        complete: function ( XMLHttpRequest, status ) { //请求完成后最终执行参数
-            if ( status == 'timeout' ) {//超时,status还有success,error等值的情况
-                result = { state: "超时,time out" };
-                console.error( "超时,time out" );
+        timeout: param.timeout || 3000, //超时时间设置，单位毫秒
+        complete: param.complete || function ( XMLHttpRequest, status ) { //请求完成后最终执行参数
+            if ( status != 'success' ) {
+                alert( status );
             }
         },
-        data: data,
-        dataType: "json",
-        success: function ( res ) {
+        data: param.data || {},
+        dataType: param.dataType || "json",
+        success: param.success || function ( res ) {
             result = res;
         }
     } );
+
     return result;
 };
+
+
+/**
+ * jquery ajax的一点儿小包装
+ * @param param jquery 一样的 对象参数, 不设置则包装方法默认的参数
+ * @returns {{state: string}|*}
+ */
+Util.ajax = function ( param ) {
+    $.ajax( {
+        url: param.url,
+        type: param.type || "post",
+        timeout: param.timeout || 3000, //超时时间设置，单位毫秒
+        complete: param.complete || function ( XMLHttpRequest, status ) { //请求完成后最终执行参数
+            if ( status != 'success' ) {
+                alert( status );
+            }
+        },
+        data: param.data || {},
+        dataType: param.dataType || "json",
+        success: param.success || function ( res ) {
+            if ( param.success ) param.success( res );
+        }
+    } );
+};
+
 
 /**
  *查询sql 例: query( "values(?,?,?,?,?)", [ '1', 2, 3, 4, '5' ] );
  * @param sql {string}
- * @param parem {array}
+ * @param param {array}
  * @returns {array}
  */
-Util.query = function ( sql, parem ) {
-    if ( parem ) sql = Util.moBanTiHuan( sql, parem );
-    return Util.syncAjax( "/query.ajax", { sql: sql } );
+Util.query = function ( sql, param ) {
+    if ( param ) sql = Util.moBanTiHuan( sql, param );
+    return Util.syncAjax( { url: "/query.ajax", data: { sql: sql } } );
 };
 
 /**
  * 执行sql 例:execute( "values(?,?,?,?,?)", [ '1', 2, 3, 4, '5' ] );
  * @param sql {string}
- * @param parem {array}
+ * @param param {array}
  * @returns {array}
  */
-Util.execute = function ( sql, parem ) {
-    if ( parem ) sql = Util.moBanTiHuan( sql, parem );
-    return Util.syncAjax( "/execute.ajax", { sql: sql } );
+Util.execute = function ( sql, param ) {
+    if ( param ) sql = Util.moBanTiHuan( sql, param );
+    return Util.syncAjax( { url: "/execute.ajax", data: { sql: sql } } );
 };
 
 // application 和 session
-Util.application = function ( parem ) {
-    return Util.syncAjax( "/application.ajax", parem || {} );
+Util.application = function ( param ) {
+    for ( var key in param ) {
+        param[ key ] = JSON.stringify( param[ key ] );
+    }
+    return Util.syncAjax( { url: "/application.ajax", data: param } );
 };
-Util.session = function ( parem ) {
-    return Util.syncAjax( "/session.ajax", parem || {} );
+Util.session = function ( param ) {
+    for ( var key in param ) {
+        param[ key ] = JSON.stringify( param[ key ] );
+    }
+    return Util.syncAjax( { url: "/session.ajax", data: param } );
 };
 

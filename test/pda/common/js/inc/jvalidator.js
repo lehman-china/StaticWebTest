@@ -489,7 +489,7 @@ var JValidator = function ( formSelector ) {
                 var jv = _jvs[ i ];
                 (function ( jv ) {
                     async.addRequest( function ( async_continue ) {
-                        if ( isContinue ){// 是否继续验证
+                        if ( isContinue ) {// 是否继续验证
                             jv.check( null, function ( checkResult, error ) {
                                 if ( !checkResult ) {
                                     errors.push( error )
@@ -889,4 +889,77 @@ var JValidator = function ( formSelector ) {
     form.data( 'FormValidator', fv );
     return fv;
 };
+
+
+//*******************************************************TODO 15包装一下初始化验证器
+/**
+ * 初始化表单验证器 2015-3-18 14:05:52
+ * class,vali_area标志提示区域,
+ * data-jvalidator-publ_vali="requi[请添加产品]" 标识元素
+ *  <!-- 验证angular变量用-->
+ *  <input type="hidden" ng-value="form.products.length?'1':''" data-jvalidator-publ_vali="requi[请添加产品]"/>
+ *
+ * @param {{formSelector:String,submitSelector:String,isEnterSubmit:Boolean,valiStyle:function(),validateCallBack:function(),config:function()}} param
+ *   formSelector // 验证局域,元素选择器
+ *   submitSelector// 提交元素选择器
+ *   isEnterSubmit// 表单是否回车提交
+ */
+function formValidator( param ) {
+    var param = $.extend( {
+        /**
+         * @description 设置验证样式
+         * @param {boolean} isPass 是否通过验证
+         * @param {element}  el 元素
+         * @param {Object} errors 验证组建的对象.data.getMessage()获得错误提示
+         */
+        valiStyle: function ( isPass, $el, errors ) {
+            console.log( "请重写,验证样式处理回调authStyle:" + isPass );
+        },
+        // 验证回调
+        validateCallBack: function ( isPass ) {
+            console.log( "请重写,验证回调validateCallBack:" + isPass );
+        },
+        // jv配置
+        config: function ( jv ) {
+        }
+    }, param );
+
+    // 添加自定义验证
+    function addVali( jv ) {
+        //不能为空,自定义提示语
+        jv.addPattern( 'requi', {
+            argument: true,
+            message: '%argu',
+            validate: function ( value, done ) {
+                done( !!value );
+            }
+        } );
+    }
+
+    //************************初始化*******************************
+    var $formSelector = $( param.formSelector );
+    var jv = new JValidator( $formSelector );
+    $( param.submitSelector ).click( function () {// 提交按钮验证全部
+        jv.validateAll( param.validateCallBack );
+        return false;// 兼容ie6,不然a标签点击不调整页面
+    } );
+    // 回车和点击验证
+    if ( param.isEnterSubmit ) {
+        $formSelector.keydown( function ( event ) {
+            var e = event ? event : (window.event ? window.event : null);
+            if ( e.keyCode == 13 ) jv.validateAll( param.validateCallBack );
+        } );
+    }
+    jv.setContinueCheck( false );// 遇到错误不继续向下验证
+    addVali( jv ); // 添加自定义验证
+    param.config( jv );
+    //jv.when(['blur']);
+    jv.success( function ( $event ) {
+        param.valiStyle( true, $( this.element ) );
+    } );
+    jv.fail( function ( $event, errors ) {
+        param.valiStyle( false, $( this.element ), errors );
+    } );
+    return jv;
+}
 

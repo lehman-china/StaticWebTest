@@ -1,0 +1,47 @@
+{
+  "contacts":[
+    {
+      "id": 1,
+      "name": "Alice",
+      "items": [
+        {
+          "id": "a",
+          "type": "电话号码",
+          "value": "555-1234-1234"
+        },
+        {
+          "id": "b",
+          "type": "电子邮件",
+          "value": "alice@mailinator.com"
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "name": "Bob",
+      "items": [
+        {
+          "id": "a",
+          "type": "博客",
+          "value": "http://bob.blogger.com"
+        },
+        {
+          "id": "b",
+          "type": "传真",
+          "value": "555-999-9999"
+        }
+      ]
+    },
+    {
+      "id": 123,
+      "name": "Eve",
+      "items": [
+        {
+          "id": "a",
+          "type": "全名",
+          "value": "Eve Adamsdottir"
+        }
+      ]
+    }
+  ]
+}

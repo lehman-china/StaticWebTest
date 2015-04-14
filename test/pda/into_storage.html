@@ -5,12 +5,70 @@
 
     <!--列表选项 -->
     <div class="list">
+        <style type="text/css">
 
-      <a class="item item-icon-left" ng-repeat="item in items" href="#/tab/facts">
-        <i class="icon ion-ios-plus"></i>
-        {{ item }}
-        <span class="badge badge-assertive">8</span>
-      </a>
+
+          #scrollTable table {
+            border-collapse:collapse; /*统一设置两个table为细线表格*/
+          }
+          /*表头 div的第一个子元素**/
+          #scrollTable table.thead{
+            width:100%;
+          }
+          /*表头*/
+          #scrollTable table.thead th{
+            border: 1px solid #EB8;
+            border-right:#C96;
+            color:#fff;
+            background: #FF8C00;/*亮桔黄色*/
+          }
+          /*能带滚动条的表身*/
+
+          /*能带滚动条的表身的正体*/
+          #scrollTable table.tbody{
+            width:100%;
+            border: 1px solid #C96;
+            border-right:#B74;
+            color:#666666;
+            background: #ECE9D8;
+          }
+          /*能带滚动条的表身的格子*/
+          #scrollTable table.tbody td{
+            border:1px solid #C96;
+          }
+
+        </style>
+
+      <div id="scrollTable">
+        <table class="thead">
+          <col width="170px"></col> <col width="170px"></col> <col width="170px"></col><col></col>
+          <tbody>
+          <tr>
+            <th>编号</th>
+            <th>内容</th>
+            <th>打印时间</th>
+            <th>创建时间</th>
+          </tr>
+          </tbody>
+        </table>
+        <div>
+          <table class="tbody" ng-init="print = getTime()">
+            <col width="170px"></col> <col width="170px"></col> <col width="170px"></col><col></col>
+            <tbody>
+            <tr ng-repeat="item in items">
+              <td>{{$index+1}}</td>
+              <td>{{item.val}} </td>
+              <td>{{print | date:'yyyy-MM-dd HH:mm:ss:sss'}}</td>
+              <td>{{item.createTime | date:'yyyy-MM-dd HH:mm:ss:sss'}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+
+
 
     </div>
 

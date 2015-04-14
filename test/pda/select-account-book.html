@@ -1,0 +1,19 @@
+<ion-view title="选择账套">
+  <ion-content>
+    <div class="list">
+
+      <label class="item item-radio" ng-repeat="account in ['深圳达科为','北京达科为','上海达科为','香港达科为']">
+        <input type="radio" name="group">
+        <div class="item-content">
+          {{account}} {{'登录时间'+$index+'12345678'}}
+        </div>
+        <i class="radio-icon ion-checkmark"></i>
+      </label>
+    </div>
+    <div class="padding">
+      <button class="button button-block button-positive" ng-click="into()">
+        进入系统
+      </button>
+    </div>
+  </ion-content>
+</ion-view>

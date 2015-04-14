@@ -1,17 +1,17 @@
 <ion-view title="PDA登录">
-  <ion-content>
+  <ion-content id="login_vali">
     <div class="list">
-      <label class="item item-input">
+      <label class="item item-input" id="userName">
         <span class="input-label">账号:</span>
-        <input type="text" ng-model="user.username" required >
+        <input type="text" ng-model="user.username" data-jvalidator-login_vali="account[账号]" >
       </label>
       <label class="item item-input">
         <span class="input-label">密码:</span>
-        <input type="password" ng-model="user.password">
+        <input type="password" ng-model="user.password" data-jvalidator-login_vali="account[密码]">
       </label>
     </div>
     <div class="padding">
-      <button class="button button-block button-positive" ng-click="signIn(user)">
+      <button class="button button-block button-positive">
         登录
       </button>
       <p class="text-center">
